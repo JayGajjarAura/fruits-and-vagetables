@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> fruits and vagetables </title>
+    <link rel="shortcut icon" href="../Fruits_and_vagetables/fruits-and-vegetables.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+    <script src="../Fruits_and_vagetables/JS/fruits.js"></script>
+    <link rel="stylesheet" href="../Fruits_and_vagetables/CSS/fruits.css">
+    <script src="https://kit.fontawesome.com/d18b1a9336.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</head>
+    <body>
+        <header>
+            <div class="container-fluid bg-success text-white">
+                <div class="d-none d-lg-block">
+                    <nav class="container" aria-label="">
+                        <div class="row py-2 font-weight-light">
+                            <div class="col">
+                                <div>
+                                    <i class="fa fa-phone"></i> Hotline: 123 456 789
+                                    <span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="fa fa-sign-out"></i> Order status
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="text-right">
+                                    <img src="../Fruits_and_vagetables/Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
+                                        class="ml-auto my-1 pr-3">
+                                    <span> English <i class="fa fa-angle-down"></i> &nbsp;
+                                        <span> | </span> &nbsp;
+                                        <span> USD <i class="fa fa-angle-down"></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="container-fluid bg-white px-0">
+                <div class="container">
+                    <div class="row py-4">
+                        <div class="col">
+                            <img src="../Fruits_and_vagetables/Images/Prime Food.png" width="130" alt="logo">
+                        </div>
+                        <div class="col-5 ml-5 d-none d-lg-block">
+                            <div class="input-group mt-2">
+                                <input type="text" class="form-control rounded-0" placeholder="Search for products..."
+                                    aria-label="Search for products..." />
+                                <div class="input-group-append">
+                                    <button class="btn btn-success px-4 font-weight-light rounded-0" type="button"> SEARCH
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col ml-4 d-none d-lg-block">
+                            <div class="my-3 font-weight-bold text-secondary text-right">
+                                <i class="fa fa-user-o"></i> Sign in / Register &nbsp;&nbsp; <i class="fa fa-shopping-cart"></i>
+                                <span> Cart <sup class="bg-success text-white px-1 rounded-circle"> 0 </sup></span>
+                            </div>
+                        </div>
+                        <div class="col d-block d-md-none">
+                            <div class="text-secondary font-weight-bold text-right mt-2 ml-auto" id="header_search_size">
+                                <i class="fa fa-user-o mr-1"></i>
+                                <i class="fa fa-shopping-cart mr-1"></i>
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="d-block d-lg-none">
+                        <div class="collapse rounded-top" id="navbarToggleExternalContent">
+                            <div class="nav flex-column">
+                                <div class="bg-success text-white p-4">
+                                    <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Home </span>
+                                    <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Features </span>
+                                    <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Fresh produce </span>
+                                    <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Meat & Seafood
+                                    </span>
+                                    <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Blog </span>
+                                </div>
+                            </div>
+                        </div>
+                        <nav class="navbar navbar-dark bg-success rounded-bottom" aria-label="">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </nav>
+                    </div>
+                    <div class="d-none d-lg-block">
+                        <span class="font-weight-bold dropdown-toggle mr-4"> Home </span>
+                        <span class="font-weight-bold dropdown-toggle mr-4"> Features </span>
+                        <span class="font-weight-bold dropdown-toggle mr-4"> Fresh produce </span>
+                        <span class="font-weight-bold dropdown-toggle mr-4"> Meat & Seafood </span>
+                        <span class="font-weight-bold mr-4"> Dairy, Cheese & Eggs </span>
+                        <span class="font-weight-bold mr-4"> Deli & Prepared Foods </span>
+                        <span class="font-weight-bold dropdown-toggle mr-4"> Blog </span>
+                    </div>
+                </div>
+                <hr class="bg-success" id="first_hr_line">
+            </div>
+        </header>
+        <main>
+            <div class="container pb-5">
+                <div class="row">
+                    <div class="col-xl-8 col-sm-12 col-12">
+                        <div class="mb-3">
+                            <img class="card-img img_width   rounded-0" src="../Fruits_and_vagetables/Images/img-6.jpg" alt="First slide">
+                            <div class="card-img-overlay">
+                                <div class="img_text_alignment text-success">
+                                    <h3 class="card-title mb-1"> Fresh Vegetables </h3>
+                                    <h1 class="card-title mb-2"> From Our Farm </h1>
+                                    <button class="btn-outline-success px-3"> Shop now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-none d-xl-block">
+                            <div class="row">
+                                <div class="media col bg-white border p-0 mx-3">
+                                    <img class="align-self-center mr-2" src="../Fruits_and_vagetables/Images/homemade.png" alt="Generic placeholder image" width="85px">
+                                    <div class="media-body">
+                                        <h5 class="text-success mt-2">Homemade</h5>
+                                        <span> random text random text </span>
+                                    </div>
+                                </div>
+                                <div class="media col bg-white border p-0">
+                                    <img class="align-self-center mr-2" src="../Fruits_and_vagetables/Images/homemade.png" alt="Generic placeholder image" width="85px">
+                                    <div class="media-body">
+                                        <h5 class="text-success mt-2">Homemade</h5>
+                                        <p>random text random text</p>
+                                    </div>
+                                </div>
+                                <div class="media col bg-white border p-0 mx-3">
+                                    <img class="align-self-center mr-2" src="../Fruits_and_vagetables/Images/homemade.png" alt="Generic placeholder image" width="85px">
+                                    <div class="media-body">
+                                        <h5 class="text-success mt-2">Homemade</h5>
+                                        <p>random text random text </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                             
+                    </div>                   
+                    <div class="col-xl-4 col-sm-12 col-12">
+                        <div class="bg-white border">
+                            <div class="d-flex">
+                                <div class="text-success font-weight-bold p-3"> What's New</div>
+                                <div class="p-3 ml-auto"> View All <i class="fa fa-angle-right pl-1"></i></div> <br>
+                            </div>
+                            <div class="row mb-2">
+                                <img src="../Fruits_and_vagetables/Images/ice cream.png" alt="ice-cream" height="85px" class="pr-2 ml-5">
+                                <div class="col">                               
+                                    <span class="font-weight-bold"> Multi Flavor Ice Cream </span> <br>
+                                    <div class="star_rating_size">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <br>
+                                    </div>
+                                    <span class="text-success font-weight-bold"> $15.00 </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <img src="../Fruits_and_vagetables/Images/kitkat.png" alt="kit-kat" height="85px" class="pl-4">
+                                <div class="col col-md-6 col-sm-6">                               
+                                    <span class="font-weight-bold"> Kit Kat </span> <br>
+                                    <div class="star_rating_size">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <br>
+                                    </div>
+                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <img src="../Fruits_and_vagetables/Images/pizza 1.png" alt="pizza" height="85px" class="pl-4">
+                                <div class="col col-md-6 col-sm-6">                               
+                                    <span class="font-weight-bold"> Pizza </span> <br>
+                                    <div class="star_rating_size">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <br>
+                                    </div>
+                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <img src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="red-carot" height="85px" class="pl-4">
+                                <div class="col col-md-6 col-sm-6">                               
+                                    <span class="font-weight-bold"> Red Carot </span> <br>
+                                    <div class="star_rating_size">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <br>
+                                    </div>
+                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <img src="../Fruits_and_vagetables/Images/milk 1.png" alt="milk" height="85px" class="pl-4">
+                                <div class="col">                               
+                                    <span class="font-weight-bold"> Fresh Milk </span> <br>
+                                    <div class="star_rating_size">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <br>
+                                    </div>
+                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Shop By Catagory </h5>
+                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="card-group text-center border">
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/fresh produce.jpg" alt="fresh food" height="250px">
+                        <div class="card-body">
+                            <p class="card-text"> Fresh Produce </p>                            
+                        </div>
+                    </div>
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/meat.jpg" alt="meat" height="250px">
+                        <div class="card-body">
+                            <p class="card-title"> Meat & Seafood </p>
+                        </div>
+                    </div>
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/eggs.jpg" alt="Cheese" height="250px">
+                        <div class="card-body">
+                            <p class="card-title"> Dairy & Eggs </p>
+                        </div>
+                    </div>
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/Bread.jpg" alt="Bread" height="250px">
+                        <div class="card-body">
+                            <p class="card-title"> Bakery </p>
+                        </div>
+                    </div>
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/frozen food.png" alt="frozen food" height="250px">
+                        <div class="card-body">
+                            <p class="card-title"> Frozen Food </p>
+                        </div>
+                    </div>
+                    <div class="card border-0 d-none d-md-block">
+                        <img class="card-img-top mt-5" src="../Fruits_and_vagetables/Images/drink.jpg" alt="drink" height="250px">
+                        <div class="card-body">
+                            <p class="card-title">Drink & Coffee</p>
+                        </div>
+                    </div>
+                </div>
+                <!---------- Mobile Version ---------->
+                <div class="card-deck d-flex d-block d-lg-none">
+                    <div class="card border-0">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/fresh.png" alt="fresh food" height="180px">
+                        <div class="card-body">
+                            <p class="card-text text-center"> Fresh Produce </p>                            
+                        </div>
+                    </div>
+                    <div class="card border-0">
+                        <img class="card-img-top mt-5 border-right" src="../Fruits_and_vagetables/Images/pizza.png" alt="meat" height="180px">
+                        <div class="card-body">
+                            <p class="card-title text-center"> Meat & Seafood </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Today Flash Sales </h5>
+                    <p class="ml-5 d-none d-md-block"> Ends In: 
+                        <span class="bg-success text-white px-3 py-2 ml-2 "> 01 Hours :&nbsp; 03 Minutes&nbsp; : 00 Seconds </span>
+                     </p>
+                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="card-group">
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/soups.jpg" alt="Cheese" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Fresh Juice </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 30/50 </small></p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/orange juice.jpg" alt="meat" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Orange Juice </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 25/50 </small></p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/red amaranth.jpg" alt="Cheese" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Red Amaranth </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 15/50 </small></p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/bamboo shoots.jpg" alt="Bread" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Bamboo Shoots </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 35/50 </small></p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/dry fruits.jpg" alt="dry fruits" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Dry Fruits </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 5/50 </small></p>
+                        </div>
+                    </div>
+                </div>
+                <!------- Mobile Version ------->
+                <div class="card-deck d-flex d-block d-lg-none">
+                    <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/orange juice.jpg" alt="meat" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Orange Juice </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 25/50 </small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/dry fruits.jpg" alt="dry fruits" height="300px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Dry Fruits </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div class="progress progress_bar_height">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p class="pt-1 text-secondary"> <small> Sold: 5/50 </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="card">
+                    <img src="../Fruits_and_vagetables/Images/Untitled.png" alt="special Offer" height="250px">
+                    <div class="card-img-overlay">
+                        <div class="text-center">
+                            <h4 class="card-title"> <span class="bg-danger px-3 py-1 text-white"> Sale 50% off </span> </h4>
+                            <h1 class="card-title text-danger"> Fruits And Vegetables </h1>
+                            <h4 class="card-title"> special Offer</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5 carousel" >
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Best Sellers </h5>
+                    <a class="ml-auto" href="../Fruits_and_vagetables/HTML/best_sellers.html" >View All <i class="fa           fa-angle-right pl-1"></i>
+                    </a>
+                </div>
+                <div class="carousel" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false, "wrapAround": true }'>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="red-carot" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Red Carot </p>
+                                <div class="star_rating_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99 </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_red_carot" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/ice-cream.jfif" alt="ice cream" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Ice Cream </p>
+                                <div class="star_rating_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="ice_cream" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_ice_cream" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="ice_cream" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3 w-50 ml-5" src="../Fruits_and_vagetables/Images/kit-kat.png" alt="kit-kat"
+                                height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> kit-kat </p>
+                                <div class="Green_stars_sales_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="kit_kat" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_kit_kat" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="kit_kat" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/pizza.png" alt="pizza" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Pizza </p>
+                                <div class="Green_stars_sales_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-full star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/milk 1.png" alt="milk" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Milk </p>
+                                <div class="Green_stars_sales_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="milk" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_milk" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="milk" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3 w-50 ml-5" src="../Fruits_and_vagetables/Images/dew can.png" alt="Mountain dew" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Mountain Dew </p>
+                                <div class="star_rating_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99 </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="mountain_dew" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="mountain_dew" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3 w-50 ml-5" src="../Fruits_and_vagetables/Images/red bull can.png" alt="redbull"
+                                height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Red Bull </p>
+                                <div class="star_rating_size">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="red_bull" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_red_bull" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="red_bull" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3 w-50 ml-5" src="../Fruits_and_vagetables/Images/game fuel can.png" alt="Game Fuel"
+                                height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Game Fuel </p>
+                                <div class="Green_stars_sales_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="game_fuel" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_game_fuel" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="game_fuel" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/diet coke.png" alt="diet coke" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Diet Coke </p>
+                                <div class="Green_stars_sales_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-full star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="diet_coke" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_diet_coke" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="diet_coke" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-cell">
+                        <div class="card d-none d-md-block mx-2">
+                            <img class="card-img-top mt-3 w-50 ml-5" src="../Fruits_and_vagetables/Images/pepsi can.png" alt="pepsi zero"
+                                height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Pepsi zero </p>
+                                <div class="Green_stars_sales_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div class="pb-2">
+                                    <div class="text-center">
+                                        <button value="-" id="pepsi_zero" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="pepsi_zero" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ............... Mobile Version ............. -->
+                    <div class="card-deck d-flex d-block d-lg-none">
+                        <div class="card mr-3">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="Cheese" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Red Carot </p>
+                                <div class="star_rating_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99 </p>
+                                <div>
+                                    <div class="text-center">
+                                        <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_red_carot_mobile" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/ice-cream.jfif" alt="Cheese" height="180px">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> Ice Cream  </p>
+                                <div class="star_rating_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> $99.99 
+                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                </p>
+                                <div>
+                                    <div class="text-center">
+                                        <button value="-" id="ice_cream_mobile" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="txt_ice_cream_mobile" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+
+            <!-- ...................toast Add to cart.............. -->
+            <div class="container">
+                <div class="toast cart_toast bg-success " role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                    <div class="toast-header">
+                        <strong class="mr-auto"> Added to cart </strong>
+                        <small>Just Now</small>
+                    </div>
+                    <div class="toast-body text-white" id="add_to_cart_toast">
+                        <!-- Product added to your cart... -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Top Special Offers! </h5>
+                    <span class="ml-auto"> View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="card-deck">
+                    <div class="card d-none d-lg-block"> 
+                        <img class="card-img" src="../Fruits_and_vagetables/Images/juices organic.jpg" alt="organic juices" height="390px">
+                        <div class="card-img-overlay text-right">
+                            <div class="card-text"> <span class="bg-success text-white px-2 h6"> 35% OFF </span></div>
+                            <h5 class="card-text text-white mb-0"> Fresh juices </h5>
+                            <div class="card-text text-white"> special offer </div>
+                        </div>
+                    </div>
+                    <div class="card d-none d-lg-block">
+                        <img class="card-img" src="../Fruits_and_vagetables/Images/Ice_cream_with.jpg" alt="Ice cream" height="390px">
+                        <div class="card-img-overlay text-center">
+                            <div class="card-text"> <span class="text-danger h6 font-italic"> Save Up to 30% </span></div>
+                            <h5 class="card-text font-italic font-weight-bold mb-0"> chocolate & vani </h5>
+                            <div class="card-text"> Ice Cream Cake </div>
+                        </div>
+                    </div>
+                    <div class="card d-none d-lg-block">
+                        <img class="card-img" src="../Fruits_and_vagetables/Images/meat card.jpg" alt="meat" height="390px">
+                        <div class="card-img-overlay text-center">
+                            <div class="card-text"> <span class="text-warning h6"> Only From $89.99 </span></div>
+                            <h5 class="card-text text-white font-italic font-weight-bold mb-0"> Fresh Meat </h5>
+                            <div class="card-text text-white"> Limited Time Offers! </div>
+                        </div>
+                    </div>
+                    <div class="card d-none d-lg-block">
+                        <img class="card-img" src="../Fruits_and_vagetables/Images/vegetables card img.jpg" alt="Card image cap" height="390px">
+                        <div class="card-img-overlay">
+                            <div class="card-text mb-1"> <span class="bg-danger text-white px-3 py-1 h6"> Coupon 25% </span></div>
+                            <h5 class="card-text font-weight-bold font-italic mb-0"> Vegetables </h5>
+                            <div class="card-text"> Limited offer </div>
+                        </div>
+                    </div>
+
+                    <!--------------- Mobile Version ------------------>
+                    <div class="card-deck d-flex d-block d-lg-none">
+                            <div class="card mr-2">
+                                <img class="card-img" src="../Fruits_and_vagetables/Images/Ice_cream_with.jpg" alt="Ice cream" height="300px">
+                                <div class="card-img-overlay text-center">
+                                    <div class="card-text"> <span class="text-danger h6 font-italic"> Save Up to 30% </span></div>
+                                    <h5 class="card-text font-italic mb-0"> chocolate </h5>
+                                    <div class="card-text"> Ice Cream Cake </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img" src="../Fruits_and_vagetables/Images/meat-card.png" alt="meat" height="300px">
+                                <div class="card-img-overlay text-center">
+                                    <div class="card-text"> <span class="text-warning h6"> Only From $89.99 </span></div>
+                                    <h5 class="card-text text-white font-italic font-weight-bold mb-0"> Fresh Meat </h5>
+                                    <div class="card-text text-white"> Limited Time Offers! </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> New Arrivals </h5>
+                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="card-group">
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top px-3 py-4" src="../Fruits_and_vagetables/Images/broccoli.png" alt="broccoli" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Broccoli </p>
+                            <div class="star_rating_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/orange juice new.png" alt="orange juice" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Orange Juice  </p>
+                            <div class="star_rating_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top px-4 py-3" src="../Fruits_and_vagetables/Images/tomato.png" alt="tomato" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Imported Tomato </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star star_rating_size"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/bamboo shoots png.png" alt="bamboo shoots" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Bamboo Shoots </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-full star_rating_size"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div>
+                    <div class="card d-none d-md-block">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/strawberry.jpg" alt="strawberry" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Strawberry </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star star_rating_size"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div>
+                </div>
+                <!--------- Mobile Version -------->
+                <div class="card-deck d-flex d-block d-lg-none">
+                    <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/orange juice new.png" alt="orange juice" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Orange Juice  </p>
+                            <div class="star_rating_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top px-4 py-3" src="../Fruits_and_vagetables/Images/tomato.png" alt="tomato" height="200px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Imported Tomato </p>
+                            <div class="Green_stars_sales_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star star_rating_size"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                        </div>
+                    </div> 
+                </div>                   
+            </div>
+            <div class="container pb-5">
+                <div class="d-none d-md-block">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img src="../Fruits_and_vagetables/Images/gelato.jpg" alt="gelato" class="card-img" height="200px">
+                                <div class="card-img-overlay">
+                                    <div class="card-title text-white font-weight-bold font-italic"> <span class="bg-success px-2 py-1"> Save Up to 30% </span> </div>
+                                    <div class="card-title h5 font-italic font-weight-bold text-white"> Dairy Free Gelato</div>
+                                    <div class="card-title font-weight-bold text-white"> Organic Food </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <img src="../Fruits_and_vagetables/Images/burger.jpg" alt="gelato" class="card-img" height="200px">
+                                <div class="card-img-overlay text-right text-white">
+                                    <div class="card-title font-weight-bold"> <span class="bg-danger px-2 py-1"> Save Up to 75% </span> </div>
+                                    <div class="card-title h5 font-italic font-weight-bold"> Fast Food</div>
+                                    <div class="card-title font-weight-bold"> Organic Food </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-block d-md-none">
+                    <div class="card mb-3">
+                        <img src="../Fruits_and_vagetables/Images/gelato.jpg" alt="gelato" class="card-img" height="200px">
+                        <div class="card-img-overlay">
+                            <div class="card-title text-white font-weight-bold font-italic"> <span class="bg-success px-2 py-1"> Save Up to 30% </span> </div>
+                            <div class="card-title h5 font-italic font-weight-bold text-white"> Dairy Free Gelato</div>
+                            <div class="card-title font-weight-bold text-white"> Organic Food </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="../Fruits_and_vagetables/Images/burger.jpg" alt="gelato" class="card-img" height="200px">
+                        <div class="card-img-overlay text-right text-white">
+                            <div class="card-title font-weight-bold"> <span class="bg-danger px-2 py-1"> Save Up to 75% </span> </div>
+                            <div class="card-title h5 font-italic font-weight-bold"> Fast Food</div>
+                            <div class="card-title font-weight-bold"> Organic Food </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Top Rated </h5>
+                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="bg-white">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/broccoli.png" alt="broccoli" width="100px" class="mx-4">
+                                <div class="media-body">
+                                    <h5> Broccoli </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/strawberry.jpg" alt="strawberry" width="100px" class="mr-4">
+                                <div class="media-body">
+                                    <h5> Strawberry </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/tomato.png" alt="Tomato" width="100px" class="mr-4">
+                                <div class="media-body">
+                                    <h5> Tomato </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/orange juice new.png" alt="Orange Juice" width="100px" class="mx-4">
+                                <div class="media-body">
+                                    <h5> Orange Juice </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="Red Carot" width="100px" class="mr-4">
+                                <div class="media-body">
+                                    <h5> Red Carot </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <div class="media py-4">
+                                <img src="../Fruits_and_vagetables/Images/ice-cream.jfif" alt="ice-cream" width="100px" class="mr-4">
+                                <div class="media-body">
+                                    <h5> Ice Cream </h5>
+                                    <div class="Green_stars_sales_size pb-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star star_rating_size"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="d-flex pb-3">
+                    <h5 class="font-weight-bold"> Find Your Recipe </h5>
+                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/recipe 1.jpg" alt="recipe 1">
+                            <div class="card-body py-2">
+                                <p class="card-text mb-1 h6">Recipe 1</p>
+                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 10 comments </small> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-none d-md-block">
+                        <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/recipe 2.jpg" alt="recipe 2">
+                            <div class="card-body py-2">
+                                <p class="card-text mb-1 h6">Recipe 2</p>
+                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 8 comments </small> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-none d-md-block">
+                        <div class="card">
+                        <img class="card-img-top" src="../Fruits_and_vagetables/Images/recipe 3.jpg" alt="recipe 3">
+                            <div class="card-body py-2">
+                                <p class="card-text mb-1 h6">Recipe 3</p>
+                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 5 comments </small> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-5">
+                <div class="pb-3">
+                    <h5 class="font-weight-bold"> Our Brands </h5>
+                </div>
+                <div class="mb-5">
+                    <div class="bg-white py-5">
+                        <div class="row text-center">
+                            <div class="col">
+                                <img src="../Fruits_and_vagetables/Images/google_round_icon.png" alt="google" height="70px">
+                            </div>
+                            <div class="col">
+                                <img src="../Fruits_and_vagetables/Images/apple_logo_icon.png" alt="Apple" height="70px">
+                            </div>
+                            <div class="col d-none d-md-block">
+                                <img src="../Fruits_and_vagetables/Images/spotify_icon.png" alt="Spotify" height="70px">
+                            </div>
+                            <div class="col d-none d-md-block">
+                                <img src="../Fruits_and_vagetables/Images/amazon_icon.png" alt="Amazon" height="70px">
+                            </div>
+                            <div class="col d-none d-md-block">
+                                <img src="../Fruits_and_vagetables/Images/telegram_icon.png" alt="telegram" height="70px">
+                            </div>
+                            <div class="col d-none d-md-block">
+                                <img src="../Fruits_and_vagetables/Images/bitcoin.png" alt="bitcoin" height="70px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container-fluid bg-white px-0">
+                <div class="container">
+                    <div class="bg-success" id="position_of_greenbar">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="media py-4 mx-5">
+                                    <img src="../Fruits_and_vagetables/Images/technical-support.png" alt="technical-support" height="60px">
+                                    <div class="text-white ml-2 mt-1">
+                                        <h5 class="mb-1"> Need Help? Call Our Award - Winning </h5>
+                                        <span class="font-weight-light"> SUPPORT TEAM 24/7 AT (123) 456-789 </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="py-4 mx-5 mt-1">
+                                    <div class="input-group mt-1">
+                                        <input type="text" class="form-control rounded-0 py-2"
+                                            placeholder="Enter your e-mail..." aria-label="Search for products..." />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-dark text-white px-4 font-weight-light rounded-0"
+                                                type="button" id="myBtn"> SUBSCRIBE </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- _____ toast subscribe _____ -->
+                            <div class="container">
+                                <div class="toast toast_sub bg-success" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                                    <div class="toast-header">
+                                        <strong class="mr-auto"> Subscribed </strong>
+                                        <small>Just Now</small>
+                                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="toast-body text-white">
+                                        You just Subscribed to our Service...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container pb-4">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="../Fruits_and_vagetables/Images/Prime Food.png" alt="logo" height="50px">
+                            <ul class="list-unstyled text-secondary mt-4">
+                                <li class="mb-3"> <i class="fa fa-map-marker text-success mr-2"></i> 123, Abc, 456-789, IND
+                                </li>
+                                <li class="mb-3"> <i class="fa fa-phone-square text-success mr-2"></i> (123)-345456 </li>
+                                <li class="mb-3"> <i class="fa fa-envelope-o text-success mr-2"></i> support.us@company.com
+                                </li>
+                            </ul>
+                            <div class="mt-5">
+                                <h5 class="font-weight-bold"> Social Network </h5>
+                                <div class="social_network_logo_size">
+                                    <i class="fa fa-google-plus-square"></i>
+                                    <i class="fa fa-facebook-square"></i>
+                                    <i class="fa fa-twitter-square"></i>
+                                    <i class="fa fa-instagram"></i>
+                                    <i class="fa fa-pinterest-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-none d-md-block">
+                                <h5 class="pb-1"> Information </h5>
+                                <div class="progress footer_text_decoration mt-3">
+                                    <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemax="100"> </div>
+                                </div>
+                                <ul class="list-unstyled text-secondary mt-4">
+                                    <li class="mb-3"> About Us </li>
+                                    <li class="mb-3"> My Account </li>
+                                    <li class="mb-3"> Track Your Order </li>
+                                    <li class="mb-3"> Wishlist </li>
+                                    <li class="mb-3"> Faqs </li>
+                                    <li class="mb-3"> Support </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-none d-md-block">
+                                <h5 class="pb-1"> Service </h5>
+                                <div class="progress footer_text_decoration mt-3">
+                                    <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemax="100"> </div>
+                                </div>
+                                <ul class="list-unstyled text-secondary mt-4">
+                                    <li class="mb-3"> Brands </li>
+                                    <li class="mb-3"> Gift Certificates </li>
+                                    <li class="mb-3"> Affiliates </li>
+                                    <li class="mb-3"> Specials </li>
+                                    <li class="mb-3"> Faqs </li>
+                                    <li class="mb-3"> Custom Link </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-none d-md-block">
+                                <h5 class="pb-1"> Other Links </h5>
+                                <div class="progress footer_text_decoration mt-3">
+                                    <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemax="100"> </div>
+                                </div>
+                                <ul class="list-unstyled text-secondary mt-4">
+                                    <li class="mb-3"> Contact Us </li>
+                                    <li class="mb-3"> Returns </li>
+                                    <li class="mb-3"> Support </li>
+                                    <li class="mb-3"> Site Map </li>
+                                    <li class="mb-3"> Customer Service </li>
+                                    <li class="mb-3"> Custom Links </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-none d-md-block">
+                                <h5 class="pb-1"> Our Categories </h5>
+                                <div class="progress footer_text_decoration mt-3">
+                                    <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                        aria-valuenow="100" aria-valuemax="100"> </div>
+                                </div>
+                                <ul class="list-unstyled text-secondary mt-4">
+                                    <li class="mb-3"> Apple </li>
+                                    <li class="mb-3"> Bags & Shoes </li>
+                                    <li class="mb-3"> Electronics </li>
+                                    <li class="mb-3"> Fashion </li>
+                                    <li class="mb-3"> Gifts & Toys </li>
+                                    <li class="mb-3"> Health & Beauty </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- _____ Mobile Version _____ -->
+                    <div class="mt-3">
+                        <div class="d-block d-md-none mb-3">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card mb-3 rounded">
+                                    <div class="card-header py-0 bg-success" id="headingOne">
+                                        <h2 class="d-flex mb-0">
+                                            <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Information
+                                            </button>
+                                            <i class="fa fa-angle-down text-white mt-1"></i>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body bg-white">
+                                            <ul class="list-unstyled text-secondary">
+                                                <li class="mb-3"> About Us </li>
+                                                <li class="mb-3"> My Account </li>
+                                                <li class="mb-3"> Track Your Order </li>
+                                                <li class="mb-3"> Wishlist </li>
+                                                <li class="mb-3"> Faqs </li>
+                                                <li class="mb-3"> Support </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3 rounded">
+                                    <div class="card-header py-0 bg-success" id="headingTwo">
+                                        <h2 class="d-flex mb-0">
+                                            <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                                aria-controls="collapseTwo">
+                                                Service
+                                            </button>
+                                            <i class="fa fa-angle-down text-white mt-1"></i>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body bg-white">
+                                            <ul class="list-unstyled text-secondary">
+                                                <li class="mb-3"> About Us </li>
+                                                <li class="mb-3"> My Account </li>
+                                                <li class="mb-3"> Track Your Order </li>
+                                                <li class="mb-3"> Wishlist </li>
+                                                <li class="mb-3"> Faqs </li>
+                                                <li class="mb-3"> Support </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3 rounded">
+                                    <div class="card-header py-0 bg-success" id="headingThree">
+                                        <h2 class="d-flex mb-0">
+                                            <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                                data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+                                                aria-controls="collapseThree">
+                                                Other Links
+                                            </button>
+                                            <i class="fa fa-angle-down text-white mt-1"></i>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body bg-white">
+                                            <ul class="list-unstyled text-secondary">
+                                                <li class="mb-3"> About Us </li>
+                                                <li class="mb-3"> My Account </li>
+                                                <li class="mb-3"> Track Your Order </li>
+                                                <li class="mb-3"> Wishlist </li>
+                                                <li class="mb-3"> Faqs </li>
+                                                <li class="mb-3"> Support </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3 rounded">
+                                    <div class="card-header py-0 bg-success" id="headingFour">
+                                        <h2 class="d-flex mb-0">
+                                            <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                                data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
+                                                aria-controls="collapseFour">
+                                                Our Catagories
+                                            </button>
+                                            <i class="fa fa-angle-down text-white mt-1"></i>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body bg-white">
+                                            <ul class="list-unstyled text-secondary">
+                                                <li class="mb-3"> About Us </li>
+                                                <li class="mb-3"> My Account </li>
+                                                <li class="mb-3"> Track Your Order </li>
+                                                <li class="mb-3"> Wishlist </li>
+                                                <li class="mb-3"> Faqs </li>
+                                                <li class="mb-3"> Support </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="m-0">
+            <div class="container">
+                <div class="py-3">
+                    <div class="text-secondary">
+                        <div> <i class="fa fa-copyright"></i> 2023 <span class="text-success"> SuperMarket. </span> Designed by
+                            <span class="text-success"> Tamburo.com </span> All Rights Reserved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

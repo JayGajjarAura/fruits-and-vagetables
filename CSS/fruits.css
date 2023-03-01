@@ -1,0 +1,98 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+#header_search_size {
+    font-size: 1.5rem;
+}
+
+.img_width {
+    height: 400px;
+}
+
+#first_hr_line {
+    padding: 0.5px;
+}
+
+.img_text_alignment {
+    margin-top: 120px;
+    margin-left: 20px;
+}
+
+.line_through_text {
+    font-size: 0.9rem;
+    color: gray;
+    text-decoration: line-through;
+}
+
+.star_rating_size {
+    font-size: 0.7rem;
+    color: rgb(202, 202, 202);
+}
+
+.Green_stars_sales_size {
+    font-size: 0.7rem;
+    color: green;
+}
+
+.progress_bar_height {
+    height: 0.3rem;
+}
+
+#position_of_greenbar {
+    position:relative;
+    bottom: 55px;
+}
+
+.toast ,.toast01 {
+    position: fixed;
+    top: 10px; 
+    right: 10px;
+    z-index: 1000;
+    width: 300px;
+}
+
+.social_network_logo_size {
+    font-size: 35px;
+}
+
+.footer_text_decoration {
+    height: 3px;
+    width: 40px;
+}
+
+.input_area {
+    width: 50px;
+    /* border-radius: 20px; */
+}
+
+.value_btn {
+    border-radius: 50%;
+    border: none;
+    padding-bottom: 5px;
+    width: 30px;
+}
+
+.buy_now_btn, .add_to_cart_btn {
+    border-radius: 20px;
+    border: none;
+}
+
+.buy_now_btn:hover, .add_to_cart_btn:hover, .value_btn:hover {
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+.flickity-prev-next-button.next {
+    right: -60px !important;
+}
+
+.flickity-prev-next-button.previous {
+    left: -60px !important;
+}

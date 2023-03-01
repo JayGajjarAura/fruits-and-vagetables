@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Sellers</title>
+    <link rel="shortcut icon" href="../fruits-and-vegetables.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+    <script src="../JS/fruits.js"></script>
+    <link rel="stylesheet" href="../CSS/fruits.css">
+    <script src="https://kit.fontawesome.com/d18b1a9336.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid bg-success text-white">
+            <div class="d-none d-lg-block">
+                <nav class="container" aria-label="">
+                    <div class="row py-2 font-weight-light">
+                        <div class="col">
+                            <div>
+                                <i class="fa fa-phone"></i> Hotline: 123 456 789
+                                <span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-sign-out"></i> Order status
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-right">
+                                <img src="../Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
+                                    class="ml-auto my-1 pr-3">
+                                <span> English <i class="fa fa-angle-down"></i> &nbsp;
+                                    <span> | </span> &nbsp;
+                                    <span> USD <i class="fa fa-angle-down"></i> </span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="container-fluid bg-white px-0">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col">
+                        <a href="../HTML/index.html"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
+                    </div>
+                    <div class="col-5 ml-5 d-none d-lg-block">
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control rounded-0" placeholder="Search for products..."
+                                aria-label="Search for products..." />
+                            <div class="input-group-append">
+                                <button class="btn btn-success px-4 font-weight-light rounded-0" type="button"> SEARCH
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ml-4 d-none d-lg-block">
+                        <div class="my-3 font-weight-bold text-secondary text-right">
+                            <i class="fa fa-user-o"></i> Sign in / Register &nbsp;&nbsp; <i class="fa fa-shopping-cart"></i>
+                            <span> Cart <sup class="bg-success text-white px-1 rounded-circle"> 0 </sup></span>
+                        </div>
+                    </div>
+                    <div class="col d-block d-md-none">
+                        <div class="text-secondary font-weight-bold text-right mt-2 ml-auto" id="header_search_size">
+                            <i class="fa fa-user-o mr-1"></i>
+                            <i class="fa fa-shopping-cart mr-1"></i>
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="d-block d-lg-none">
+                    <div class="collapse rounded-top" id="navbarToggleExternalContent">
+                        <div class="nav flex-column">
+                            <div class="bg-success text-white p-4">
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Home </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Features </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Fresh produce </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Meat & Seafood
+                                </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Blog </span>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-dark bg-success rounded-bottom" aria-label="">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </nav>
+                </div>
+                <div class="d-none d-lg-block">
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Home </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Features </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Fresh produce </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Meat & Seafood </span>
+                    <span class="font-weight-bold mr-4"> Dairy, Cheese & Eggs </span>
+                    <span class="font-weight-bold mr-4"> Deli & Prepared Foods </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Blog </span>
+                </div>
+            </div>
+            <hr class="bg-success" id="first_hr_line">
+        </div>
+    </header>
+    <main>
+        <div class="container pb-5">
+            <div class="d-flex">
+                <h5 class="font-weight-bold"> Best Sellers </h5>
+            </div>
+            <div class="card-group my-3">
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/red-carot.jpg" alt="red-carot" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Red Carot </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_red_carot" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/ice-cream.jfif" alt="Cheese" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <div class="star_rating_size">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="ice_cream" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_ice_cream" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="ice_cream" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/kit-kat.png" alt="kit-kat" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> kit-kat </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="kit_kat" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_kit_kat" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="kit_kat" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/pizza.png" alt="Cheese" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/milk 1.png" alt="milk" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Milk </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="milk" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_milk" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="milk" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-group my-3">
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/bamboo shoots.jpg" alt="bamboo" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Bamboo Shoots </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="bamboo_shoots" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_bamboo_shoots" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="bamboo_shoots" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/Bread.jpg" alt="Bread" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Bread </p>
+                        <div class="star_rating_size">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="bread" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_bread" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="bread" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-75 ml-4" src="../Images/dry fruits.jpg" alt="dry fruits" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Dry fruits </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="dry_friuts" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_dry_friuts" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="dry_friuts" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/fresh.png" alt="fresh" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> fresh </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="fresh" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_fresh" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="fresh" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/ice cream.png" alt="ice-cream" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="ice_creams" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_ice_creams" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="ice_creams" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-group my-3">
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/meat.jpg" alt="meat" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Meat </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="meat" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_meat" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="meat" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/orange juice new.png" alt="orange juice" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Orange Juice </p>
+                        <div class="star_rating_size">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="orange_juice" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_orange_juice" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="orange_juice" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/pizza 1.png" alt="pizza" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="pizza_1" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_pizza_1" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pizza_1" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/pizza.png" alt="pizza" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/rajbhog.png" alt="rajbhog height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Amul Rajbhog </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="rajbhog" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_rajbhog" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="rajbhog" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-group my-3">
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/dew can.png" alt="Mountain dew" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Mountain Dew </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="mountain_dew" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="mountain_dew" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/red bull can.png" alt="redbull" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Red Bull </p>
+                        <div class="star_rating_size">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="red_bull" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_red_bull" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="red_bull" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/game fuel can.png" alt="Game Fuel" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Game Fuel </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="game_fuel" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_game_fuel" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="game_fuel" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3" src="../Images/diet coke.png" alt="diet coke" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Diet Coke </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-full star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="diet_coke" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_diet_coke" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="diet_coke" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card d-none d-md-block mx-2">
+                    <img class="card-img-top mt-3 w-50 ml-5" src="../Images/pepsi can.png" alt="pepsi zero" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Pepsi zero </p>
+                        <div class="Green_stars_sales_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star star_rating_size"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="pepsi_zero" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pepsi_zero" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- ............... Mobile Version ............. -->
+            <div class="card-deck d-flex d-block d-lg-none">
+                <div class="card mr-3">
+                    <img class="card-img-top mt-3" src="../Images/red-carot.jpg" alt="Cheese" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Red Carot </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_red_carot_mobile" class="input_area mx-1 text-center input_val"
+                                    value="0">
+                                <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top mt-3" src="../Images/ice-cream.jfif" alt="Cheese" height="180px">
+                    <div class="card-body px-4 py-1">
+                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <div class="star_rating_size ">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-success font-weight-bold"> $99.99
+                            <span class="line_through_text font-weight-light"> $110.00 </span>
+                        </p>
+                        <div>
+                            <div class="text-center">
+                                <button value="-" id="ice_cream_mobile" class="value_btn minus_btn"> - </button>
+                                <input disabled id="txt_ice_cream_mobile" class="input_area mx-1 text-center input_val"
+                                    value="0">
+                                <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
+                            </div>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="d-flex pb-3">
+                <h5 class="font-weight-bold"> Find Your Recipe </h5>
+                <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top" src="../Images/recipe 1.jpg" alt="recipe 1">
+                        <div class="card-body py-2">
+                            <p class="card-text mb-1 h6">Recipe 1</p>
+                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01,
+                                    2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 10 comments </small> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-none d-md-block">
+                    <div class="card">
+                        <img class="card-img-top" src="../Images/recipe 2.jpg" alt="recipe 2">
+                        <div class="card-body py-2">
+                            <p class="card-text mb-1 h6">Recipe 2</p>
+                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01,
+                                    2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 8 comments </small> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-none d-md-block">
+                    <div class="card">
+                        <img class="card-img-top" src="../Images/recipe 3.jpg" alt="recipe 3">
+                        <div class="card-body py-2">
+                            <p class="card-text mb-1 h6">Recipe 3</p>
+                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; Jan 01,
+                                    2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 5 comments </small> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <div class="pb-3">
+                <h5 class="font-weight-bold"> Our Brands </h5>
+            </div>
+            <div class="mb-5">
+                <div class="bg-white py-5">
+                    <div class="row text-center">
+                        <div class="col">
+                            <img src="../Images/google_round_icon.png" alt="google" height="70px">
+                        </div>
+                        <div class="col">
+                            <img src="../Images/apple_logo_icon.png" alt="Apple" height="70px">
+                        </div>
+                        <div class="col d-none d-md-block">
+                            <img src="../Images/spotify_icon.png" alt="Spotify" height="70px">
+                        </div>
+                        <div class="col d-none d-md-block">
+                            <img src="../Images/amazon_icon.png" alt="Amazon" height="70px">
+                        </div>
+                        <div class="col d-none d-md-block">
+                            <img src="../Images/telegram_icon.png" alt="telegram" height="70px">
+                        </div>
+                        <div class="col d-none d-md-block">
+                            <img src="../Images/bitcoin.png" alt="bitcoin" height="70px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid bg-white px-0">
+            <div class="container">
+                <div class="bg-success" id="position_of_greenbar">
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-12 col-12">
+                            <div class="media py-4 mx-5">
+                                <img src="../Images/technical-support.png" alt="technical-support" height="60px">
+                                <div class="text-white ml-2 mt-1">
+                                    <h5 class="mb-1"> Need Help? Call Our Award - Winning </h5>
+                                    <span class="font-weight-light"> SUPPORT TEAM 24/7 AT (123) 456-789 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12 col-12">
+                            <div class="py-4 mx-5 mt-1">
+                                <div class="input-group mt-1">
+                                    <input type="text" class="form-control rounded-0 py-2"
+                                        placeholder="Enter your e-mail..." aria-label="Search for products..." />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-dark text-white px-4 font-weight-light rounded-0"
+                                            type="button" id="myBtn"> SUBSCRIBE </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- _____ toast subscribe _____ -->
+                        <div class="container">
+                            <div class="toast toast_sub bg-success" role="alert" aria-live="assertive" aria-atomic="true"
+                                data-delay="2000">
+                                <div class="toast-header">
+                                    <strong class="mr-auto"> Subscribed </strong>
+                                    <small>Just Now</small>
+                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body text-white">
+                                    You just Subscribed to our Service...
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ...................toast Add to cart.............. -->
+                        <div class="container">
+                            <div class="toast cart_toast bg-success " role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                                <div class="toast-header">
+                                    <strong class="mr-auto"> Added to cart </strong>
+                                    <small>Just Now</small>
+                                </div>
+                                <div class="toast-body text-white" id="add_to_cart_toast">
+                                    <!-- Product added to your cart... -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pb-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="../Images/Prime Food.png" alt="logo" height="50px">
+                        <ul class="list-unstyled text-secondary mt-4">
+                            <li class="mb-3"> <i class="fa fa-map-marker text-success mr-2"></i> 123, Abc, 456-789, IND
+                            </li>
+                            <li class="mb-3"> <i class="fa fa-phone-square text-success mr-2"></i> (123)-345456 </li>
+                            <li class="mb-3"> <i class="fa fa-envelope-o text-success mr-2"></i> support.us@company.com
+                            </li>
+                        </ul>
+                        <div class="mt-5">
+                            <h5 class="font-weight-bold"> Social Network </h5>
+                            <div class="social_network_logo_size">
+                                <i class="fa fa-google-plus-square"></i>
+                                <i class="fa fa-facebook-square"></i>
+                                <i class="fa fa-twitter-square"></i>
+                                <i class="fa fa-instagram"></i>
+                                <i class="fa fa-pinterest-square"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-none d-md-block">
+                            <h5 class="pb-1"> Information </h5>
+                            <div class="progress footer_text_decoration mt-3">
+                                <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                    aria-valuenow="100" aria-valuemax="100"> </div>
+                            </div>
+                            <ul class="list-unstyled text-secondary mt-4">
+                                <li class="mb-3"> About Us </li>
+                                <li class="mb-3"> My Account </li>
+                                <li class="mb-3"> Track Your Order </li>
+                                <li class="mb-3"> Wishlist </li>
+                                <li class="mb-3"> Faqs </li>
+                                <li class="mb-3"> Support </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-none d-md-block">
+                            <h5 class="pb-1"> Service </h5>
+                            <div class="progress footer_text_decoration mt-3">
+                                <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                    aria-valuenow="100" aria-valuemax="100"> </div>
+                            </div>
+                            <ul class="list-unstyled text-secondary mt-4">
+                                <li class="mb-3"> Brands </li>
+                                <li class="mb-3"> Gift Certificates </li>
+                                <li class="mb-3"> Affiliates </li>
+                                <li class="mb-3"> Specials </li>
+                                <li class="mb-3"> Faqs </li>
+                                <li class="mb-3"> Custom Link </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-none d-md-block">
+                            <h5 class="pb-1"> Other Links </h5>
+                            <div class="progress footer_text_decoration mt-3">
+                                <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                    aria-valuenow="100" aria-valuemax="100"> </div>
+                            </div>
+                            <ul class="list-unstyled text-secondary mt-4">
+                                <li class="mb-3"> Contact Us </li>
+                                <li class="mb-3"> Returns </li>
+                                <li class="mb-3"> Support </li>
+                                <li class="mb-3"> Site Map </li>
+                                <li class="mb-3"> Customer Service </li>
+                                <li class="mb-3"> Custom Links </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-none d-md-block">
+                            <h5 class="pb-1"> Our Categories </h5>
+                            <div class="progress footer_text_decoration mt-3">
+                                <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
+                                    aria-valuenow="100" aria-valuemax="100"> </div>
+                            </div>
+                            <ul class="list-unstyled text-secondary mt-4">
+                                <li class="mb-3"> Apple </li>
+                                <li class="mb-3"> Bags & Shoes </li>
+                                <li class="mb-3"> Electronics </li>
+                                <li class="mb-3"> Fashion </li>
+                                <li class="mb-3"> Gifts & Toys </li>
+                                <li class="mb-3"> Health & Beauty </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- _____ Mobile Version _____ -->
+                <div class="mt-3">
+                    <div class="d-block d-md-none mb-3">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card mb-3 rounded">
+                                <div class="card-header py-0 bg-success" id="headingOne">
+                                    <h2 class="d-flex mb-0">
+                                        <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Information
+                                        </button>
+                                        <i class="fa fa-angle-down text-white mt-1"></i>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body bg-white">
+                                        <ul class="list-unstyled text-secondary">
+                                            <li class="mb-3"> About Us </li>
+                                            <li class="mb-3"> My Account </li>
+                                            <li class="mb-3"> Track Your Order </li>
+                                            <li class="mb-3"> Wishlist </li>
+                                            <li class="mb-3"> Faqs </li>
+                                            <li class="mb-3"> Support </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3 rounded">
+                                <div class="card-header py-0 bg-success" id="headingTwo">
+                                    <h2 class="d-flex mb-0">
+                                        <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                            data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                            aria-controls="collapseTwo">
+                                            Service
+                                        </button>
+                                        <i class="fa fa-angle-down text-white mt-1"></i>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body bg-white">
+                                        <ul class="list-unstyled text-secondary">
+                                            <li class="mb-3"> About Us </li>
+                                            <li class="mb-3"> My Account </li>
+                                            <li class="mb-3"> Track Your Order </li>
+                                            <li class="mb-3"> Wishlist </li>
+                                            <li class="mb-3"> Faqs </li>
+                                            <li class="mb-3"> Support </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3 rounded">
+                                <div class="card-header py-0 bg-success" id="headingThree">
+                                    <h2 class="d-flex mb-0">
+                                        <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                            data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+                                            aria-controls="collapseThree">
+                                            Other Links
+                                        </button>
+                                        <i class="fa fa-angle-down text-white mt-1"></i>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body bg-white">
+                                        <ul class="list-unstyled text-secondary">
+                                            <li class="mb-3"> About Us </li>
+                                            <li class="mb-3"> My Account </li>
+                                            <li class="mb-3"> Track Your Order </li>
+                                            <li class="mb-3"> Wishlist </li>
+                                            <li class="mb-3"> Faqs </li>
+                                            <li class="mb-3"> Support </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3 rounded">
+                                <div class="card-header py-0 bg-success" id="headingFour">
+                                    <h2 class="d-flex mb-0">
+                                        <button class="btn btn-block text-left text-white font-weight-bold" type="button"
+                                            data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
+                                            aria-controls="collapseFour">
+                                            Our Catagories
+                                        </button>
+                                        <i class="fa fa-angle-down text-white mt-1"></i>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body bg-white">
+                                        <ul class="list-unstyled text-secondary">
+                                            <li class="mb-3"> About Us </li>
+                                            <li class="mb-3"> My Account </li>
+                                            <li class="mb-3"> Track Your Order </li>
+                                            <li class="mb-3"> Wishlist </li>
+                                            <li class="mb-3"> Faqs </li>
+                                            <li class="mb-3"> Support </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="m-0">
+        <div class="container">
+            <div class="py-3">
+                <div class="text-secondary">
+                    <div> <i class="fa fa-copyright"></i> 2023 <span class="text-success"> SuperMarket. </span> Designed by
+                        <span class="text-success"> Tamburo.com </span> All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
