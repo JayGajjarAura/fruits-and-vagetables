@@ -62,4 +62,16 @@ $(document).ready(function () {
     $('.add_to_cart_btn').click(function() {
         document.getElementById('total_cart_value').innerHTML = total_cart_value() 
     })
+
+    $('#reslink').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "more_products.html",
+            data: {},
+            success: function (data) {
+                $('#maincont').html(data);
+            }
+        });
+    });
 })
