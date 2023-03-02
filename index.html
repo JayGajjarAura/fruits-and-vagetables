@@ -44,6 +44,7 @@
                                     <span> English <i class="fa fa-angle-down"></i> &nbsp;
                                         <span> | </span> &nbsp;
                                         <span> USD <i class="fa fa-angle-down"></i> </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +70,7 @@
                         <div class="col ml-4 d-none d-lg-block">
                             <div class="my-3 font-weight-bold text-secondary text-right">
                                 <i class="fa fa-user-o"></i> Sign in / Register &nbsp;&nbsp; <i class="fa fa-shopping-cart"></i>
-                                <span> Cart <sup class="bg-success text-white px-1 rounded-circle"> 0 </sup></span>
+                                <span> Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value"> 0 </sup></span>
                             </div>
                         </div>
                         <div class="col d-block d-md-none">
@@ -447,7 +448,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container pb-5 carousel" >
+            <div class="container pb-5" >
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Best Sellers </h5>
                     <a class="ml-auto" href="../Fruits_and_vagetables/HTML/best_sellers.html" >View All <i class="fa           fa-angle-right pl-1"></i>
@@ -724,59 +725,59 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- ............... Mobile Version ............. -->
-                    <div class="card-deck d-flex d-block d-lg-none">
-                        <div class="card mr-3">
-                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="Cheese" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Red Carot </p>
-                                <div class="star_rating_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                <!-- ............... Mobile Version ............. -->
+                <div class="card-deck d-flex d-block d-lg-none">
+                    <div class="card mr-3">
+                        <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/red-carot.jpg" alt="Cheese" height="180px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Red Carot </p>
+                            <div class="star_rating_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <div>
+                                <div class="text-center">
+                                    <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
+                                    <input disabled id="txt_red_carot_mobile" class="input_area mx-1 text-center input_val" value="0">
+                                    <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99 </p>
-                                <div>
-                                    <div class="text-center">
-                                        <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_red_carot_mobile" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
+                                <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                             </div>
                         </div>
-                        <div class="card">
-                            <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/ice-cream.jfif" alt="Cheese" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Ice Cream  </p>
-                                <div class="star_rating_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top mt-3" src="../Fruits_and_vagetables/Images/ice-cream.jfif" alt="Cheese" height="180px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold"> Ice Cream  </p>
+                            <div class="star_rating_size pb-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold"> $99.99 
+                                <span class="line_through_text font-weight-light"> $110.00 </span>
+                            </p>
+                            <div>
+                                <div class="text-center">
+                                    <button value="-" id="ice_cream_mobile" class="value_btn minus_btn"> - </button>
+                                    <input disabled id="txt_ice_cream_mobile" class="input_area mx-1 text-center input_val" value="0">
+                                    <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99 
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
-                                </p>
-                                <div>
-                                    <div class="text-center">
-                                        <button value="-" id="ice_cream_mobile" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_ice_cream_mobile" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
+                                <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                             </div>
                         </div>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
             </div>
 
             <!-- ...................toast Add to cart.............. -->

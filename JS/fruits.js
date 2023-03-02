@@ -47,4 +47,19 @@ $(document).ready(function () {
             txt.val(parseInt(txt.val()) - 1)
         }
     })
+
+    function total_cart_value() {
+        let total = 0
+        $('.input_val').each(function() {
+            total += +this.value
+        })
+        return total
+    }
+            // $('.add_to_cart_btn').click(function() {
+            //     console.log(total_cart_value())
+            // })
+
+    $('.add_to_cart_btn').click(function() {
+        document.getElementById('total_cart_value').innerHTML = total_cart_value() 
+    })
 })
