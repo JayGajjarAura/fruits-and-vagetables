@@ -89,6 +89,19 @@ a, a:hover {
     border: none;
 }
 
+.load_more {
+    border-radius: 20px;
+    border: none;
+    color: white;
+    background-color: rgba(0, 128, 0, 0.700);
+}
+
+.load_more:hover {
+    border: none;
+    background-color: green;
+    /* color: black; */
+}
+
 .flickity-prev-next-button.next {
     right: -60px !important;
 }
