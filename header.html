@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+</head>
+<body>
+    <header>
+        <div class="container-fluid bg-success text-white">
+            <div class="d-none d-lg-block">
+                <nav class="container" aria-label="">
+                    <div class="row py-2 font-weight-light">
+                        <div class="col">
+                            <div>
+                                <i class="fa fa-phone"></i> Hotline: 123 456 789
+                                <span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="fa fa-sign-out"></i> Order status
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-right">
+                                <img src="./Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
+                                    class="ml-auto my-1 pr-3">
+                                <span> English <i class="fa fa-angle-down"></i> &nbsp;
+                                    <span> | </span> &nbsp;
+                                    <span> USD <i class="fa fa-angle-down"></i> </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="container-fluid bg-white px-0">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col">
+                        <a href="./index.html"> <img src="./Images/Prime Food.png" width="130" alt="logo"> </a>
+                    </div>
+                    <div class="col-5 ml-5 d-none d-lg-block">
+                        <div class="input-group mt-2">
+                            <input type="text" class="form-control rounded-0" placeholder="Search for products..."
+                                aria-label="Search for products..." />
+                            <div class="input-group-append">
+                                <button class="btn btn-success px-4 font-weight-light rounded-0" type="button"> SEARCH
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col ml-4 d-none d-lg-block">
+                        <div class="my-3 font-weight-bold text-secondary text-right">
+                            <i class="fa fa-user-o"></i> Sign in / Register &nbsp;&nbsp; <i class="fa fa-shopping-cart"></i>
+                            <span> Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value"> 0
+                                </sup></span>
+                        </div>
+                    </div>
+                    <div class="col d-block d-md-none">
+                        <div class="text-secondary font-weight-bold text-right mt-2 ml-auto" id="header_search_size">
+                            <i class="fa fa-user-o mr-1"></i>
+                            <i class="fa fa-shopping-cart mr-1"></i>
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="d-block d-lg-none">
+                    <div class="collapse rounded-top" id="navbarToggleExternalContent">
+                        <div class="nav flex-column">
+                            <div class="bg-success text-white p-4">
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Home </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Features </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Fresh produce </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Meat & Seafood
+                                </span>
+                                <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Blog </span>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-dark bg-success rounded-bottom" aria-label="">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </nav>
+                </div>
+                <div class="d-none d-lg-block">
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Home </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Features </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Fresh produce </span>
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Meat & Seafood </span>
+                    <span class="font-weight-bold mr-4"> Dairy, Cheese & Eggs </span>
+                    <!-- <span class="font-weight-bold mr-4"> Deli & Prepared Foods </span> -->
+                    <span class="font-weight-bold dropdown-toggle mr-4"> Blog </span>
+                    <a href="./dynamic.html" class="font-weight-bold mr-4"> Dynamic Add / Remove </a>
+
+                </div>
+            </div>
+            <hr class="bg-success" id="first_hr_line">
+        </div>
+    </header>
+</body>
+</html>
