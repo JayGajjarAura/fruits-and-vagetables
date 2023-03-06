@@ -96,74 +96,76 @@ $(document).ready(function (e) {
         })
     })
 
-    //___________________________ Dynamic Add and Remove_________________________
-    let tn = 0;
-
-    function addTermrows() {
-        tn++;
-
-        let TermNameInput = document.getElementById("TermNameValue");
-        let TNIValue = TermNameInput.value;
-
-        const MainTbody = document.getElementById("mainTBody");
-
-        const CreateTR = document.createElement('tr');
-        CreateTR.id = "CreateTR" + tn;
-
-        const tdOne = document.createElement('td');
-        tdOne.id = "tdOne" + tn;
-        tdOne.className = 'one ps-3';
-
-        const pOne = document.createElement('p');
-        pOne.id = "pOne" + tn;
-        pOne.className = 'mb-0';
-        pOne.innerText = "0" + tn;
-
-        const tdTwo = document.createElement('td');
-        tdTwo.id = "tdTwo" + tn;
-        tdTwo.className = 'two';
-
-        const pTwo = document.createElement('p');
-        pTwo.id = "pTwo" + tn;
-        pTwo.className = 'mb-0';
-        pTwo.innerText = TNIValue;
-
-        const tdThree = document.createElement('td');
-        tdThree.id = "tdThree" + tn;
-        tdThree.className = 'three';
-
-        const tdFour = document.createElement('td');
-        tdFour.id = "tdFour" + tn;
-        tdFour.className = 'four';
-
-        const tdFive = document.createElement('td');
-        tdFive.id = "tdFive" + tn;
-        tdFive.className = 'text-end pe-3 five';
-
-        const DelButton = document.createElement('button');
-        DelButton.id = "DelButton" + tn;
-        DelButton.setAttribute("type", "button");
-        DelButton.setAttribute("cursor", "pointer");
-        DelButton.setAttribute("runat", "server");
-        // DelButton.setAttribute("onclick", "DelRow");
-        DelButton.className = 'btn btn-sm btn-del-action fw-bold text-danger';
-        DelButton.innerText = "Delete";
-        DelButton.onclick = function (event) {
-            //parse the id of the row from the id
-            let rowNr = event.target.id.substr("DelButton".length, event.target.id.length);
-            //get the actual row element
-            let delRow = document.getElementById("CreateTR" + rowNr);
-            delRow.remove();
-        };
-
-        tdOne.appendChild(pOne);
-        tdTwo.appendChild(pTwo);
-        tdFive.appendChild(DelButton);
-        CreateTR.appendChild(tdOne);
-        CreateTR.appendChild(tdTwo);
-        CreateTR.appendChild(tdThree);
-        CreateTR.appendChild(tdFour);
-        CreateTR.appendChild(tdFive);
-        MainTbody.appendChild(CreateTR);
-    }
 })
+
+
+//___________________________ Dynamic Add and Remove_________________________
+let tn = 0;
+
+function addTermrows() {
+    tn++;
+
+    let TermNameInput = document.getElementById("TermNameValue");
+    let TNIValue = TermNameInput.value;
+
+    const MainTbody = document.getElementById("mainTBody");
+
+    const CreateTR = document.createElement('tr');
+    CreateTR.id = "CreateTR" + tn;
+
+    const tdOne = document.createElement('td');
+    tdOne.id = "tdOne" + tn;
+    tdOne.className = 'one ps-3';
+
+    const pOne = document.createElement('p');
+    pOne.id = "pOne" + tn;
+    pOne.className = 'mb-0';
+    pOne.innerText = "0" + tn;
+
+    const tdTwo = document.createElement('td');
+    tdTwo.id = "tdTwo" + tn;
+    tdTwo.className = 'two';
+
+    const pTwo = document.createElement('p');
+    pTwo.id = "pTwo" + tn;
+    pTwo.className = 'mb-0';
+    pTwo.innerText = TNIValue;
+
+    const tdThree = document.createElement('td');
+    tdThree.id = "tdThree" + tn;
+    tdThree.className = 'three';
+
+    const tdFour = document.createElement('td');
+    tdFour.id = "tdFour" + tn;
+    tdFour.className = 'four';
+
+    const tdFive = document.createElement('td');
+    tdFive.id = "tdFive" + tn;
+    tdFive.className = 'text-end pe-3 five';
+
+    const DelButton = document.createElement('button');
+    DelButton.id = "DelButton" + tn;
+    DelButton.setAttribute("type", "button");
+    DelButton.setAttribute("cursor", "pointer");
+    DelButton.setAttribute("runat", "server");
+    // DelButton.setAttribute("onclick", "DelRow");
+    DelButton.className = 'btn btn-sm btn-del-action fw-bold text-danger';
+    DelButton.innerText = "Delete";
+    DelButton.onclick = function (event) {
+        //parse the id of the row from the id
+        let rowNr = event.target.id.substr("DelButton".length, event.target.id.length);
+        //get the actual row element
+        let delRow = document.getElementById("CreateTR" + rowNr);
+        delRow.remove();
+    };
+
+    tdOne.appendChild(pOne);
+    tdTwo.appendChild(pTwo);
+    tdFive.appendChild(DelButton);
+    CreateTR.appendChild(tdOne);
+    CreateTR.appendChild(tdTwo);
+    CreateTR.appendChild(tdThree);
+    CreateTR.appendChild(tdFour);
+    CreateTR.appendChild(tdFive);
+    MainTbody.appendChild(CreateTR);
+}
