@@ -18,11 +18,11 @@
     <script src="./JS/fruits.js"></script>
     <link rel="stylesheet" href="./CSS/fruits.css">
     <script src="https://kit.fontawesome.com/d18b1a9336.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="fruits-and-vegetables.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Images/fruits-and-vegetables.png" type="image/x-icon">
 </head>
 
 <body>
-    <header id="header"></header>
+    {{>header}}
     <main>
         <div class="container pb-5">
             <div class="d-flex">
@@ -377,8 +377,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card d-none d-md-block mx-2 col-md-3 ">
-                    <img class="card-img-top mt-3 w-50 ml-5" src="./Images/rajbhog.png" alt="rajbhog height="180px">
+                <div class="card d-none d-md-block mx-2 col-md-3" >
+                    <img class="card-img-top mt-3 w-50 ml-5" src="./Images/rajbhog.png" alt="rajbhog" height="180px">
                     <div class="card-body px-4 py-1">
                         <p class="card-title font-weight-bold"> Amul Rajbhog </p>
                         <div class="Green_stars_sales_size ">
@@ -683,6 +683,7 @@
             </div>
         </div>
     </main>
-    <footer id="footer"></footer>
+    {{!-- <footer id="footer"></footer> --}}
+    {{>footer}}
 </body>
 </html>

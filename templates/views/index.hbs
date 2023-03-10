@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="./CSS/fruits.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <link rel="shortcut icon" href="./fruits-and-vegetables.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Images/fruits-and-vegetables.png" type="image/x-icon">
 </head>
     <body>
-        <header id="header"></header>
+        {{>header}}
         
         <main>
             <div class="container pb-5">
@@ -358,7 +358,7 @@
             <div class="container pb-5" >
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Best Sellers </h5>
-                    <a class="ml-auto" href="best_sellers.html" >View All <i class="fa fa-angle-right pl-1"></i>
+                    <a class="ml-auto" href="/best_sellers" >View All <i class="fa fa-angle-right pl-1"></i>
                     </a>
                 </div>
                 <div class="carousel" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false, "wrapAround": true }'>
@@ -1093,6 +1093,6 @@
                 </div>
             </div>
         </main>
-        <footer id="footer"></footer>
+        {{>footer}}
     </body>
 </html>

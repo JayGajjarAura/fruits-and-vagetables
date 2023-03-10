@@ -1,27 +1,3 @@
-$(window).on("load", function (e) {
-    e.preventDefault()
-    $.ajax({
-        type: "GET",
-        url: "header.html",
-        data: {},
-        success: function (data) {
-            $('#header').html(data);
-        }
-    });
-});
-
-$(window).on("load", function (e) {
-    e.preventDefault()
-    $.ajax({
-        type: "GET",
-        url: "footer.html",
-        data: {},
-        success: function (data) {
-            $('#footer').html(data);
-        }
-    });
-});
-
 $(document).ready(function (e) {
 
     //............ Subscribe toast ...............
@@ -88,14 +64,13 @@ $(document).ready(function (e) {
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "more_products.html",
+            url: "/more_products.hbs",
             data: {},
             success: function (data) {
                 $('#maincont').html(data);
             }
         })
     })
-
 })
 
 
