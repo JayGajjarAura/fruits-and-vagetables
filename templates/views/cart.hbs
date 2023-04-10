@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamic</title>
+    {{>head_links}}
+</head>
+<body> 
+    {{>header}}   
+    <main class="mb-5">
+        <div class="container">
+            <div class="mb-2 d-flex">
+                {{!-- <input class="py-1 mr-2" placeholder="Enter Here" id="product_" type="text" name="grade">
+                <input class="py-1 mr-2" placeholder="Price" id="price_" type="text" name="price">
+                <input class="py-1 mr-2" placeholder="Qty" id="qty_" type="text" name="qty">
+                <button class="btn btn-primary text-white px-3" id="btnToaddTermRows">Add</button> --}}
+                <input class="py-1 mr-2" placeholder="Enter Here" id="product_" type="text" name="grade">
+                <input class="py-1 mr-2" placeholder="Price" id="price_" type="text" name="price">
+                <input class="py-1 mr-2" placeholder="Qty" id="qty_" type="text" name="qty">
+                <button class="btn btn-primary text-white px-3" id="btnToaddTermRows" onclick="addTermrows()">Add</button>
+            </div>
+            <table id="myTable" class="table table-hover table-responsive spacing-table mb-5">
+                <thead class="rounded-3">
+                    <tr>
+                        {{!-- <th scope="col" class="col-1 ps-3"> S. No </th> --}}
+                        <th scope="col" class="col-1"> no. </th>
+                        <th scope="col" class="col-5"> Product Name </th>
+                        <th scope="col" class="col-2"> Price </th>
+                        <th scope="col" class="col-2"> Qty </th>
+                        <th scope="col" class="col-1"> Total </th>
+                        <th scope="col" class="col-1">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="mainTBody" class="total_cart_value"> </tbody>
+            </table>  
+        </div>
+    </main>
+    {{>toast_subscribe}}
+    {{>footer}}
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    {{>head_links}}
+</head>
+<body>
+    {{>header}}
+    <div id="loginPopup">
+        <div class="popup-content rounded text-white mx-auto">
+            <div class="container m-0">
+                <div class="row">
+                    <div class="col-md-6 bg-success rounded mx-auto">
+                        <div class="d-flex mb-3">
+                            <h3 class="mx-auto font-weight-bold mt-4"> Welcome Back </h3>
+                            {{!-- <h2 class="">Login</h2> --}}
+                            {{!-- <h2 class="mx-auto showRegister">Sign Up</h2> --}}
+                        </div>
+    
+                        {{!-- for Login --}}
+                        <form action="/dashboard" method="post">
+                            <div id="showLogin" class="w-75 mx-auto">
+                                <div class="mb-3">
+                                    <label for="Input_Email" class="form-label">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="Input_Email"
+                                        placeholder="Enter your email..." aria-describedby="emailHelp" autocomplete="off"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Input_Password" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" id="Input_Password"
+                                        placeholder="Enter your password..." autocomplete="off" required>
+                                </div>
+                                <button type="submit" class="btn btn-light mb-3" style="width: 100%;">Login</button>
+                                <span class="btn showRegister rounded py-2 w-100"> Haven't sign up yet? Sign Up </span>
+                                <span>
+                                    {{error}}
+                                </span>
+                            </div>
+                        </form>
+    
+                        <form action="/form_data" method="post" class="w-75 mx-auto">
+                            {{!-- for Sign Up --}}
+                            <div id="showRegister">
+                                <div class="mb-3">
+                                    <label for="Input_username" class="form-label"> Username </label>
+                                    <input type="text" name="username" class="form-control" id="Input_username"
+                                        autocomplete="off" required>
+                                </div>
+                                {{!-- <div class="mb-3">
+                                    <label for="Input_phone_num" class="form-label"> Phone </label>
+                                    <input type="number" name="phone_num" inputmode="numeric" class="form-control"
+                                        id="Input_phone_num" autocomplete="off" required>
+                                </div> --}}
+                                <div class="mb-3">
+                                    <label for="Input_Email" class="form-label">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="Input_Email"
+                                        aria-describedby="emailHelp" autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Input_Password" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" id="Input_Password"
+                                        autocomplete="off" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Input_Password_confirm" class="form-label">Confirm Password</label>
+                                    <input type="password" name="confirm_pass" class="form-control"
+                                        id="Input_Password_confirm" autocomplete="off" required>
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary text-white rounded mb-3"
+                                    style="width: 100%;">Sign Up
+                                </button>
+                                <span class="btn showLogin py-2 w-100"> Existing User? Login </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 my-auto login_bg_img">
+                        <img src="./images/Online Groceries.png" class="" width="100%" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+</body>
+</html>

@@ -90,6 +90,7 @@ a, a:hover {
 }
 
 .load_more {
+    padding: 8px 16px;
     border-radius: 20px;
     border: none;
     color: white;
@@ -99,7 +100,35 @@ a, a:hover {
 .load_more:hover {
     border: none;
     background-color: green;
-    /* color: black; */
+}
+
+.go_homepage {
+    border-radius: 20px;
+    padding: 8px 16px;
+    border: none;
+    color: white;
+    background-color: rgba(0, 128, 0, 0.700);
+}
+
+.go_homepage:hover {
+    border: none;
+    background-color: green;
+    color: white;
+}
+
+.login_bg_img {
+    background-color: rgba(0, 128, 0, 0.100);
+}
+
+.showLogin, .showRegister {
+    border: none;
+    color: white;
+}
+
+.showLogin:hover, .showRegister:hover {
+    border: none;
+    background-color: rgba(0, 128, 0, 0.5);
+    color: whitesmoke;
 }
 
 .flickity-prev-next-button.next {
@@ -108,4 +137,54 @@ a, a:hover {
 
 .flickity-prev-next-button.previous {
     left: -60px !important;
+}
+
+.error_img {
+    height: 30rem;
+    width: 30rem;
+}
+
+#showRegister {
+    display: none;
+}
+
+.popup {
+    display: none;
+    /* Hide the popup by default */
+    position: absolute;
+    /* Position the popup */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    z-index: 999;
+    /* Set the popup on top of everything */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    /* Popup background */
+    margin: 5% auto;
+    /* Center the popup */
+    width: 74%;
+    /* Width of the popup */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.show-login, .showLogin, .showRegister {
+    cursor: pointer
 }

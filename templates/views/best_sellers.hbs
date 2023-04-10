@@ -1,24 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Sellers</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" 
-        crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" 
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" 
-        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" 
-        crossorigin="anonymous"></script>
-    <script src="./JS/fruits.js"></script>
-    <link rel="stylesheet" href="./CSS/fruits.css">
-    <script src="https://kit.fontawesome.com/d18b1a9336.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="./Images/fruits-and-vegetables.png" type="image/x-icon">
+    {{>head_links}}
 </head>
 
 <body>
@@ -29,10 +13,37 @@
                 <h5 class="font-weight-bold"> Best Sellers </h5>
             </div>
             <div class="card-group my-3">
+                {{!-- {{#each products }}
+                    {{#each this}}
+                        <div class="card d-none d-md-block mx-2 col-md-3">
+                            <img class="card-img-top mt-3" src="{{ this.ImagePath }}" alt="Card image cap">
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold" id="product_red_carot"> {{ this.name }} </p>
+                                <div class="star_rating_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold" id="price_red_carot"> {{this.price}} </p>
+                                <div>
+                                    <div class="text-center">
+                                        <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
+                                        <input disabled id="qty_red_carot" class="input_area mx-1 text-center input_val" value="0">
+                                        <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{/each}} --}}
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="red-carot" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Red Carot </p>
+                        <p class="card-title font-weight-bold" id="product_red_carot" data-product-id="Red Carot"> Red Carot </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -40,11 +51,11 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <p class="text-success font-weight-bold" id="price_red_carot"> $99.99 </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_red_carot" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_red_carot" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
                             <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
@@ -55,7 +66,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/ice-cream.jfif" alt="Cheese" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <p class="card-title font-weight-bold" id="product_ice_cream"> Ice Cream </p>
                         <div class="star_rating_size">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -63,16 +74,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_ice_cream"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="ice_cream" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_ice_cream" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_ice_cream" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="ice_cream" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" id="btnToaddTermRows" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -80,7 +91,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/kit-kat.png" alt="kit-kat" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> kit-kat </p>
+                        <p class="card-title font-weight-bold" id="product_kit_kat"> kit-kat </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -88,16 +99,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_kit_kat"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="kit_kat" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_kit_kat" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_kit_kat" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="kit_kat" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -105,7 +116,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/pizza.png" alt="Cheese" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <p class="card-title font-weight-bold" id="product_pizza_1"> Pizza </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -113,16 +124,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-full star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_pizza_1"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_pizza" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -130,7 +141,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/milk 1.png" alt="milk" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Milk </p>
+                        <p class="card-title font-weight-bold" id="product_milk"> Milk </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -138,16 +149,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_milk"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="milk" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_milk" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_milk" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="milk" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -157,7 +168,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/bamboo shoots.jpg" alt="bamboo" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Bamboo Shoots </p>
+                        <p class="card-title font-weight-bold" id="product_bamboo_shoots"> Bamboo Shoots </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -165,14 +176,14 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <p class="text-success font-weight-bold" id="price_bamboo_shoots"> $99.99 </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="bamboo_shoots" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_bamboo_shoots" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_bamboo_shoots" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="bamboo_shoots" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -180,7 +191,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/Bread.jpg" alt="Bread" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Bread </p>
+                        <p class="card-title font-weight-bold" id="product_bread"> Bread </p>
                         <div class="star_rating_size">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -188,16 +199,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_bread"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="bread" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_bread" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_bread" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="bread" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -205,7 +216,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3 w-75 ml-4" src="./Images/dry fruits.jpg" alt="dry fruits" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Dry fruits </p>
+                        <p class="card-title font-weight-bold" id="product_dry_fruits"> Dry fruits </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -213,16 +224,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_dry_fruits"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="dry_friuts" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_dry_friuts" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_dry_friuts" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="dry_friuts" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -230,7 +241,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/fresh.png" alt="fresh" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> fresh </p>
+                        <p class="card-title font-weight-bold" id="product_fresh"> fresh </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -238,16 +249,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-full star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_fresh"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="fresh" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_fresh" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_fresh" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="fresh" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -255,7 +266,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/ice cream.png" alt="ice-cream" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <p class="card-title font-weight-bold" id="product_ice_cream_2"> Ice Cream </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -263,16 +274,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_ice_cream_2"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="ice_creams" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_ice_creams" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_ice_creams" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="ice_creams" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -282,7 +293,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3" src="./Images/meat.jpg" alt="meat" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Meat </p>
+                        <p class="card-title font-weight-bold" id="product_meat"> Meat </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -290,14 +301,14 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <p class="text-success font-weight-bold" id="price_meat"> $99.99 </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="meat" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_meat" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_meat" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="meat" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -305,7 +316,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3" src="./Images/orange juice new.png" alt="orange juice" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Orange Juice </p>
+                        <p class="card-title font-weight-bold" id="product_orange_juice"> Orange Juice </p>
                         <div class="star_rating_size">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -313,24 +324,24 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_orange_juice"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="orange_juice" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_orange_juice" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_orange_juice" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="orange_juice" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
                 </div>
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
-                    <img class="card-img-top mt-3" src="./Images/pizza 1.png" alt="pizza" height="180px">
+                    <img class="card-img-top mt-3" src="./Images/pizza 1.png" alt="pizza 2" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <p class="card-title font-weight-bold" id="product_pizza_2"> Pizza 2 </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -338,24 +349,24 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_pizza_2"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
-                                <button value="-" id="pizza_1" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_pizza_1" class="input_area mx-1 text-center input_val" value="0">
-                                <button value="+" id="pizza_1" class="value_btn mb-3 plus_btn"> + </button>
+                                <button value="-" id="pizza_2" class="value_btn minus_btn"> - </button>
+                                <input disabled id="qty_pizza_2" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pizza_2" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
                 </div>
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
-                    <img class="card-img-top mt-3" src="./Images/pizza.png" alt="pizza" height="180px">
+                    <img class="card-img-top mt-3" src="./Images/pizza.png" alt="pizza 3" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Pizza </p>
+                        <p class="card-title font-weight-bold" id="product_pizza_3"> Pizza 3 </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -363,16 +374,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-full star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_pizza_3"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
-                                <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
-                                <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
+                                <button value="-" id="pizza_3" class="value_btn minus_btn"> - </button>
+                                <input disabled id="qty_pizza_3" class="input_area mx-1 text-center input_val" value="0">
+                                <button value="+" id="pizza_3" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -380,7 +391,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3" >
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/rajbhog.png" alt="rajbhog" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Amul Rajbhog </p>
+                        <p class="card-title font-weight-bold" id="product_amul_rajbhog"> Amul Rajbhog </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -388,16 +399,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_amul_rajbhog"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="rajbhog" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_rajbhog" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_rajbhog" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="rajbhog" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -407,7 +418,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/dew can.png" alt="Mountain dew" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Mountain Dew </p>
+                        <p class="card-title font-weight-bold" id="product_mountain_dew"> Mountain Dew </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -415,14 +426,14 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <p class="text-success font-weight-bold" id="price_mountain_dew"> $99.99 </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="mountain_dew" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="mountain_dew" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -430,7 +441,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/red bull can.png" alt="redbull" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Red Bull </p>
+                        <p class="card-title font-weight-bold" id="product_red_bull"> Red Bull </p>
                         <div class="star_rating_size">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -438,16 +449,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_red_bull"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="red_bull" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_red_bull" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_red_bull" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="red_bull" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -455,7 +466,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/game fuel can.png" alt="Game Fuel" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Game Fuel </p>
+                        <p class="card-title font-weight-bold" id="product_game_fuel"> Game Fuel </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -463,16 +474,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_game_fuel"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="game_fuel" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_game_fuel" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_game_fuel" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="game_fuel" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -480,7 +491,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3" src="./Images/diet coke.png" alt="diet coke" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Diet Coke </p>
+                        <p class="card-title font-weight-bold" id="product_diet_coke"> Diet Coke </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -488,16 +499,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-full star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_diet_coke"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="diet_coke" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_diet_coke" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_diet_coke" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="diet_coke" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -505,7 +516,7 @@
                 <div class="card d-none d-md-block mx-2 col-md-3 ">
                     <img class="card-img-top mt-3 w-50 ml-5" src="./Images/pepsi can.png" alt="pepsi zero" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Pepsi zero </p>
+                        <p class="card-title font-weight-bold" id="product_pepsi_zero"> Pepsi zero </p>
                         <div class="Green_stars_sales_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -513,16 +524,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star star_rating_size"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_pepsi_zero"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="pepsi_zero" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
+                                <input disabled id="qty_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pepsi_zero" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -534,7 +545,7 @@
                 <div class="card mr-3">
                     <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="Cheese" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Red Carot </p>
+                        <p class="card-title font-weight-bold" id="product_red_carot_mobile"> Red Carot </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -542,15 +553,15 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99 </p>
+                        <p class="text-success font-weight-bold" id="price_red_carot_mobile"> $99.99 </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_red_carot_mobile" class="input_area mx-1 text-center input_val"
+                                <input disabled id="qty_red_carot_mobile" class="input_area mx-1 text-center input_val"
                                     value="0">
                                 <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -558,7 +569,7 @@
                 <div class="card">
                     <img class="card-img-top mt-3" src="./Images/ice-cream.jfif" alt="Cheese" height="180px">
                     <div class="card-body px-4 py-1">
-                        <p class="card-title font-weight-bold"> Ice Cream </p>
+                        <p class="card-title font-weight-bold" id="product_ice_cream_mobile"> Ice Cream </p>
                         <div class="star_rating_size ">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -566,17 +577,17 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <p class="text-success font-weight-bold"> $99.99
+                        <p class="text-success font-weight-bold" id="price_ice_cream_mobile"> $99.99
                             <span class="line_through_text font-weight-light"> $110.00 </span>
                         </p>
                         <div>
                             <div class="text-center">
                                 <button value="-" id="ice_cream_mobile" class="value_btn minus_btn"> - </button>
-                                <input disabled id="txt_ice_cream_mobile" class="input_area mx-1 text-center input_val"
+                                <input disabled id="qty_ice_cream_mobile" class="input_area mx-1 text-center input_val"
                                     value="0">
                                 <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -655,35 +666,8 @@
                 </div>
             </div>
         </div>
-        <!-- _____ toast subscribe _____ -->
-        <div class="container">
-            <div class="toast toast_sub bg-success" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                <div class="toast-header">
-                    <strong class="mr-auto"> Subscribed </strong>
-                    <small>Just Now</small>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body text-white">
-                    You just Subscribed to our Service...
-                </div>
-            </div>
-        </div>
-        <!-- ...................toast Add to cart.............. -->
-        <div class="container">
-            <div class="toast cart_toast bg-success " role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                <div class="toast-header">
-                    <strong class="mr-auto"> Added to cart </strong>
-                    <small>Just Now</small>
-                </div>
-                <div class="toast-body text-white" id="add_to_cart_toast">
-                    <!-- Product added to your cart... -->
-                </div>
-            </div>
-        </div>
+        {{>toast_subscribe}}
     </main>
-    {{!-- <footer id="footer"></footer> --}}
     {{>footer}}
 </body>
 </html>
