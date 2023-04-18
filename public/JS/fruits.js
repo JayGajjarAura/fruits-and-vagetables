@@ -6,8 +6,9 @@ $(document).ready(function (e) {
     });
 
     //............. ADD TO CART TOAST...........
-    $(".add_to_cart_toast").click(async function () {
+    $(".add_to_cart_toast").click(function () {
         let cart_toast_info = $(this).parent().find("input").val();
+        console.log(cart_toast_info)
 
         document.getElementById("add_to_cart_toast").innerHTML =  cart_toast_info + " items added to your cart...";
 
@@ -18,6 +19,21 @@ $(document).ready(function (e) {
 
         }
     });
+
+    function total_cart_value() {
+        let total = 0
+        $('.input_val').each(function() {
+            total += +this.value
+        })
+        return total
+    }
+        // $('.add_to_cart_btn').click(function() {
+        //     console.log(total_cart_value())
+        // })
+
+    $('.add_to_cart_btn').click(function() {
+        document.getElementById('total_cart_value').innerHTML = total_cart_value() 
+    })
 
     //.......... Add to cart plus btn ............
     $(".plus_btn").click(function() {
@@ -57,20 +73,6 @@ $(document).ready(function (e) {
         // }
     })
 
-    function total_cart_value() {
-        let total = 0
-        $('.input_val').each(function() {
-            total += +this.value
-        })
-        return total
-    }
-        // $('.add_to_cart_btn').click(function() {
-        //     console.log(total_cart_value())
-        // })
-
-    $('.add_to_cart_btn').click(function() {
-        document.getElementById('total_cart_value').innerHTML = total_cart_value() 
-    })
 
     //______________________ Show login and signup __________________________
     $(".show-login").click(function () {
