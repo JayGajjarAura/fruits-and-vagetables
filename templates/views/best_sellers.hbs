@@ -8,38 +8,42 @@
 <body>
     {{>header}}
     <main>
-        <div class="container pb-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-5">
+                {{#each Product }}
+                <div class="col p-2">
+                    <div class="card">
+                        <img class="card-img-top mt-3 product_images" src="{{image}}" alt="Card image cap" height="180px">
+                        <div class="card-body px-4 py-1">
+                            <p class="card-title font-weight-bold" id="product_red_carot"> {{ title }} </p>
+                            <div class="star_rating_size ">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-success font-weight-bold" id="price_red_carot"> {{price}} </p>
+                            <div>
+                                <div class="text-center">
+                                    <button value="-" id="{{_id}}" class="value_btn minus_btn"> - </button>
+                                    <input disabled id="qty_{{_id}}" class="input_area mx-1 text-center input_val" value="0">
+                                    <button value="+" id="{{_id}}" class="value_btn mb-3 plus_btn"> + </button>
+                                </div>
+                                <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{!-- <div class="container pb-5">
             <div class="d-flex">
                 <h5 class="font-weight-bold"> Best Sellers </h5>
             </div>
             <div class="card-group my-3">
-                {{!-- {{#each products }}
-                    {{#each this}}
-                        <div class="card d-none d-md-block mx-2 col-md-3">
-                            <img class="card-img-top mt-3" src="{{ this.ImagePath }}" alt="Card image cap">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold" id="product_red_carot"> {{ this.name }} </p>
-                                <div class="star_rating_size ">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <p class="text-success font-weight-bold" id="price_red_carot"> {{this.price}} </p>
-                                <div>
-                                    <div class="text-center">
-                                        <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="qty_red_carot" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    {{/each}}
-                {{/each}} --}}
                 <div class="card d-none d-md-block mx-2 col-md-3">
                     <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="red-carot" height="180px">
                     <div class="card-body px-4 py-1">
@@ -58,7 +62,7 @@
                                 <input disabled id="qty_red_carot" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -83,7 +87,7 @@
                                 <input disabled id="qty_ice_cream" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="ice_cream" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" id="btnToaddTermRows" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" id="btnToaddTermRows" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -108,7 +112,7 @@
                                 <input disabled id="qty_kit_kat" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="kit_kat" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -133,7 +137,7 @@
                                 <input disabled id="qty_pizza" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -158,7 +162,7 @@
                                 <input disabled id="qty_milk" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="milk" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -183,7 +187,7 @@
                                 <input disabled id="qty_bamboo_shoots" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="bamboo_shoots" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -208,7 +212,7 @@
                                 <input disabled id="qty_bread" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="bread" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -233,7 +237,7 @@
                                 <input disabled id="qty_dry_friuts" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="dry_friuts" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -258,7 +262,7 @@
                                 <input disabled id="qty_fresh" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="fresh" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -283,7 +287,7 @@
                                 <input disabled id="qty_ice_creams" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="ice_creams" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -308,7 +312,7 @@
                                 <input disabled id="qty_meat" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="meat" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -333,7 +337,7 @@
                                 <input disabled id="qty_orange_juice" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="orange_juice" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -358,7 +362,7 @@
                                 <input disabled id="qty_pizza_2" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pizza_2" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -383,7 +387,7 @@
                                 <input disabled id="qty_pizza_3" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pizza_3" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -408,7 +412,7 @@
                                 <input disabled id="qty_rajbhog" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="rajbhog" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -433,7 +437,7 @@
                                 <input disabled id="qty_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="mountain_dew" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -458,7 +462,7 @@
                                 <input disabled id="qty_red_bull" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="red_bull" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -483,7 +487,7 @@
                                 <input disabled id="qty_game_fuel" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="game_fuel" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -508,7 +512,7 @@
                                 <input disabled id="qty_diet_coke" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="diet_coke" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -533,7 +537,7 @@
                                 <input disabled id="qty_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
                                 <button value="+" id="pepsi_zero" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -561,7 +565,7 @@
                                     value="0">
                                 <button value="+" id="red_carot_mobile" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -587,7 +591,7 @@
                                     value="0">
                                 <button value="+" id="ice_cream_mobile" class="value_btn mb-3 plus_btn"> + </button>
                             </div>
-                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addTermrows()"> Add to cart </button>
+                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2" onclick="addToCart()"> Add to cart </button>
                             <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
                         </div>
                     </div>
@@ -595,7 +599,7 @@
             </div>
             <div id="maincont"></div>
             <button class="d-flex m-auto load_more py-1 px-3" id="reslink"> More Products </button>
-        </div>
+        </div> --}}
         <div class="container pb-5">
             <div class="d-flex pb-3">
                 <h5 class="font-weight-bold"> Find Your Recipe </h5>
@@ -669,5 +673,36 @@
         {{>toast_subscribe}}
     </main>
     {{>footer}}
+    <script>
+        $('#reslink').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "more_products.hbs",
+                data: {},
+                success: function (data) {
+                    $('#maincont').html(data);
+                }
+            })
+        })
+
+        function addToCart(name, price) {
+            console.log(`Adding item to cart: ${name} - ${price}`);
+            $.ajax({
+                type: 'POST',
+                url: '/add-to-cart',
+                data: {
+                    name: name,
+                    price: price,
+                },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

@@ -53,7 +53,27 @@
                                 <div class="text-success font-weight-bold p-3"> What's New</div>
                                 <div class="p-3 ml-auto"> View All <i class="fa fa-angle-right pl-1"></i></div> <br>
                             </div>
-                            <div class="row mb-2">
+                            <div class="new_products">
+                                {{#each newProducts}}
+                                <a href="/products/{{title}}">
+                                    <div class="row mb-2">
+                                        <img src="{{image}}" alt="{{title}}" height="85px" class="col-4 product_images">
+                                        <div class="col p-0 pt-2">
+                                            <span class="font-weight-bold"> {{title}} </span> <br>
+                                            <div class="star_rating_size">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <br>
+                                            </div>
+                                            <span class="text-success font-weight-bold"> ₹{{price}} </span>
+                                        </div>
+                                    </div>
+                                </a>
+                                {{/each}}
+                            </div>
+                            {{!-- <div class="row mb-2">
                                 <img src="./Images/ice cream.png" alt="ice-cream" height="85px" class="pr-2 ml-5">
                                 <div class="col">                               
                                     <span class="font-weight-bold"> Multi Flavor Ice Cream </span> <br>
@@ -64,7 +84,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <br>
                                     </div>
-                                    <span class="text-success font-weight-bold"> $15.00 </span>
+                                    <span class="text-success font-weight-bold"> ₹15.00 </span>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -78,7 +98,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <br>
                                     </div>
-                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -92,7 +112,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <br>
                                     </div>
-                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -106,7 +126,7 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <br>
                                     </div>
-                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -120,9 +140,9 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i> <br>
                                     </div>
-                                    <span class="text-success font-weight-bold"> $15.00 </span> <span class="line_through_text font-weight-light"> $10.00 </span>
+                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -132,8 +152,18 @@
                     <h5 class="font-weight-bold"> Shop By Catagory </h5>
                     <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
                 </div>
-                <div class="card-group text-center border">
-                    <div class="card border-0 d-none d-md-block">
+                <div class="card-group text-center">
+                    {{#each Category}}
+                        <a href="/category/{{name}}">
+                            <div class="card border-0 d-none d-md-block"> 
+                                <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px" style="padding-left: 25px; padding-right: 25px">
+                                <div class="card-body">
+                                    <p class="card-text font-weight-bold"> {{name}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    {{/each}}
+                    {{!-- <div class="card border-0 d-none d-md-block">
                         <img class="card-img-top mt-5 border-right" src="./Images/fresh produce.jpg" alt="fresh food" height="250px">
                         <div class="card-body">
                             <p class="card-text"> Fresh Produce </p>                            
@@ -168,7 +198,7 @@
                         <div class="card-body">
                             <p class="card-title">Drink & Coffee</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!---------- Mobile Version ---------->
                 <div class="card-deck d-flex d-block d-lg-none">
@@ -195,7 +225,29 @@
                     <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
                 </div>
                 <div class="card-group">
-                    <div class="card d-none d-md-block">
+                    {{#each flashSale}}
+                        <div class="card d-none d-md-block">
+                            <a href="/products/{{title}}">
+                                <img class="card-img-top product_images" src="{{image}}" alt="{{title}}" height="300px">
+                                <div class="card-body px-4 py-1">
+                                    <p class="card-title font-weight-bold"> {{title}} </p>
+                                    <div class="Green_stars_sales_size pb-2">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> ₹{{price}} </p>
+                                    <div class="progress progress_bar_height">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="pt-1 text-secondary"> <small> Sold: 30/50 </small></p>
+                                </div>
+                            </a>
+                        </div>
+                    {{/each}}
+                    {{!-- <div class="card d-none d-md-block">
                         <img class="card-img-top" src="./Images/soups.jpg" alt="Cheese" height="300px">
                         <div class="card-body px-4 py-1">
                             <p class="card-title font-weight-bold"> Fresh Juice </p>
@@ -206,7 +258,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -224,7 +276,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -242,7 +294,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -260,7 +312,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -278,13 +330,13 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <p class="pt-1 text-secondary"> <small> Sold: 5/50 </small></p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!------- Mobile Version ------->
                 <div class="card-deck d-flex d-block d-lg-none">
@@ -299,7 +351,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -317,7 +369,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div class="progress progress_bar_height">
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -345,7 +397,36 @@
                     </a>
                 </div>
                 <div class="carousel" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false, "wrapAround": true }'>
-                    <div class="carousel-cell">
+                    {{#each best_sellers}}
+                            <div class="carousel-cell">
+                                <div class="card d-none d-md-block mx-1">
+                                    <a href="/products/{{title}}">
+                                        <img class="card-img-top mt-3 product_images" src="{{image}}" alt="{{title}}" height="180px">
+                                    </a>
+                                    <div class="card-body px-4 py-1">
+                                        <p class="card-title font-weight-bold"> {{title}} </p>
+                                        <div class="star_rating_size">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <p class="text-success font-weight-bold"> ₹{{price}} </p>
+                                        <div class="pb-2">
+                                            <div class="text-center">
+                                                <button value="-" id="{{_id}}" class="value_btn minus_btn"> - </button>
+                                                <input disabled id="txt_{{_id}}" class="input_area mx-1 text-center input_val" value="0">
+                                                <button value="+" id="{{_id}}" class="value_btn mb-3 plus_btn"> + </button>
+                                            </div>
+                                            <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                            <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {{/each}}
+                    {{!-- <div class="carousel-cell">
                         <div class="card d-none d-md-block mx-1">
                             <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="red-carot" height="180px">
                             <div class="card-body px-4 py-1">
@@ -357,7 +438,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99 </p>
+                                <p class="text-success font-weight-bold"> ₹99.99 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
                                         <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
@@ -382,8 +463,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -410,8 +491,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -437,8 +518,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-half-full star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -464,8 +545,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -491,7 +572,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99 </p>
+                                <p class="text-success font-weight-bold"> ₹99.99 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
                                         <button value="-" id="mountain_dew" class="value_btn minus_btn"> - </button>
@@ -517,8 +598,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -545,8 +626,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -572,8 +653,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-half-full star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -600,8 +681,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                 </div>
-                                <p class="text-success font-weight-bold"> $99.99
-                                    <span class="line_through_text font-weight-light"> $110.00 </span>
+                                <p class="text-success font-weight-bold"> ₹99.99
+                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
                                 </p>
                                 <div class="pb-2">
                                     <div class="text-center">
@@ -614,7 +695,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- ............... Mobile Version ............. -->
@@ -630,7 +711,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                             <div>
                                 <div class="text-center">
                                     <button value="-" id="red_carot_mobile" class="value_btn minus_btn"> - </button>
@@ -653,8 +734,8 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 
-                                <span class="line_through_text font-weight-light"> $110.00 </span>
+                            <p class="text-success font-weight-bold"> ₹99.99 
+                                <span class="line_through_text font-weight-light"> ₹110.00 </span>
                             </p>
                             <div>
                                 <div class="text-center">
@@ -695,7 +776,7 @@
                     <div class="card d-none d-lg-block">
                         <img class="card-img" src="./Images/meat card.jpg" alt="meat" height="390px">
                         <div class="card-img-overlay text-center">
-                            <div class="card-text"> <span class="text-warning h6"> Only From $89.99 </span></div>
+                            <div class="card-text"> <span class="text-warning h6"> Only From ₹89.99 </span></div>
                             <h5 class="card-text text-white font-italic font-weight-bold mb-0"> Fresh Meat </h5>
                             <div class="card-text text-white"> Limited Time Offers! </div>
                         </div>
@@ -722,7 +803,7 @@
                             <div class="card">
                                 <img class="card-img" src="./Images/meat-card.png" alt="meat" height="300px">
                                 <div class="card-img-overlay text-center">
-                                    <div class="card-text"> <span class="text-warning h6"> Only From $89.99 </span></div>
+                                    <div class="card-text"> <span class="text-warning h6"> Only From ₹89.99 </span></div>
                                     <h5 class="card-text text-white font-italic font-weight-bold mb-0"> Fresh Meat </h5>
                                     <div class="card-text text-white"> Limited Time Offers! </div>
                                 </div>
@@ -737,7 +818,25 @@
                     <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
                 </div>
                 <div class="card-group">
-                    <div class="card d-none d-md-block">
+                    {{#each newProducts}}
+                        <div class="card d-none d-md-block">
+                            <a href="/products/{{title}}">
+                                <img class="card-img-top px-3 py-4 product_images" src="{{image}}" alt="{{title}}" height="200px">
+                                <div class="card-body px-4 py-1">
+                                    <p class="card-title font-weight-bold"> {{title}} </p>
+                                    <div class="star_rating_size pb-2">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="text-success font-weight-bold"> {{currentCurrencyLogo}}{{price}} </p>
+                                </div>
+                            </a>
+                        </div>
+                    {{/each}}
+                    {{!-- <div class="card d-none d-md-block">
                         <img class="card-img-top px-3 py-4" src="./Images/broccoli.png" alt="broccoli" height="200px">
                         <div class="card-body px-4 py-1">
                             <p class="card-title font-weight-bold"> Broccoli </p>
@@ -748,7 +847,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 </p>
                         </div>
                     </div>
                     <div class="card d-none d-md-block">
@@ -762,7 +861,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
                     </div>
                     <div class="card d-none d-md-block">
@@ -776,7 +875,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star star_rating_size"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
                     </div>
                     <div class="card d-none d-md-block">
@@ -790,7 +889,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-half-full star_rating_size"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
                     </div>
                     <div class="card d-none d-md-block">
@@ -804,9 +903,9 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star star_rating_size"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!--------- Mobile Version -------->
                 <div class="card-deck d-flex d-block d-lg-none">
@@ -821,7 +920,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
                     </div>
                     <div class="card">
@@ -835,7 +934,7 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star star_rating_size"></i>
                             </div>
-                            <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                         </div>
                     </div> 
                 </div>                   
@@ -891,8 +990,29 @@
                 </div>
                 <div class="bg-white">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="media py-4">
+                        {{#each topRated}}
+                            <div class="col-md-4 d-none d-md-block">
+                                <a href="/products/{{title}}">
+                                    <div class="media py-4 ">
+                                        <img src="{{image}}" alt="{{title}}" width="100px" class="mx-4">
+                                        <div class="media-body">
+                                            <h5> {{title}} </h5>
+                                            <div class="Green_stars_sales_size pb-2">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star star_rating_size"></i>
+                                            </div>
+                                            <p class="text-success font-weight-bold"> ₹{{price}} <span class="line_through_text font-weight-light"> ₹110.00
+                                                </span> </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {{/each}}
+                        {{!-- <div class="col-md-4 d-none d-md-block">
+                            <div class="media py-4 ">
                                 <img src="./Images/broccoli.png" alt="broccoli" width="100px" class="mx-4">
                                 <div class="media-body">
                                     <h5> Broccoli </h5>
@@ -903,7 +1023,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
                         </div>
@@ -919,7 +1039,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
                         </div>
@@ -935,12 +1055,12 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="row">
+                    {{!-- <div class="row">
                         <div class="col-md-4">
                             <div class="media py-4">
                                 <img src="./Images/orange juice new.png" alt="Orange Juice" width="100px" class="mx-4">
@@ -953,7 +1073,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
                         </div>
@@ -969,7 +1089,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
                         </div>
@@ -985,11 +1105,11 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star star_rating_size"></i>
                                     </div>
-                                    <p class="text-success font-weight-bold"> $99.99 <span class="line_through_text font-weight-light"> $110.00 </span> </p>
+                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="container pb-5">

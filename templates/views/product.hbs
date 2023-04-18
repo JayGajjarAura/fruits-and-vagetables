@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    {{>head_links}}
+</head>
+<body>
+    {{>header}}
+    <main>
+        <div class="container pb-5 mb-4">
+            {{!-- {{#each products}}
+                <div class="row bg-white rounded" style="height: 500px; width:100%">
+                    <div class="col-6 my-auto">
+                        <img src="{{image}}" alt="{{title}}" class="product_images" style="height: 400px; width:100%">
+                    </div>
+                    <div class="col-6">
+                        <h2 class="font-weight-bold">{{title}}</h2>
+                        <h3 class="font-weight-bold"> {{{currentCurrencyLogo}}}{{price}}</h3>
+                    </div>
+                </div>
+            {{/each}} --}}
+
+            {{#each products}}
+            <div class="row bg-white rounded" style="height: 500px; width:100%">
+                <div class="col-6 my-auto">
+                    <img src="{{image}}" alt="{{title}}" class="product_images" style="height: 400px; width:100%">
+                </div>
+                <div class="col-6">
+                    <h2 class="font-weight-bold">{{title}}</h2>
+                    <h3 class="font-weight-bold">{{currentCurrencyLogo}} {{price}}</h3>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </main>
+    {{>footer}}
+</body>
+</html>

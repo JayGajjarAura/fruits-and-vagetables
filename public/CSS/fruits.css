@@ -15,6 +15,11 @@ a, a:hover {
     height: 400px;
 }
 
+/* size of product images */
+.product_images {
+    object-fit: contain;
+}
+
 #first_hr_line {
     padding: 0.5px;
 }

@@ -7,81 +7,54 @@ $(document).ready(function (e) {
 
     //............. ADD TO CART TOAST...........
     $(".add_to_cart_toast").click(async function () {
-    let cart_toast_info = $(this).parent().find("input").val();
+        let cart_toast_info = $(this).parent().find("input").val();
 
-    // Get the product data from your data source
-    const productId = $(this).data('product-id'); // 'data-product-id' attribute on the button
-    const productData = await getProductData(productId); // implement this function to fetch product data from your data source
+        document.getElementById("add_to_cart_toast").innerHTML =  cart_toast_info + " items added to your cart...";
 
-    // Create a new Product instance with the retrieved product data
-    const newProduct = new Product({
-        name: productData.name,
-        quantity: cart_toast_info,
-        price: productData.price,
+        if (cart_toast_info < 1) {
+            alert("Cannot add ZERO quantity in cart ");
+        } else {
+            $(".cart_toast").toast("show");
+
+        }
     });
-
-    // Save the new product to the database
-    try {
-        const savedProduct = await newProduct.save();
-        console.log(savedProduct); // Log the saved product to the console
-    } catch (error) {
-        console.error(error); // Handle any errors that may occur
-    }
-
-    // Create a new Cart instance with the user's ID and the new Product instance
-    const newCart = new Cart({
-        items: [{
-            user: req.user._id, // assuming you have a 'user' property on the request object
-            product: newProduct._id,
-            quantity: cart_toast_info,
-            price: productData.price,
-        }],
-    });
-
-    // Save the new cart to the database
-    try {
-        const savedCart = await newCart.save();
-        console.log(savedCart); // Log the saved cart to the console
-    } catch (error) {
-        console.error(error); // Handle any errors that may occur
-    }
-
-    document.getElementById("add_to_cart_toast").innerHTML =  cart_toast_info + " items added to your cart...";
-
-    if (cart_toast_info < 1) {
-        alert("Cannot add ZERO quantity in cart ");
-    } else {
-        $(".cart_toast").toast("show");
-
-    }
-});
 
     //.......... Add to cart plus btn ............
     $(".plus_btn").click(function() {
-        // let currnet_val = parseInt($(this).parent().find('input').val());
-        // $(this).parent().find('input').val(currnet_val + 1);
+        let currnet_val = parseInt($(this).parent().find('input').val());
+        if(currnet_val == 10) {
+            $(this).css('id', 'disable')
+            alert('max')
+        } else {
+            $(this).parent().find('input').val(currnet_val + 1);
+        }
         // console.log(currnet_val);
         
-        const txt = $("#qty_" + $(this).attr('id'))
-        if (txt.val() == 10) {
-            $(this).css('id', 'disable')
-            alert("Maximum Value...")
-        } else {
-            txt.val(parseInt(txt.val()) + 1)
-        }
+        // const txt = $("#qty_" + $(this).attr('id'))
+        // if (txt.val() == 10) {
+        //     $(this).css('id', 'disable')
+        //     alert("Maximum Value...")
+        // } else {
+        //     txt.val(parseInt(txt.val()) + 1)
+        // }
     })
 
     $(".minus_btn").click(function () {
-        // let currnet_val = parseInt($(this).parent().find('input').val());
-        // $(this).parent().find('input').val(currnet_val - 1);
+        let currnet_val = parseInt($(this).parent().find('input').val());
+        if(currnet_val == 0) {
+            $(this).css('id', 'disable')
+            alert('min')
+        } else {
+            $(this).parent().find('input').val(currnet_val - 1);
+        }
         // console.log(currnet_val);
         
-        const txt = $("#price_" + $(this).attr('id'))
-        if (txt.val() == 0) {
-            $(this).css('id','disable')
-        } else {
-            txt.val(parseInt(txt.val()) - 1)
-        }
+        // const txt = $("#qty_" + $(this).attr('id'))
+        // if (txt.val() == 0) {
+        //     $(this).css('id','disable')
+        // } else {
+        //     txt.val(parseInt(txt.val()) - 1)
+        // }
     })
 
     function total_cart_value() {
@@ -97,18 +70,6 @@ $(document).ready(function (e) {
 
     $('.add_to_cart_btn').click(function() {
         document.getElementById('total_cart_value').innerHTML = total_cart_value() 
-    })
-
-    $('#reslink').click(function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: "GET",
-            url: "/more_products.hbs",
-            data: {},
-            success: function (data) {
-                $('#maincont').html(data);
-            }
-        })
     })
 
     //______________________ Show login and signup __________________________
@@ -127,7 +88,7 @@ $(document).ready(function (e) {
     });
 
     $(".close").click(function () {
-      $("#loginPopup").hide();
+        $("#loginPopup").hide();
     });
 
     // $('#btnToaddTermRows').click(function() {

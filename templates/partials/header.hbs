@@ -14,7 +14,7 @@
                     </div>
                     <div class="col">
                         <div class="text-right">
-                            <img src="./Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
+                            <img src="../Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
                                 class="ml-auto my-1 pr-3">
                             <span> English <i class="fa fa-angle-down"></i> &nbsp;
                                 <span> | </span> &nbsp;
@@ -30,7 +30,7 @@
         <div class="container">
             <div class="row py-4">
                 <div class="col mx-auto">
-                    <a href="/"> <img src="./Images/Prime Food.png" width="130" alt="logo"> </a>
+                    <a href="/"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
                 </div>
                 <div class="col-4 d-none d-lg-block">
                     <div class="input-group mt-2">
@@ -45,9 +45,9 @@
                 <div class="col d-none d-lg-block align-text-bottom">
                     <div class="my-3 font-weight-bold text-secondary text-right">
                         <div class="show-login" style="cursor: pointer">
-                            {{#if user}}
+                            {{#if defaultRenderData.user}}
                                 <form method="POST" action="/logout">
-                                    Welcome, {{user.username}}
+                                    Welcome, {{defaultRenderData.user.username}}
                                     <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
                                     <a href="/cart" class="text-secondary"> 
                                         <i class="fa fa-shopping-cart"></i>
@@ -69,6 +69,8 @@
                 </div>
             </div>
         </div>
+
+        {{!-- for Mobile --}}
         <div class="container">
             <div class="d-block d-lg-none">
                 <div class="collapse rounded-top" id="navbarToggleExternalContent">
@@ -91,8 +93,9 @@
                     </button>
                 </nav>
             </div>
+            {{!-- for desktop --}}
             <div class="d-lg-flex justify-content-between d-none d-lg-block font-weight-bold">
-                <span> Home </span>
+                <a href="/"> Home </a>
                 <a href="/best_sellers"> Best Sellers </a>
                 <span> Fresh produce </span>
                 <span> Meat & Seafood </span>
@@ -160,7 +163,7 @@
                         </div>
                         <div class="col-md-6 my-auto login_bg_img">
                             <a href="#" class="close">&times;</a>
-                            <img src="./images/Online Groceries.png" class="" width="100%" alt="" srcset="">
+                            <img src="../images/Online Groceries.png" class="" width="100%" alt="" srcset="">
                         </div>
                     </div>
                 </div>
