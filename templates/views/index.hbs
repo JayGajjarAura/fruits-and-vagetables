@@ -46,16 +46,18 @@
                                 </div>
                             </div>
                         </div>                             
-                    </div>                   
+                    </div> 
+
+                    {{!----------------- What's New------------------}}
                     <div class="col-xl-4 col-sm-12 col-12">
                         <div class="bg-white border">
                             <div class="d-flex">
                                 <div class="text-success font-weight-bold p-3"> What's New</div>
-                                <div class="p-3 ml-auto"> View All <i class="fa fa-angle-right pl-1"></i></div> <br>
+                                <a href="/whats-new" class="ml-auto"> <div class="p-3"> View All <i class="fa fa-angle-right pl-1"></i></div></a> <br>
                             </div>
                             <div class="new_products">
                                 {{#each newProducts}}
-                                <a href="/products/{{title}}">
+                                <a href="/products/{{slug}}">
                                     <div class="row mb-2">
                                         <img src="{{image}}" alt="{{title}}" height="85px" class="col-4 product_images">
                                         <div class="col p-0 pt-2">
@@ -73,88 +75,21 @@
                                 </a>
                                 {{/each}}
                             </div>
-                            {{!-- <div class="row mb-2">
-                                <img src="./Images/ice cream.png" alt="ice-cream" height="85px" class="pr-2 ml-5">
-                                <div class="col">                               
-                                    <span class="font-weight-bold"> Multi Flavor Ice Cream </span> <br>
-                                    <div class="star_rating_size">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <br>
-                                    </div>
-                                    <span class="text-success font-weight-bold"> ₹15.00 </span>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <img src="./Images/kitkat.png" alt="kit-kat" height="85px" class="pl-4">
-                                <div class="col col-md-6 col-sm-6">                               
-                                    <span class="font-weight-bold"> Kit Kat </span> <br>
-                                    <div class="star_rating_size">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <br>
-                                    </div>
-                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <img src="./Images/pizza 1.png" alt="pizza" height="85px" class="pl-4">
-                                <div class="col col-md-6 col-sm-6">                               
-                                    <span class="font-weight-bold"> Pizza </span> <br>
-                                    <div class="star_rating_size">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <br>
-                                    </div>
-                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <img src="./Images/red-carot.jpg" alt="red-carot" height="85px" class="pl-4">
-                                <div class="col col-md-6 col-sm-6">                               
-                                    <span class="font-weight-bold"> Red Carot </span> <br>
-                                    <div class="star_rating_size">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <br>
-                                    </div>
-                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <img src="./Images/milk 1.png" alt="milk" height="85px" class="pl-4">
-                                <div class="col">                               
-                                    <span class="font-weight-bold"> Fresh Milk </span> <br>
-                                    <div class="star_rating_size">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i> <br>
-                                    </div>
-                                    <span class="text-success font-weight-bold"> ₹15.00 </span> <span class="line_through_text font-weight-light"> ₹10.00 </span>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {{!-------------- Shop by Category --------------}}
             <div class="container pb-5">
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Shop By Catagory </h5>
-                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                    <a href="/categories" class="ml-auto"> <span>View All <i class="fa fa-angle-right pl-1"></i></span> 
+                    </a>
                 </div>
                 <div class="card-group text-center">
                     {{#each Category}}
-                        <a href="/category/{{name}}">
+                        <a href="/category/{{slug}}">
                             <div class="card border-0 d-none d-md-block"> 
                                 <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px" style="padding-left: 25px; padding-right: 25px">
                                 <div class="card-body">
@@ -163,44 +98,8 @@
                             </div>
                         </a>
                     {{/each}}
-                    {{!-- <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5 border-right" src="./Images/fresh produce.jpg" alt="fresh food" height="250px">
-                        <div class="card-body">
-                            <p class="card-text"> Fresh Produce </p>                            
-                        </div>
-                    </div>
-                    <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5 border-right" src="./Images/meat.jpg" alt="meat" height="250px">
-                        <div class="card-body">
-                            <p class="card-title"> Meat & Seafood </p>
-                        </div>
-                    </div>
-                    <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5 border-right" src="./Images/eggs.jpg" alt="Cheese" height="250px">
-                        <div class="card-body">
-                            <p class="card-title"> Dairy & Eggs </p>
-                        </div>
-                    </div>
-                    <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5 border-right" src="./Images/Bread.jpg" alt="Bread" height="250px">
-                        <div class="card-body">
-                            <p class="card-title"> Bakery </p>
-                        </div>
-                    </div>
-                    <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5 border-right" src="./Images/frozen food.png" alt="frozen food" height="250px">
-                        <div class="card-body">
-                            <p class="card-title"> Frozen Food </p>
-                        </div>
-                    </div>
-                    <div class="card border-0 d-none d-md-block">
-                        <img class="card-img-top mt-5" src="./Images/drink.jpg" alt="drink" height="250px">
-                        <div class="card-body">
-                            <p class="card-title">Drink & Coffee</p>
-                        </div>
-                    </div> --}}
                 </div>
-                <!---------- Mobile Version ---------->
+                {{!----------- Mobile Version  -----------}}
                 <div class="card-deck d-flex d-block d-lg-none">
                     <div class="card border-0">
                         <img class="card-img-top mt-5 border-right" src="./Images/fresh.png" alt="fresh food" height="180px">
@@ -216,18 +115,28 @@
                     </div>
                 </div>
             </div>
+
+            {{!------------------ Flash Sale -------------------}}
             <div class="container pb-5">
-                <div class="d-flex pb-3">
-                    <h5 class="font-weight-bold"> Today Flash Sales </h5>
-                    <p class="ml-5 d-none d-md-block"> Ends In: 
+                <div class="d-flex pb-3 align-middle">
+                    <h5 class="font-weight-bold m-0"> Today Flash Sales </h5>
+                    {{!-- <p class="ml-5 d-none d-md-block"> Ends In: 
                         <span class="bg-success text-white px-3 py-2 ml-2 "> 01 Hours :&nbsp; 03 Minutes&nbsp; : 00 Seconds </span>
-                     </p>
+                     </p> --}}
+                    <p class="ml-4">Ends In:</p>
+                    <div id="clockdiv timeup" class="ml-2 row bg-success text-white px-3 py-2">
+                            <div class="hours font-weight-bold" id="hour"> </div>&nbsp; <span class="smalltext">  Hours </span> &nbsp;&nbsp;&nbsp;
+                            
+                            <div class="minutes font-weight-bold" id="minute"> </div> &nbsp; <span class="smalltext">  Minutes </span> &nbsp;&nbsp;&nbsp;
+                            
+                            <div class="seconds font-weight-bold" id="second"> </div> &nbsp; <span class="smalltext">  Seconds </span>
+                    </div>
                     <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
                 </div>
                 <div class="card-group">
                     {{#each flashSale}}
                         <div class="card d-none d-md-block">
-                            <a href="/products/{{title}}">
+                            <a href="/products/{{slug}}">
                                 <img class="card-img-top product_images" src="{{image}}" alt="{{title}}" height="300px">
                                 <div class="card-body px-4 py-1">
                                     <p class="card-title font-weight-bold"> {{title}} </p>
@@ -247,98 +156,8 @@
                             </a>
                         </div>
                     {{/each}}
-                    {{!-- <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/soups.jpg" alt="Cheese" height="300px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Fresh Juice </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                            <div class="progress progress_bar_height">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="pt-1 text-secondary"> <small> Sold: 30/50 </small></p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/orange juice.jpg" alt="meat" height="300px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Orange Juice </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                            <div class="progress progress_bar_height">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="pt-1 text-secondary"> <small> Sold: 25/50 </small></p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/red amaranth.jpg" alt="Cheese" height="300px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Red Amaranth </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                            <div class="progress progress_bar_height">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="pt-1 text-secondary"> <small> Sold: 15/50 </small></p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/bamboo shoots.jpg" alt="Bread" height="300px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Bamboo Shoots </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                            <div class="progress progress_bar_height">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="pt-1 text-secondary"> <small> Sold: 35/50 </small></p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/dry fruits.jpg" alt="dry fruits" height="300px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Dry Fruits </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                            <div class="progress progress_bar_height">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="pt-1 text-secondary"> <small> Sold: 5/50 </small></p>
-                        </div>
-                    </div> --}}
                 </div>
-                <!------- Mobile Version ------->
+                {{!-- <!------- Mobile Version -------> --}}
                 <div class="card-deck d-flex d-block d-lg-none">
                     <div class="card">
                         <img class="card-img-top" src="./Images/orange juice.jpg" alt="meat" height="300px">
@@ -390,17 +209,19 @@
                     </div>
                 </div>
             </div>
+
+            {{!-------------- Best Sellers --------------}}
             <div class="container pb-5" >
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Best Sellers </h5>
-                    <a class="ml-auto" href="/best_sellers" >View All <i class="fa fa-angle-right pl-1"></i>
+                    <a class="ml-auto" href="/best-sellers" >View All <i class="fa fa-angle-right pl-1"></i>
                     </a>
                 </div>
                 <div class="carousel" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false, "wrapAround": true }'>
                     {{#each best_sellers}}
                             <div class="carousel-cell">
                                 <div class="card d-none d-md-block mx-1">
-                                    <a href="/products/{{title}}">
+                                    <a href="/products/{{slug}}">
                                         <img class="card-img-top mt-3 product_images" src="{{image}}" alt="{{title}}" height="180px">
                                     </a>
                                     <div class="card-body px-4 py-1">
@@ -426,276 +247,6 @@
                                 </div>
                             </div>
                     {{/each}}
-                    {{!-- <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="red-carot" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Red Carot </p>
-                                <div class="star_rating_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99 </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="red_carot" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_red_carot" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="red_carot" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3" src="./Images/ice-cream.jfif" alt="ice cream" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Ice Cream </p>
-                                <div class="star_rating_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="ice_cream" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_ice_cream" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="ice_cream" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3 w-50 ml-5" src="./Images/kit-kat.png" alt="kit-kat"
-                                height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> kit-kat </p>
-                                <div class="Green_stars_sales_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="kit_kat" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_kit_kat" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="kit_kat" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3" src="./Images/pizza.png" alt="pizza" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Pizza </p>
-                                <div class="Green_stars_sales_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-full star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="pizza" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_pizza" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="pizza" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3" src="./Images/milk 1.png" alt="milk" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Milk </p>
-                                <div class="Green_stars_sales_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="milk" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_milk" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="milk" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3 w-50 ml-5" src="./Images/dew can.png" alt="Mountain dew" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Mountain Dew </p>
-                                <div class="star_rating_size ">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99 </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="mountain_dew" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_mountain_dew" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="mountain_dew" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3 w-50 ml-5" src="./Images/red bull can.png" alt="redbull"
-                                height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Red Bull </p>
-                                <div class="star_rating_size">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="red_bull" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_red_bull" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="red_bull" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3 w-50 ml-5" src="./Images/game fuel can.png" alt="Game Fuel"
-                                height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Game Fuel </p>
-                                <div class="Green_stars_sales_size ">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="game_fuel" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_game_fuel" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="game_fuel" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3" src="./Images/diet coke.png" alt="diet coke" height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Diet Coke </p>
-                                <div class="Green_stars_sales_size ">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-full star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="diet_coke" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_diet_coke" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="diet_coke" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-cell">
-                        <div class="card d-none d-md-block mx-1">
-                            <img class="card-img-top mt-3 w-50 ml-5" src="./Images/pepsi can.png" alt="pepsi zero"
-                                height="180px">
-                            <div class="card-body px-4 py-1">
-                                <p class="card-title font-weight-bold"> Pepsi zero </p>
-                                <div class="Green_stars_sales_size ">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                </div>
-                                <p class="text-success font-weight-bold"> ₹99.99
-                                    <span class="line_through_text font-weight-light"> ₹110.00 </span>
-                                </p>
-                                <div class="pb-2">
-                                    <div class="text-center">
-                                        <button value="-" id="pepsi_zero" class="value_btn minus_btn"> - </button>
-                                        <input disabled id="txt_pepsi_zero" class="input_area mx-1 text-center input_val" value="0">
-                                        <button value="+" id="pepsi_zero" class="value_btn mb-3 plus_btn"> + </button>
-                                    </div>
-                                    <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                    <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
 
                 <!-- ............... Mobile Version ............. -->
@@ -751,10 +302,10 @@
                 </div>
             </div>
 
+            {{!---------------- Top Special Offer -------------}}
             <div class="container pb-5">
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Top Special Offers! </h5>
-                    <span class="ml-auto"> View All <i class="fa fa-angle-right pl-1"></i></span>
                 </div>
                 <div class="card-deck">
                     <div class="card d-none d-lg-block"> 
@@ -790,7 +341,7 @@
                         </div>
                     </div>
 
-                    <!--------------- Mobile Version ------------------>
+                    {{!-- <!--------------- Mobile Version ------------------> --}}
                     <div class="card-deck d-flex d-block d-lg-none">
                             <div class="card mr-2">
                                 <img class="card-img" src="./Images/Ice_cream_with.jpg" alt="Ice cream" height="300px">
@@ -812,15 +363,19 @@
                     </div>
                 </div>
             </div>
+
+            {{!--------------- New Arrival ---------------}}
             <div class="container pb-5">
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> New Arrivals </h5>
-                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                    <a href="/whats-new" class="ml-auto">
+                        <span>View All <i class="fa fa-angle-right pl-1"></i></span>
+                    </a>
                 </div>
                 <div class="card-group">
                     {{#each newProducts}}
                         <div class="card d-none d-md-block">
-                            <a href="/products/{{title}}">
+                            <a href="/products/{{slug}}">
                                 <img class="card-img-top px-3 py-4 product_images" src="{{image}}" alt="{{title}}" height="200px">
                                 <div class="card-body px-4 py-1">
                                     <p class="card-title font-weight-bold"> {{title}} </p>
@@ -836,78 +391,8 @@
                             </a>
                         </div>
                     {{/each}}
-                    {{!-- <div class="card d-none d-md-block">
-                        <img class="card-img-top px-3 py-4" src="./Images/broccoli.png" alt="broccoli" height="200px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Broccoli </p>
-                            <div class="star_rating_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 </p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/orange juice new.png" alt="orange juice" height="200px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Orange Juice  </p>
-                            <div class="star_rating_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top px-4 py-3" src="./Images/tomato.png" alt="tomato" height="200px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Imported Tomato </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star star_rating_size"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/bamboo shoots png.png" alt="bamboo shoots" height="200px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Bamboo Shoots </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-full star_rating_size"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                        </div>
-                    </div>
-                    <div class="card d-none d-md-block">
-                        <img class="card-img-top" src="./Images/strawberry.jpg" alt="strawberry" height="200px">
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold"> Strawberry </p>
-                            <div class="Green_stars_sales_size pb-2">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star star_rating_size"></i>
-                            </div>
-                            <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                        </div>
-                    </div> --}}
                 </div>
-                <!--------- Mobile Version -------->
+                {{!-- <!--------- Mobile Version --------> --}}
                 <div class="card-deck d-flex d-block d-lg-none">
                     <div class="card">
                         <img class="card-img-top" src="./Images/orange juice new.png" alt="orange juice" height="200px">
@@ -983,16 +468,20 @@
                     </div> 
                 </div>
             </div>
+
+            {{!-------------- Top Rated -------------}}
             <div class="container pb-5">
                 <div class="d-flex pb-3">
                     <h5 class="font-weight-bold"> Top Rated </h5>
-                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                    <a href="/top-rated" class="ml-auto">
+                        <span>View All <i class="fa fa-angle-right pl-1"></i></span>
+                    </a>
                 </div>
                 <div class="bg-white">
                     <div class="row">
                         {{#each topRated}}
                             <div class="col-md-4 d-none d-md-block">
-                                <a href="/products/{{title}}">
+                                <a href="/products/{{slug}}">
                                     <div class="media py-4 ">
                                         <img src="{{image}}" alt="{{title}}" width="100px" class="mx-4">
                                         <div class="media-body">
@@ -1011,105 +500,7 @@
                                 </a>
                             </div>
                         {{/each}}
-                        {{!-- <div class="col-md-4 d-none d-md-block">
-                            <div class="media py-4 ">
-                                <img src="./Images/broccoli.png" alt="broccoli" width="100px" class="mx-4">
-                                <div class="media-body">
-                                    <h5> Broccoli </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-none d-md-block">
-                            <div class="media py-4">
-                                <img src="./Images/strawberry.jpg" alt="strawberry" width="100px" class="mr-4">
-                                <div class="media-body">
-                                    <h5> Strawberry </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-none d-md-block">
-                            <div class="media py-4">
-                                <img src="./Images/tomato.png" alt="Tomato" width="100px" class="mr-4">
-                                <div class="media-body">
-                                    <h5> Tomato </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
-                    {{!-- <div class="row">
-                        <div class="col-md-4">
-                            <div class="media py-4">
-                                <img src="./Images/orange juice new.png" alt="Orange Juice" width="100px" class="mx-4">
-                                <div class="media-body">
-                                    <h5> Orange Juice </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-none d-md-block">
-                            <div class="media py-4">
-                                <img src="./Images/red-carot.jpg" alt="Red Carot" width="100px" class="mr-4">
-                                <div class="media-body">
-                                    <h5> Red Carot </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-none d-md-block">
-                            <div class="media py-4">
-                                <img src="./Images/ice-cream.jfif" alt="ice-cream" width="100px" class="mr-4">
-                                <div class="media-body">
-                                    <h5> Ice Cream </h5>
-                                    <div class="Green_stars_sales_size pb-2">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star star_rating_size"></i>
-                                    </div>
-                                    <p class="text-success font-weight-bold"> ₹99.99 <span class="line_through_text font-weight-light"> ₹110.00 </span> </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
             <div class="container pb-5">

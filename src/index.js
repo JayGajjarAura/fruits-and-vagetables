@@ -5,16 +5,19 @@ const mongoose = require('mongoose')
 const category = require("../Dynamic API/CategoryAdd")
 const product = require('../Dynamic API/productAdd')
 const hbs = require("hbs");
-const fs = require('fs')
 const path = require("path");
 const multer = require('multer')
+const slugify = require('slugify')
 const session = require("express-session");
 const user_data = require("./model/user");
+const cart_data = require("./model/cart");
+const { title } = require("process");
 
 const ObjectId = mongoose.Types.ObjectId;
 
+
 require("./db/db");
-const app = express();
+const app = express()
 
 //paths for express config
 const publicDirectory = path.join(__dirname, "../public");
@@ -91,6 +94,10 @@ app.post("/API/category", upload.single("image"), async (req, res) => {
             name: req.body.name,
             status: req.body.status,
             image: imageUrl,
+            slug: slugify((req.body.name), {
+                lower: true,
+                strict: true
+            })
         });
         console.log(newCategory)
 
@@ -115,6 +122,11 @@ app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
             const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
             Category.image = imageUrl; // Update image
         }
+        const updatedSlug = slugify(Category.name, {
+            lower: true,
+            strict: true
+        });
+        Category.slug = updatedSlug;
 
         const data = await Category.save();
         res.json(data);   
@@ -169,48 +181,38 @@ app.get("/", async (req, res) => {
     }
 });
 
-app.get('/category/:name', async (req, res) => {
+app.get('/category/:slug', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     
     try {
-        const name = req.params.name;
-        const Category = await category.findOne({ name: name });
+        const slug = req.params.slug;
+        const Category = await category.findOne({ slug: slug });
         const categoryId = new ObjectId(Category._id);
         const products = await product.find({ category: categoryId });
         // res.json( products)
-        res.render('category', {
-            defaultRenderData, 
-            products: products 
+        res.render("categoryWiseProducts", {
+            defaultRenderData,
+            products: products,
         });
     } catch (err) {
         res.send('Error ' + err);
     }
 });
 
-app.get('/products/:name', async (req, res) => {
+app.get('/products/:slug', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     const currentCurrencyLogo = currencyLogo;
     
     try {
-        const title = req.params.name;
-        const Product = await product.findOne({ title: title });
+        const slug = req.params.slug;
+        const Product = await product.findOne({ slug: slug });
         const products = await product.find(Product);
-        // Add the currencyLogo property to each product object
-        // const productsWithCurrency = products.map((product) => {
-        //     return {
-        //         ...product.toObject(),
-        //         currentCurrencyLogo: currencyLogo,
-        //     };
-        // });
-        // res.json( products)
+
         res.render('product', {
             defaultRenderData, 
             currentCurrencyLogo: currentCurrencyLogo,
-            products: products 
+            products: products,
         });
-        // console.log(products)
-        // console.log(currencyLogo)
-        // console.log(currentCurrencyLogo)
     } catch (err) {
         res.send('Error ' + err);
     }
@@ -229,9 +231,13 @@ app.post("/API/products", upload.single("image"), async (req, res) => {
             description: req.body.description,
             newProduct: req.body.newProduct,
             flashSale: req.body.flashSale,
-            topRated: req.body.topRated
+            topRated: req.body.topRated,
+            slug: slugify((req.body.title), {
+                lower: true,
+                strict: true
+            })
         });
-        console.log(newProduct)
+        console.log(newProduct.slug)
 
         await newProduct.save();
 
@@ -253,6 +259,7 @@ app.patch('/API/products/:id', upload.single("image"), async(req,res)=> {
         Product.newProduct = req.body.newProduct || Product.newProduct // Update newProduct
         Product.flashSale = req.body.flashSale || Product.flashSale // Update flashSale
         Product.topRated= req.body.topRated || Product.topRated // Update topRated
+        // Product.slug = req.body.slug || Product.slug // Update slug
 
         if(req.file) { // Check if new image is uploaded
             const { filename } = req.file;
@@ -260,6 +267,11 @@ app.patch('/API/products/:id', upload.single("image"), async(req,res)=> {
             Product.image = imageUrl; // Update image
         }
 
+        const updatedSlug = slugify(Product.title, {
+            lower: true,
+            strict: true
+        });
+        Product.slug = updatedSlug;
 
         const data = await Product.save();
         res.json(data);   
@@ -267,11 +279,6 @@ app.patch('/API/products/:id', upload.single("image"), async(req,res)=> {
         res.status(500).send(err.message);
     }
 })
-
-// app.get('/', (req,res) => {
-//     let defaultRenderData = getDefaultRenderData(req);
-//     res.render("index", defaultRenderData);
-// })
 
 app.post("/login", async (req, res) => {
     const email = req.body.email;
@@ -325,39 +332,44 @@ app.post("/form_data", async (req, res) => {
     }
 });
 
-app.post('/add-to-cart', async (req, res) => {
-    const { user, product } = req.body;
-    const userId = new mongoose.Types.ObjectId(user);
-    console.log(quantity)
 
+// app.get('/cart', (req, res) => {
+//     let defaultRenderData = getDefaultRenderData(req);
+//     res.render("cart", defaultRenderData);
+// });
+
+app.get('/whats-new', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+    
+    try{
+        const Product = await product.find({newProduct: true})
+        res.render("newProducts", {
+            defaultRenderData,
+            Product: Product
+        });
+        // res.json(Product);
+    }catch(err){
+        res.send('Error ' + err)
+    }
+})
+
+app.get('/categories', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+    
     try {
-        const cartItem = await cart_data.findOne({ user: userId, product: product});
-        if (cartItem) {
-            // If the item is already in the cart, update the quantity
-            cartItem.quantity += 1;
-            await cartItem.save();
-            console.log(`Updated item in cart: ${cartItem}`);
-            res.json(cartItem);
-        } else {
-            // Otherwise, create a new item in the cart
-            const newCartItem = new cart_data({ user: userId, product: product, quantity: 1});
-            await newCartItem.save();
-            console.log(`Saved new item in cart: ${newCartItem}`);
-            res.json(newCartItem);
-        }
+        const Category = await category.find({});
+        
+        // res.json(Category)
+        res.render("allCategories", {
+            defaultRenderData,
+            Category: Category,
+        });
     } catch (err) {
-        console.error(`Error saving item to cart: ${err}`);
-        res.status(500).json({ error: err });
+        res.send('Error ' + err);
     }
 });
 
-app.get('/cart', (req, res) => {
-    let defaultRenderData = getDefaultRenderData(req);
-    res.render("cart", defaultRenderData);
-});
-
-
-app.get("/best_sellers", async (req, res) => {
+app.get("/best-sellers", async (req, res) => {
 
     let defaultRenderData = getDefaultRenderData(req);
     try{
@@ -372,14 +384,23 @@ app.get("/best_sellers", async (req, res) => {
     }
 });
 
+app.get('/top-rated', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+    
+    try{
+        const Product = await product.find({topRated: true})
+        res.render("topRated", {
+            defaultRenderData,
+            Product: Product
+        });
+        // res.json(Product);
+    }catch(err){
+        res.send('Error ' + err)
+    }
+})
+
 app.post("/logout", (req, res) => { 
-    req.session.destroy((err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect("/");
-        }
-    });
+    res.redirect("/");
 });
 
 app.get("*", (req, res) => {

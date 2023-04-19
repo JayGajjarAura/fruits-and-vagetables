@@ -30,6 +30,9 @@ const productSchema = mongoose.Schema ({
     },
     topRated: {
         type: Boolean
+    },
+    slug: {
+        type: String
     }
 })
 

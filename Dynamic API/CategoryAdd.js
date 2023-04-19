@@ -13,6 +13,9 @@ const categorySchema = new mongoose.Schema ({
         type: Number,
         required: true,
         default: 2
+    },
+    slug: {
+        type: String
     }
 })
 

@@ -124,12 +124,27 @@
                                 aria-valuenow="100" aria-valuemax="100"> </div>
                         </div>
                         <ul class="list-unstyled text-secondary mt-4">
-                            <li class="mb-3"> Apple </li>
-                            <li class="mb-3"> Bags & Shoes </li>
+                            {{#each Category}}
+                                <a href="/category/{{slug}}">
+                                    <li class="mb-3"> {{name}} </li>
+                                </a>
+                            {{!-- <li class="mb-3"> Bags & Shoes </li>
                             <li class="mb-3"> Electronics </li>
                             <li class="mb-3"> Fashion </li>
                             <li class="mb-3"> Gifts & Toys </li>
-                            <li class="mb-3"> Health & Beauty </li>
+                            <li class="mb-3"> Health & Beauty </li> --}}
+                            {{/each}}
+                            {{#each Category}}
+                            <a href="/category/{{slug}}">
+                                <div class="card border-0 d-none d-md-block">
+                                    <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px"
+                                        style="padding-left: 25px; padding-right: 25px">
+                                    <div class="card-body">
+                                        <p class="card-text font-weight-bold"> {{name}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            {{/each}}
                         </ul>
                     </div>
                 </div>

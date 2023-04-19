@@ -23,7 +23,7 @@
                             <i class="fa fa-star"></i>
                         </div>
                             <hr>
-                        <h3 class="font-weight-bold"> {{{currentCurrencyLogo}}}{{price}} or 0.99/month</h3>
+                        <h3 class="font-weight-bold"> <i class="fa fa-inr" aria-hidden="true"></i> {{price}}</h3>
                             <hr>
                         <div>
                             <div>
@@ -41,19 +41,6 @@
                     </div>
                 </div>
             {{/each}}
-
-            {{!-- {{#each products}}
-            <div class="row bg-white rounded" style="height: 500px; width:100%">
-                <div class="col-6 my-auto">
-                    <img src="{{image}}" alt="{{title}}" class="product_images" style="height: 400px; width:100%">
-                </div>
-                <div class="col-6">
-                    <h2 class="font-weight-bold">{{title}}</h2>
-                    <h3 class="font-weight-bold">{{currentCurrencyLogo}} {{price}}</h3>
-                </div>
-            </div>
-            {{/each}} --}}
-
         </div>
     {{>toast_subscribe}}
     </main>
