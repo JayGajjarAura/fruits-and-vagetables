@@ -75,6 +75,7 @@ $(document).ready(function (e) {
 
 
     //______________________ Show login and signup __________________________
+
     $(".show-login").click(function () {
       $("#loginPopup").show();
     });
@@ -92,14 +93,6 @@ $(document).ready(function (e) {
     $(".close").click(function () {
         $("#loginPopup").hide();
     });
-
-    // $('#btnToaddTermRows').click(function() {
-    //     let grade = $('#product_').val();
-    //     let price = $('#price_').val();
-    //     let qty = $('#qty_').val();
-    //     let newRow = $('<tr><td>' + grade + '</td><td>' + price + '</td><td>' + qty + '</td></tr>');
-    //     $('#myTable').append(newRow);
-    // });
 })
 
 //___________________________ Dynamic Add and Remove_________________________
@@ -194,69 +187,28 @@ function addTermrows() {
     MainTbody.appendChild(CreateTR);
 }
 
-// function addToCart(button) {
-//   const productTitle = button.parentNode.parentNode.querySelector('.card-title').textContent;
-//   console.log('Product added to cart:', productTitle);
-// }
-
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   // your code here
-
-//   let table = document.getElementById("myTable");
-
-//   document
-//     .getElementById("btnToaddTermRows")
-//     .addEventListener("click", function () {
-//       // Get references to the input text boxes
-//       let gradeInput = document.getElementById("product_");
-//       let priceInput = document.getElementById("price_");
-//       let qtyInput = document.getElementById("qty_");
-
-//       // Get the values entered by the user
-//       let grade = gradeInput.value;
-//       let price = Number(priceInput.value);
-//       let qty = Number(qtyInput.value);
-//       let totalCartVal = price * qty;
-//       console.log(totalCartVal);
-
-//       // Create a new row element and populate it with the user input
-//       let newRow = table.insertRow();
-//       let gradeCell = newRow.insertCell(0);
-//       let priceCell = newRow.insertCell(1);
-//       let qtyCell = newRow.insertCell(2);
-//       let totalCell = newRow.insertCell(3);
-
-//       gradeCell.innerHTML = grade;
-//       priceCell.innerHTML = price;
-//       qtyCell.innerHTML = qty;
-//       totalCell.innerHTML = totalCartVal;
-//     });
-// });
-
 // Countdown Timer 
 
-let deadline = new Date();
-	deadline.setHours(deadline.getHours() + 1);
-	
-	let x = setInterval(function() {
-		let now = new Date().getTime();
-		let t = deadline - now;
-		
-		let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-		let seconds = Math.floor((t % (1000 * 60)) / 1000);
-		
-		document.getElementById("hour").innerHTML =hours;
-		document.getElementById("minute").innerHTML = minutes;
-		document.getElementById("second").innerHTML =seconds;
-		
-		if (t < 0) {
-			clearInterval(x);
-			document.getElementById("timeup").innerHTML = "TIME UP";
-			document.getElementById("hour").innerHTML ='0';
-			document.getElementById("minute").innerHTML ='0' ;
-			document.getElementById("second").innerHTML = '0'; 
-		}
-	}, 1000);
+// let deadline = new Date();
+// deadline.setHours(deadline.getHours() + 1);
+
+// let x = setInterval(function() {
+//     let now = new Date().getTime();
+//     let t = deadline - now;
+    
+//     let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//     let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+//     let seconds = Math.floor((t % (1000 * 60)) / 1000);
+    
+//     document.getElementById("hour").innerHTML =hours;
+//     document.getElementById("minute").innerHTML = minutes;
+//     document.getElementById("second").innerHTML =seconds;
+    
+//     if (t < 0) {
+//         clearInterval(x);
+//         document.getElementById("timeup").innerHTML = "TIME UP";
+//         document.getElementById("hour").innerHTML ='0';
+//         document.getElementById("minute").innerHTML ='0' ;
+//         document.getElementById("second").innerHTML = '0'; 
+//     }
+// }, 1000);

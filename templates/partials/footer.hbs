@@ -14,14 +14,14 @@
                     </div>
                     <div class="col-xl-6 col-sm-12 col-12">
                         <div class="py-4 mx-5 mt-1">
-                            <div class="input-group mt-1">
-                                <input type="text" class="form-control rounded-0 py-2"
-                                    placeholder="Enter your e-mail..." aria-label="Search for products..." />
-                                <div class="input-group-append">
-                                    <button class="btn btn-dark text-white px-4 font-weight-light rounded-0"
-                                        type="button" id="myBtn"> SUBSCRIBE </button>
+                            <form action="/send" method="POST">
+                                <div class="input-group mt-1">
+                                    <input type="text" class="form-control rounded-0 py-2" placeholder="Enter your e-mail..." aria-label="Enter your e-mail..." name="email" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-dark text-white px-4 font-weight-light rounded-0" type="submit" id="myBtn"> SUBSCRIBE </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- _____ toast subscribe _____ -->
@@ -123,27 +123,11 @@
                             <div class="progress-bar bg-success " role="progressbar" style="width: 100%"
                                 aria-valuenow="100" aria-valuemax="100"> </div>
                         </div>
-                        <ul class="list-unstyled text-secondary mt-4">
+                        <ul class="list-unstyled mt-4">
                             {{#each Category}}
-                                <a href="/category/{{slug}}">
+                                <a href="/category/{{slug}}" class="text-secondary">
                                     <li class="mb-3"> {{name}} </li>
                                 </a>
-                            {{!-- <li class="mb-3"> Bags & Shoes </li>
-                            <li class="mb-3"> Electronics </li>
-                            <li class="mb-3"> Fashion </li>
-                            <li class="mb-3"> Gifts & Toys </li>
-                            <li class="mb-3"> Health & Beauty </li> --}}
-                            {{/each}}
-                            {{#each Category}}
-                            <a href="/category/{{slug}}">
-                                <div class="card border-0 d-none d-md-block">
-                                    <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px"
-                                        style="padding-left: 25px; padding-right: 25px">
-                                    <div class="card-body">
-                                        <p class="card-text font-weight-bold"> {{name}}</p>
-                                    </div>
-                                </div>
-                            </a>
                             {{/each}}
                         </ul>
                     </div>

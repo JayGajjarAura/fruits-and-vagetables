@@ -1,37 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dynamic</title>
+    <title>Cart</title>
     {{>head_links}}
 </head>
 <body> 
     {{>header}}   
     <main class="mb-5">
         <div class="container">
-            <div class="mb-2 d-flex">
-                {{!-- <input class="py-1 mr-2" placeholder="Enter Here" id="product_" type="text" name="grade">
-                <input class="py-1 mr-2" placeholder="Price" id="price_" type="text" name="price">
-                <input class="py-1 mr-2" placeholder="Qty" id="qty_" type="text" name="qty">
-                <button class="btn btn-primary text-white px-3" id="btnToaddTermRows">Add</button> --}}
+            {{#if Cart}}
+            {{!-- <div class="mb-2 d-flex">
                 <input class="py-1 mr-2" placeholder="Enter Here" id="product_" type="text" name="grade">
                 <input class="py-1 mr-2" placeholder="Price" id="price_" type="text" name="price">
                 <input class="py-1 mr-2" placeholder="Qty" id="qty_" type="text" name="qty">
                 <button class="btn btn-primary text-white px-3" id="btnToaddTermRows" onclick="addTermrows()">Add</button>
-            </div>
-            <table id="myTable" class="table table-hover table-responsive spacing-table mb-5">
-                <thead class="rounded-3">
+            </div> --}}
+            <table id="myTable" class="table table-hover spacing-table mb-5 w-100">
+                <thead class="p-5">
                     <tr>
-                        {{!-- <th scope="col" class="col-1 ps-3"> S. No </th> --}}
-                        <th scope="col" class="col-1"> no. </th>
-                        <th scope="col" class="col-5"> Product Name </th>
+                        <th scope="col" class="col-2"> Product Name </th>
+                        <th scope="col" class="col-2"> Image </th>
                         <th scope="col" class="col-2"> Price </th>
                         <th scope="col" class="col-2"> Qty </th>
-                        <th scope="col" class="col-1"> Total </th>
-                        <th scope="col" class="col-1">Action</th>
+                        <th scope="col" class="col-2"> Total </th>
+                        <th scope="col" class="col-2">Action</th>
                     </tr>
                 </thead>
-                <tbody id="mainTBody" class="total_cart_value"> </tbody>
-            </table>  
+                <tbody id="mainTBody" class="total_cart_value">
+                    {{#each Cart.Cart_products }}
+                    <tr>
+                        <td>{{ this.Product.title }}</td>
+                        <td><img src="{{ this.Product.image }}" style="height: 40px; width: 50px; object-fit: contain"
+                            alt="{{ this.Product.name }}"></td>
+                        <td>{{ this.Product.price }}</td>
+                        <td>{{ this.Quantity }}</td>
+                        <td>{{ multiply this.Quantity this.Product.price }}</td>
+                        <td class="btn btn-outline-danger p-2 mt-2 border-0">
+                            <form action="/cart/{{this.item.id}}" method="GET"><button type="submit" class="btn btn-default">Remove </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{else}}
+            <div class="container mb-5 pb-5">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <figure class="error_img mx-auto">
+                            <img class="img-fluid" src="../Images/Add to Cart.png" alt="error img" srcset="">
+                            <a href="/" class="go_homepage" style="margin-left: 180px;">Start Shopping</a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
     </main>
     {{>toast_subscribe}}

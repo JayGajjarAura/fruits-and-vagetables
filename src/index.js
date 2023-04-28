@@ -1,23 +1,28 @@
-require("dotenv").config();
-const express = require("express");
+require("dotenv").config()
+const express = require("express")
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const category = require("../Dynamic API/CategoryAdd")
 const product = require('../Dynamic API/productAdd')
-const hbs = require("hbs");
-const path = require("path");
+const hbs = require("hbs")
+const path = require("path")
 const multer = require('multer')
 const slugify = require('slugify')
-const session = require("express-session");
-const user_data = require("./model/user");
-const cart_data = require("./model/cart");
-const { title } = require("process");
+const nodemailer = require("nodemailer")
+const session = require("express-session")
+const user_data = require("./model/user")
+const cart = require("./model/cart")
 
 const ObjectId = mongoose.Types.ObjectId;
 
+// const trigger = require('../public/JS/triggerClick')
 
 require("./db/db");
 const app = express()
+
+hbs.registerHelper("multiply", function (a, b) {
+    return a * b;
+});
 
 //paths for express config
 const publicDirectory = path.join(__dirname, "../public");
@@ -28,6 +33,16 @@ const partialsPath = path.join(__dirname, "../templates/partials");
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
+
+//Body-parser middle were
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+
+// Generate a random token for verification
+function generateToken() {
+    const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    return token;
+}
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -43,7 +58,7 @@ app.use(
             secure: false,
             sameSite: 'none',
             maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days in milliseconds
-        }, // Set the cookie to be non-secure for development purposes
+        }, // Set the cookie to be non-secure for development purposes or to run in local
     })
 );
 
@@ -67,6 +82,7 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 app.get('/category/name', async (req, res) => {
+
     try{
         const Category = await category.find({})
         res.render("test", { Category: Category });
@@ -110,12 +126,113 @@ app.post("/API/category", upload.single("image"), async (req, res) => {
     }
 });
 
+
+// -----------cart CRUD operations code----------
+
+app.get('/cart', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+
+    const userId = defaultRenderData.user.userId;
+    console.log('user---------'+ userId)
+
+    try {
+        const Category = await category.find({})
+        const Cart = await cart.findOne({User: userId }).lean().populate({
+            path: "Cart_products.Product",
+            model: "product",
+        });
+        // const Cart = await cart.findOne({User: userId})
+        console.log('cartttttttttttt---  ' + JSON.stringify( Cart));
+        res.render('cart', {
+            defaultRenderData,
+            Cart: Cart,
+            Category: Category
+        });
+    } catch (err) {
+        // console.error(err);
+        res.send(err);
+    }
+});
+
+
+
+app.post('/add-to-cart', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+
+    try {
+        const userId = defaultRenderData.user.userId;
+
+        let Cart = await cart.findOne({ User: userId });
+        console.log('sdsdasdsadsad'+ Cart)
+
+        if (!Cart) {
+            const newCart = new cart({
+                User: userId,
+                Cart_products: [
+                    {
+                        User_cart_id: userId,
+                        Product: req.body.productId,
+                        Quantity: req.body.quantity,
+                        Created_at: Date.now(),
+                    },
+                ],
+            });
+
+            await newCart.save();
+            console.log(newCart);
+        } else {
+            const cartProduct = Cart.Cart_products.find((item) =>
+                item.Product.equals(req.body.productId)
+            );
+
+            if (cartProduct) {
+                cartProduct.Quantity += req.body.quantity;
+                cartProduct.Updated_at = Date.now();
+            } else {
+                Cart.Cart_products.push({
+                    User_cart_id: userId,
+                    Product: req.body.productId,
+                    Quantity: req.body.quantity,
+                    Created_at: Date.now(),
+                    Updated_at: Date.now()
+                });
+            }
+
+            await Cart.save();
+            // console.log(Cart);
+        }
+        
+        // res.send({ Success: 'Product added to cart successfully'});
+        res.redirect('/cart');
+    } catch (err) {
+        console.log('error'+ err);
+        res.status(500).send('Error adding product to cart');
+    }
+});
+
+this.remove = function (id) {
+    if (this.items.hasOwnProperty(id)) {
+        this.totalItems -= this.items[id].quantity;
+        this.totalPrice -= this.items[id].price;
+        delete this.items[id];
+    }
+};
+
+app.get('/cart/:id', async (req, res) => {
+    const productId = req.params.id;
+    const Cart = new cart(req.session.cart ? req.session.cart : {});
+
+    Cart.remove(productId);
+    req.session.cart = Cart;
+    res.redirect("/cart");
+})
+
 app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
     try{
         const Category = await category.findById(req.params.id); 
 
-        Category.name = req.body.name || Category.name; // Update name
-        Category.status = req.body.status || Category.status; // Update status
+        Category.name = req.body.name || Category.name; 
+        Category.status = req.body.status || Category.status; 
 
         if(req.file) { // Check if new image is uploaded
             const { filename } = req.file;
@@ -131,7 +248,7 @@ app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
         const data = await Category.save();
         res.json(data);   
     }catch(err){
-        res.status(500).send(err.message);
+        res.send('Error' + err)
     }
 })
 
@@ -154,8 +271,6 @@ app.get('/API/products/:id', async(req,res) => {
     }
 })
 
-
-// code for rendering products in what's new section
 app.get("/", async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     const currentCurrencyLogo = currencyLogo
@@ -174,7 +289,7 @@ app.get("/", async (req, res) => {
             best_sellers: best_sellers,
             topRated: topRated,
         });
-        console.log(defaultRenderData.user.username)
+        // console.log(defaultRenderData.user.username)
         // res.json(newProducts)
     } catch (err) {
         res.send("Error " + err);
@@ -183,6 +298,7 @@ app.get("/", async (req, res) => {
 
 app.get('/category/:slug', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
+    // console.log("------------------", req.body.name);
     
     try {
         const slug = req.params.slug;
@@ -193,6 +309,7 @@ app.get('/category/:slug', async (req, res) => {
         res.render("categoryWiseProducts", {
             defaultRenderData,
             products: products,
+            Category: Category,
         });
     } catch (err) {
         res.send('Error ' + err);
@@ -202,20 +319,24 @@ app.get('/category/:slug', async (req, res) => {
 app.get('/products/:slug', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     const currentCurrencyLogo = currencyLogo;
-    
-    try {
-        const slug = req.params.slug;
-        const Product = await product.findOne({ slug: slug });
-        const products = await product.find(Product);
+    // if (defaultRenderData.user) {
+        try {
+                const slug = req.params.slug;
+                const Product = await product.findOne({slug: slug});
+                const Category = await category.find({}).limit(5);
+                // const products = await product.find(Product);
+                // console.log(Product.title)
 
-        res.render('product', {
-            defaultRenderData, 
-            currentCurrencyLogo: currentCurrencyLogo,
-            products: products,
-        });
-    } catch (err) {
-        res.send('Error ' + err);
-    }
+                res.render("product", {
+                    defaultRenderData,
+                    currentCurrencyLogo: currentCurrencyLogo,
+                    products: Product,
+                    Category: Category,
+                });
+            } catch (err) {
+            res.send("Error " + err);
+        }
+    // }
 });
 
 app.post("/API/products", upload.single("image"), async (req, res) => {
@@ -253,20 +374,20 @@ app.patch('/API/products/:id', upload.single("image"), async(req,res)=> {
         const Product = await product.findById(req.params.id); 
 
         Product.category = req.body.category || Product.category; // Update category
-        Product.title = req.body.title || Product.title; // Update title
-        Product.price = req.body.price || Product.price; // Update price
-        Product.description = req.body.description || Product.description; // Update description
-        Product.newProduct = req.body.newProduct || Product.newProduct // Update newProduct
-        Product.flashSale = req.body.flashSale || Product.flashSale // Update flashSale
-        Product.topRated= req.body.topRated || Product.topRated // Update topRated
-        // Product.slug = req.body.slug || Product.slug // Update slug
+        Product.title = req.body.title || Product.title; 
+        Product.price = req.body.price || Product.price; 
+        Product.description = req.body.description || Product.description; 
+        Product.newProduct = req.body.newProduct || Product.newProduct 
+        Product.flashSale = req.body.flashSale || Product.flashSale 
+        Product.topRated= req.body.topRated || Product.topRated 
 
         if(req.file) { // Check if new image is uploaded
             const { filename } = req.file;
             const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
             Product.image = imageUrl; // Update image
         }
-
+        
+        // Product.slug = req.body.slug || Product.slug
         const updatedSlug = slugify(Product.title, {
             lower: true,
             strict: true
@@ -300,7 +421,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.post("/form_data", async (req, res) => {
+app.post("/signUp", async (req, res) => {
     const password = req.body.password;
     const confirm_pass = req.body.confirm_pass;
 
@@ -332,20 +453,58 @@ app.post("/form_data", async (req, res) => {
     }
 });
 
+app.post("/send", (req, res) => {
+    const verificationToken = generateToken();
 
-// app.get('/cart', (req, res) => {
-//     let defaultRenderData = getDefaultRenderData(req);
-//     res.render("cart", defaultRenderData);
-// });
+    const output = 
+        `<p>Please click on the following link to verify your email: <a href="http://localhost:3000/welcome/${verificationToken}">click Here</a></p>`;
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: 'fortestingnodejs@gmail.com',
+            pass: 'idrlxprfmuljerqb'
+        }
+    });
+
+    const user_mail = req.body.email
+    console.log(user_mail)
+
+    const mailOptions = {
+        from: "fortestingnodejs@gmail.com",
+        to: user_mail,
+        subject: "Testing",
+        text: `<p>Please click on the following link to verify your email: <a href="http://localhost:3000/welcome/${verificationToken}">click Here</a></p>`,
+        html: output
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log("Message sent: ", user_mail)
+
+        // res.json('Success')
+        res.redirect("/");
+    });
+});
+
+app.get('/welcome/:token', (req, res) => {
+    res.render('verifyMail')
+})
 
 app.get('/whats-new', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
+    const Category = await category.find({}).limit(5);
     
     try{
         const Product = await product.find({newProduct: true})
         res.render("newProducts", {
             defaultRenderData,
-            Product: Product
+            Product: Product,
+            Category: Category
         });
         // res.json(Product);
     }catch(err){
@@ -372,11 +531,14 @@ app.get('/categories', async (req, res) => {
 app.get("/best-sellers", async (req, res) => {
 
     let defaultRenderData = getDefaultRenderData(req);
+    const Category = await category.find({}).limit(5);
+
     try{
         const Product = await product.find({})
         res.render("best_sellers", {
             defaultRenderData,
-            Product: Product
+            Product: Product,
+            Category: Category
         });
         // res.json(Product);
     }catch(err){
@@ -386,21 +548,25 @@ app.get("/best-sellers", async (req, res) => {
 
 app.get('/top-rated', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
+    const Category = await category.find({}).limit(5);
     
     try{
         const Product = await product.find({topRated: true})
         res.render("topRated", {
             defaultRenderData,
-            Product: Product
+            Product: Product,
+            Category: Category
         });
         // res.json(Product);
     }catch(err){
-        res.send('Error ' + err)
+        res.send('Error '+ err)
     }
 })
 
 app.post("/logout", (req, res) => { 
-    res.redirect("/");
+    req.session.destroy(function (err) {
+        res.redirect("/");
+    });
 });
 
 app.get("*", (req, res) => {

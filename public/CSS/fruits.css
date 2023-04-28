@@ -137,11 +137,11 @@ a, a:hover {
 }
 
 .flickity-prev-next-button.next {
-    right: -60px !important;
+    right: -50px !important;
 }
 
 .flickity-prev-next-button.previous {
-    left: -60px !important;
+    left: -50px !important;
 }
 
 .error_img {
@@ -179,9 +179,10 @@ a, a:hover {
 
 .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
-    font-weight: bold;
+    position: absolute;
+    top: -4px;
+    left: 543px;
 }
 
 .close:hover {

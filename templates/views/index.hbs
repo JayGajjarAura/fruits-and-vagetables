@@ -17,7 +17,7 @@
                                 <div class="img_text_alignment text-success">
                                     <h3 class="card-title mb-1"> Fresh Vegetables </h3>
                                     <h1 class="card-title mb-2"> From Our Farm </h1>
-                                    <button class="btn-outline-success px-3"> Shop now</button>
+                                    <a href="/best-sellers"> <button class="btn-outline-success px-3"> Shop now</button> </a>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                     {{#each Category}}
                         <a href="/category/{{slug}}">
                             <div class="card border-0 d-none d-md-block"> 
-                                <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px" style="padding-left: 25px; padding-right: 25px">
+                                <img class="card-img-top mt-5 border-right product_images" src="{{image}}" alt="{{name}}" height="250px" style="padding-left: 25px; padding-right: 25px" loading="lazy">
                                 <div class="card-body">
                                     <p class="card-text font-weight-bold"> {{name}}</p>
                                 </div>
@@ -102,13 +102,13 @@
                 {{!----------- Mobile Version  -----------}}
                 <div class="card-deck d-flex d-block d-lg-none">
                     <div class="card border-0">
-                        <img class="card-img-top mt-5 border-right" src="./Images/fresh.png" alt="fresh food" height="180px">
+                        <img class="card-img-top mt-5 border-right" src="./Images/fresh.png" alt="fresh food" height="180px" loading="lazy">
                         <div class="card-body">
                             <p class="card-text text-center"> Fresh Produce </p>                            
                         </div>
                     </div>
                     <div class="card border-0">
-                        <img class="card-img-top mt-5 border-right" src="./Images/pizza.png" alt="meat" height="180px">
+                        <img class="card-img-top mt-5 border-right" src="./Images/pizza.png" alt="meat" height="180px" loading="lazy">
                         <div class="card-body">
                             <p class="card-title text-center"> Meat & Seafood </p>
                         </div>
@@ -137,7 +137,7 @@
                     {{#each flashSale}}
                         <div class="card d-none d-md-block">
                             <a href="/products/{{slug}}">
-                                <img class="card-img-top product_images" src="{{image}}" alt="{{title}}" height="300px">
+                                <img class="card-img-top product_images" src="{{image}}" alt="{{title}}" height="300px" loading="lazy">
                                 <div class="card-body px-4 py-1">
                                     <p class="card-title font-weight-bold"> {{title}} </p>
                                     <div class="Green_stars_sales_size pb-2">
@@ -222,7 +222,7 @@
                             <div class="carousel-cell">
                                 <div class="card d-none d-md-block mx-1">
                                     <a href="/products/{{slug}}">
-                                        <img class="card-img-top mt-3 product_images" src="{{image}}" alt="{{title}}" height="180px">
+                                        <img class="card-img-top mt-3 product_images" src="{{image}}" alt="{{title}}" height="180px" loading="lazy">
                                     </a>
                                     <div class="card-body px-4 py-1">
                                         <p class="card-title font-weight-bold"> {{title}} </p>
@@ -252,7 +252,7 @@
                 <!-- ............... Mobile Version ............. -->
                 <div class="card-deck d-flex d-block d-lg-none">
                     <div class="card mr-3">
-                        <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="Cheese" height="180px">
+                        <img class="card-img-top mt-3" src="./Images/red-carot.jpg" alt="Cheese" height="180px" loading="lazy">
                         <div class="card-body px-4 py-1">
                             <p class="card-title font-weight-bold"> Red Carot </p>
                             <div class="star_rating_size pb-2">
@@ -309,7 +309,7 @@
                 </div>
                 <div class="card-deck">
                     <div class="card d-none d-lg-block"> 
-                        <img class="card-img" src="./Images/juices organic.jpg" alt="organic juices" height="390px">
+                        <img class="card-img" src="./Images/juices organic.jpg" alt="organic juices" height="390px" loading="lazy">
                         <div class="card-img-overlay text-right">
                             <div class="card-text"> <span class="bg-success text-white px-2 h6"> 35% OFF </span></div>
                             <h5 class="card-text text-white mb-0"> Fresh juices </h5>
@@ -376,7 +376,7 @@
                     {{#each newProducts}}
                         <div class="card d-none d-md-block">
                             <a href="/products/{{slug}}">
-                                <img class="card-img-top px-3 py-4 product_images" src="{{image}}" alt="{{title}}" height="200px">
+                                <img class="card-img-top px-3 py-4 product_images" src="{{image}}" alt="{{title}}" height="200px" loading="lazy">
                                 <div class="card-body px-4 py-1">
                                     <p class="card-title font-weight-bold"> {{title}} </p>
                                     <div class="star_rating_size pb-2">
@@ -429,7 +429,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="card">
-                                <img src="./Images/gelato.jpg" alt="gelato" class="card-img" height="200px">
+                                <img src="./Images/gelato.jpg" alt="gelato" class="card-img" height="200px" loading="lazy">
                                 <div class="card-img-overlay">
                                     <div class="card-title text-white font-weight-bold font-italic"> <span class="bg-success px-2 py-1"> Save Up to 30% </span> </div>
                                     <div class="card-title h5 font-italic font-weight-bold text-white"> Dairy Free Gelato</div>
@@ -439,7 +439,7 @@
                         </div>
                         <div class="col">
                             <div class="card">
-                                <img src="./Images/burger.jpg" alt="gelato" class="card-img" height="200px">
+                                <img src="./Images/burger.jpg" alt="gelato" class="card-img" height="200px" loading="lazy">
                                 <div class="card-img-overlay text-right text-white">
                                     <div class="card-title font-weight-bold"> <span class="bg-danger px-2 py-1"> Save Up to 75% </span> </div>
                                     <div class="card-title h5 font-italic font-weight-bold"> Fast Food</div>
@@ -451,7 +451,7 @@
                 </div>
                 <div class="d-block d-md-none">
                     <div class="card mb-3">
-                        <img src="./Images/gelato.jpg" alt="gelato" class="card-img" height="200px">
+                        <img src="./Images/gelato.jpg" alt="gelato" class="card-img" height="200px" loading="lazy">
                         <div class="card-img-overlay">
                             <div class="card-title text-white font-weight-bold font-italic"> <span class="bg-success px-2 py-1"> Save Up to 30% </span> </div>
                             <div class="card-title h5 font-italic font-weight-bold text-white"> Dairy Free Gelato</div>
@@ -459,7 +459,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <img src="./Images/burger.jpg" alt="gelato" class="card-img" height="200px">
+                        <img src="./Images/burger.jpg" alt="gelato" class="card-img" height="200px" loading="lazy">
                         <div class="card-img-overlay text-right text-white">
                             <div class="card-title font-weight-bold"> <span class="bg-danger px-2 py-1"> Save Up to 75% </span> </div>
                             <div class="card-title h5 font-italic font-weight-bold"> Fast Food</div>
@@ -483,7 +483,7 @@
                             <div class="col-md-4 d-none d-md-block">
                                 <a href="/products/{{slug}}">
                                     <div class="media py-4 ">
-                                        <img src="{{image}}" alt="{{title}}" width="100px" class="mx-4">
+                                        <img src="{{image}}" alt="{{title}}" width="100px" class="mx-4" loading="lazy">
                                         <div class="media-body">
                                             <h5> {{title}} </h5>
                                             <div class="Green_stars_sales_size pb-2">
@@ -500,47 +500,6 @@
                                 </a>
                             </div>
                         {{/each}}
-                    </div>
-                </div>
-            </div>
-            <div class="container pb-5">
-                <div class="d-flex pb-3">
-                    <h5 class="font-weight-bold"> Find Your Recipe </h5>
-                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 1.jpg" alt="recipe 1">
-                            <div class="card-body py-2">
-                                <p class="card-text mb-1 h6">Recipe 1</p>
-                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                    Jan 01, 2023 &nbsp; <i class="fa fa-comments"></i> &nbsp; 10 comments </small> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-none d-md-block">
-                        <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 2.jpg" alt="recipe 2">
-                            <div class="card-body py-2">
-                                <p class="card-text mb-1 h6">Recipe 2</p>
-                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                    Jan 01, 2023 &nbsp; <i class="fa fa-comments"></i> &nbsp; 8 comments </small> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-none d-md-block">
-                        <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 3.jpg" alt="recipe 3">
-                            <div class="card-body py-2">
-                                <p class="card-text mb-1 h6">Recipe 3</p>
-                                <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                    Jan 01, 2023 &nbsp; <i class="fa fa-comments"></i> &nbsp; 5 comments </small> 
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -8,79 +8,41 @@
 <body>
     {{>header}}
     <main>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-5">
-                {{#each Product }}
-                <div class="col p-2">
-                    <div class="card">
-                        <a href="/products/{{slug}}">
-                            <img class="card-img-top mt-3 product_images" src="{{image}}" alt="Card image cap" height="180px">
-                        </a>
-                        <div class="card-body px-4 py-1">
-                            <p class="card-title font-weight-bold" id="product_red_carot"> {{ title }} </p>
-                            <div class="star_rating_size ">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-success font-weight-bold" id="price_red_carot"> {{price}} </p>
-                            <div>
-                                <div class="text-center">
-                                    <button value="-" id="{{_id}}" class="value_btn minus_btn"> - </button>
-                                    <input disabled id="{{_id}}" class="input_area mx-1 text-center input_val" value="0">
-                                    <button value="+" id="{{_id}}" class="value_btn mb-3 plus_btn"> + </button>
-                                </div>
-                                <button class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
-                                <button class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-        </div>
         <div class="container pb-5">
-            <div class="d-flex pb-3">
-                <h5 class="font-weight-bold"> Find Your Recipe </h5>
-                <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 1.jpg" alt="recipe 1">
-                        <div class="card-body py-2">
-                            <p class="card-text mb-1 h6">Recipe 1</p>
-                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 10 comments </small> 
+            <form action="/add-to-cart" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="row row-cols-1 row-cols-md-5">
+                    {{#each Product }}
+                    <div class="col p-2">
+                        <div class="card">
+                            <a href="/products/{{slug}}">
+                                <img class="card-img-top mt-3 product_images" src="{{image}}" alt="Card image cap" height="180px">
+                            </a>
+                            <div class="card-body px-4 py-1">
+                                <p class="card-title font-weight-bold"> {{ title }} </p>
+                                <div class="star_rating_size ">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p class="text-success font-weight-bold"> {{price}} </p>
+                                {{!-- <div>
+                                    <div class="text-center">
+                                        <button type="button" value="-" class="value_btn minus_btn"> - </button>
+                                        <input disabled class="input_area mx-1 text-center input_val" value="0">
+                                        <button type="button" value="+" class="value_btn mb-3 plus_btn"> + </button>
+                                    </div>
+                                    <input name="productId" type="hidden" value="{{this._id}}">
+                                    <button type="submit" class="add_to_cart_toast add_to_cart_btn w-100 py-1 mb-2"> Add to cart </button>
+                                    <button type="button" class="buy_now_btn w-100 py-1 mb-3"> Buy now </button>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
-                <div class="col d-none d-md-block">
-                    <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 2.jpg" alt="recipe 2">
-                        <div class="card-body py-2">
-                            <p class="card-text mb-1 h6">Recipe 2</p>
-                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 8 comments </small> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-none d-md-block">
-                    <div class="card">
-                        <img class="card-img-top" src="./Images/recipe 3.jpg" alt="recipe 3">
-                        <div class="card-body py-2">
-                            <p class="card-text mb-1 h6">Recipe 3</p>
-                            <div class="text-secondary font-weight-light"> <small> <i class="fa fa-calendar"></i> &nbsp; 
-                                Jan 01, 2021 &nbsp; <i class="fa fa-comments"></i> &nbsp; 5 comments </small> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="container pb-5">
             <div class="pb-3">
@@ -114,18 +76,5 @@
         {{>toast_subscribe}}
     </main>
     {{>footer}}
-    <script>
-        $('#reslink').click(function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: "GET",
-                url: "more_products.hbs",
-                data: {},
-                success: function (data) {
-                    $('#maincont').html(data);
-                }
-            })
-        })
-    </script>
 </body>
 </html>
