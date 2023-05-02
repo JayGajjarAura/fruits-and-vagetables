@@ -14,11 +14,10 @@
                     </div>
                     <div class="col">
                         <div class="text-right">
-                            <img src="../Images/uk_flag.png" alt="UK flag" width="40px" height="14px"
-                                class="ml-auto my-1 pr-3">
-                            <span> English <i class="fa fa-angle-down"></i> &nbsp;
+                            <img src="../Images/India 2.png" alt="UK flag" height="20px" class="ml-auto my-1 mr-2 product_images">
+                            <span> English  &nbsp;
                                 <span> | </span> &nbsp;
-                                <span> USD <i class="fa fa-angle-down"></i> </span>
+                                <span> INR  </span>
                             </span>
                         </div>
                     </div>
@@ -44,20 +43,6 @@
                 </div>
                 <div class="col d-none d-lg-block align-text-bottom">
                     <div class="my-3 font-weight-bold text-secondary text-right">
-                        {{!-- <div class="show-login" id="show-login" style="cursor: pointer">
-                            {{#if defaultRenderData.user}}
-                                <form method="POST" action="/logout">
-                                    Welcome, {{defaultRenderData.user.username}}
-                                    <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
-                                    <a href="/cart" class="text-secondary"> 
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value"> 0 </sup>   
-                                    </a>
-                                </form>
-                            {{else}}
-                                <i class="fa fa-user-o"></i> Sign in / Register
-                            {{/if}}
-                        </div> --}}
                         <div class="show-login" id="show-login" style="cursor: pointer">
                             {{#if defaultRenderData.user}}
                             <form method="POST" action="/logout">
@@ -65,7 +50,7 @@
                                 <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
                                 <a href="/cart" class="text-secondary">
                                     <i class="fa fa-shopping-cart"></i>
-                                    Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value"> 0 </sup>
+                                    Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value" name="totalQuantity"> 0 </sup>
                                 </a>
                             </form>
                             {{else}}

@@ -58,7 +58,7 @@ app.use(
             secure: false,
             sameSite: 'none',
             maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days in milliseconds
-        }, // Set the cookie to be non-secure for development purposes or to run in local
+        }, // Set the cookie to be non-secure to run in local
     })
 );
 
@@ -67,6 +67,7 @@ function getDefaultRenderData(req) {
         user: req.session.user || false
     };
 }
+
 
 const currencyLogo = "₹";
 
@@ -134,6 +135,9 @@ app.get('/cart', async (req, res) => {
 
     const userId = defaultRenderData.user.userId;
     console.log('user---------'+ userId)
+    if(!userId) {
+        res.redirect('/')
+    }
 
     try {
         const Category = await category.find({})
@@ -142,7 +146,7 @@ app.get('/cart', async (req, res) => {
             model: "product",
         });
         // const Cart = await cart.findOne({User: userId})
-        console.log('cartttttttttttt---  ' + JSON.stringify( Cart));
+        // console.log('cartttttttttttt---  ' + JSON.stringify( Cart));
         res.render('cart', {
             defaultRenderData,
             Cart: Cart,
@@ -153,8 +157,6 @@ app.get('/cart', async (req, res) => {
         res.send(err);
     }
 });
-
-
 
 app.post('/add-to-cart', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
@@ -181,14 +183,22 @@ app.post('/add-to-cart', async (req, res) => {
             await newCart.save();
             console.log(newCart);
         } else {
-            const cartProduct = Cart.Cart_products.find((item) =>
+            const cartProductIndex = Cart.Cart_products.findIndex((item) =>
                 item.Product.equals(req.body.productId)
             );
 
-            if (cartProduct) {
-                cartProduct.Quantity += req.body.quantity;
+            if (cartProductIndex >= 0) {
+                // Update quantity for existing cart product
+                const cartProduct = Cart.Cart_products[cartProductIndex];
+                cartProduct.Quantity = req.body.quantity;
                 cartProduct.Updated_at = Date.now();
+
+                // Remove cart product if new quantity is 0
+                if (req.body.quantity === 0) {
+                    Cart.Cart_products.splice(cartProductIndex, 1);
+                }
             } else {
+                // Add new cart product
                 Cart.Cart_products.push({
                     User_cart_id: userId,
                     Product: req.body.productId,
@@ -199,7 +209,7 @@ app.post('/add-to-cart', async (req, res) => {
             }
 
             await Cart.save();
-            // console.log(Cart);
+            console.log(Cart);
         }
         
         // res.send({ Success: 'Product added to cart successfully'});
@@ -210,22 +220,75 @@ app.post('/add-to-cart', async (req, res) => {
     }
 });
 
-this.remove = function (id) {
-    if (this.items.hasOwnProperty(id)) {
-        this.totalItems -= this.items[id].quantity;
-        this.totalPrice -= this.items[id].price;
-        delete this.items[id];
+app.post('/cart/remove/:id', async(req, res) => {
+    const rowID = req.params.id
+    const product = await cart.findOne({ 'Cart_products._id': rowID })
+
+    if (!product) {
+        return res.status(404).send('Product not found in cart')
     }
-};
 
-app.get('/cart/:id', async (req, res) => {
-    const productId = req.params.id;
-    const Cart = new cart(req.session.cart ? req.session.cart : {});
+    // remove the product from the Cart_products array
+    product.Cart_products = product.Cart_products.filter(item => item._id.toString() !== rowID)
 
-    Cart.remove(productId);
-    req.session.cart = Cart;
-    res.redirect("/cart");
+    await product.save()
+
+    res.redirect('/cart')
 })
+
+app.post('/cart/increment/:id', async (req, res) => {
+    const id = req.params.id;
+    const findId = await cart.findOne({'Cart_prodcucts._id': id});
+    console.log('itemid------------'+findId)
+    if (findId) {
+        const foodQty = findId.input++;
+        findId.updateOne({ _id: id }, { $set: { "input": foodQty } }, (err, data) => {
+            res.status(200).json({
+                message: 'Food qty increase to cart',
+                data: data
+            })
+        })
+    } else {
+        res.status(404).json({
+            message: 'Food not found in cart'
+        })
+    }
+});
+
+app.post('/cart/decrement/:id', async (req, res) => {
+    const id = req.params.id;
+    const findId = await cart.findById(id);
+    if (findId) {
+        const foodQty = findId.qty - 1;
+        findId.updateOne({ _id: id }, { $set: { "qty": foodQty } }, (err, data) => {
+            res.status(200).json({
+                message: 'Food qty decreased in cart',
+                data: data
+            })
+        })
+    } else {
+        res.status(404).json({
+            message: 'Food not found in cart'
+        })
+    }
+});
+
+app.post('/cart/clear/:id', async (req, res) => {
+    const userID  = req.params.id;
+
+    const Cart = await cart.findById( userID );
+
+    if (!Cart) {
+        return res.status(404).send('Cart not found');
+    }
+
+    Cart.Cart_products = [];
+
+    await Cart.save();
+
+    res.redirect('/cart');
+});
+
 
 app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
     try{
@@ -274,6 +337,8 @@ app.get('/API/products/:id', async(req,res) => {
 app.get("/", async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     const currentCurrencyLogo = currencyLogo
+    const totalQuantity = req.session.totalQuantity;
+
     try {
         const Category = await category.find({}).limit(5);
         const newProducts = await product.find({ newProduct: true }).limit(5);
@@ -282,6 +347,7 @@ app.get("/", async (req, res) => {
         const topRated = await product.find({topRated: true}).limit(6)
         res.render("index", {
             defaultRenderData,
+            totalQuantity,
             currentCurrencyLogo: currentCurrencyLogo,            
             newProducts: newProducts,
             Category: Category,
@@ -457,7 +523,7 @@ app.post("/send", (req, res) => {
     const verificationToken = generateToken();
 
     const output = 
-        `<p>Please click on the following link to verify your email: <a href="http://localhost:3000/welcome/${verificationToken}">click Here</a></p>`;
+        `<p>Thank you for subscribing to our Services </p>`;
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -560,6 +626,22 @@ app.get('/top-rated', async (req, res) => {
         // res.json(Product);
     }catch(err){
         res.send('Error '+ err)
+    }
+})
+
+app.get('/checkout', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req)
+    
+    if(!defaultRenderData.user) {
+        res.redirect('/')
+    }
+
+    try {
+        res.render('checkout', {
+            defaultRenderData
+        })
+    } catch(err) {
+        res.send('Error' + err)
     }
 })
 

@@ -93,122 +93,77 @@ $(document).ready(function (e) {
     $(".close").click(function () {
         $("#loginPopup").hide();
     });
+
+    //______________________remove row from table______________________
+    // $("#cart-body").on('click','.btnDelete',function(){
+    //     $(this).closest('tr').remove();
+    // });
 })
 
-//___________________________ Dynamic Add and Remove_________________________
-let table_num = 0;
+// window.onload = function () {
+//     let subTotalCells = document.querySelectorAll("#cart-body td#subTotal");
+//     let grandTotal = 0;
 
-function addTermrows() {
-    table_num++;
+//     for (let i = 0; i < subTotalCells.length; i++) {
+//         grandTotal += parseFloat(subTotalCells[i].textContent);
+//     }
 
-    let TermName = document.getElementById("product_");
-    console.log(TermName);
-    if (!TermName) {
-        console.error("Product element not found");
-        return;
+//     document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
+
+//     //______________________________
+
+//     let subQuantiyCell = document.querySelectorAll("#cart-body td#subQuantity");
+//     let totalQuantity = 0;
+
+//     for (let i = 0; i < subQuantiyCell.length; i++) {
+//         totalQuantity += parseInt(subQuantiyCell[i].textContent);
+//     }
+
+//     document.getElementById("total_cart_value").textContent = totalQuantity;
+
+//     sessionStorage.setItem('totalQuantity',totalQuantity)
+//     sessionStorage.getItem('totalQuantity')
+
+//     console.log('qty-------------',totalQuantity)
+// };
+
+function calculateCartTotals() {
+
+    //________________________ Grand Total_________________________
+    let subTotalCells = document.querySelectorAll("#cart-body td#subTotal");
+    let grandTotal = 0;
+
+    // -----------------for LOOP----------------
+    // for (let i = 0; i < subTotalCells.length; i++) {
+    //     grandTotal += parseFloat(subTotalCells[i].textContent);
+    // }
+
+    // ---------------------for-of LOOP-----------------------
+    for (let subTotal of subTotalCells) {
+        grandTotal += parseInt(subTotal.textContent)
     }
-    let TermPrice = document.getElementById("price_");
-    let TermQty = document.getElementById("qty_");
-    let table_numIValue = TermName.value;
-    let table_price = TermPrice.value;
-    let table_qty = TermQty.value
-    let total_val = parseFloat(table_price) * parseFloat(table_qty)
-    console.log(total_val)
-    
 
-    const MainTbody = document.getElementById("mainTBody");
+    document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
 
-    const CreateTR = document.createElement('tr');
-    CreateTR.id = "CreateTR" + table_num;
 
-    const tdOne = document.createElement('td');
-    tdOne.id = "tdOne" + table_num;
-    tdOne.className = 'one ps-3';
+    // ____________________________total Qty_________________________
+    let subQuantiyCell = document.querySelectorAll("#cart-body input[type='text']");
+    let totalQuantity = 0;
 
-    const pOne = document.createElement('p');
-    pOne.id = "pOne" + table_num;
-    pOne.className = 'mb-0';
-    pOne.innerText = "0" + table_num;
+    // -----------------for LOOP--------------
+    // for (let i = 0; i < subQuantiyCell.length; i++) {
+    //     totalQuantity += parseInt(subQuantiyCell[i].textContent);
+    // }
 
-    const tdTwo = document.createElement('td');
-    tdTwo.id = "tdTwo" + table_num;
-    tdTwo.className = 'two';
+    // ---------------------for-of LOOP-----------------------
+    for (let input of subQuantiyCell) {
+      totalQuantity += parseInt(input.value);
+    }
 
-    const pTwo = document.createElement('p');
-    pTwo.id = "pTwo" + table_num;
-    pTwo.className = 'mb-0';
-    pTwo.innerText = table_numIValue;
-
-    const tdThree = document.createElement('td');
-    tdThree.id = "tdThree" + table_num;
-    tdThree.className = 'three';
-    tdThree.innerText = table_price;
-
-    const tdFour = document.createElement('td');
-    tdFour.id = "tdFour" + table_num;
-    tdFour.className = 'four';
-    tdFour.innerText = table_qty;
-
-    const tdFive = document.createElement('td');
-    tdFive.id = "tdFive" + table_num;
-    tdFive.className = 'text-end pe-3 five';
-    tdFive.innerText = total_val;
-
-    const DelButton = document.createElement('button');
-    DelButton.id = "DelButton" + table_num;
-    DelButton.setAttribute("type", "button");
-    DelButton.setAttribute("cursor", "pointer");
-    DelButton.setAttribute("runat", "server");
-    // DelButton.setAttribute("onclick", "DelRow");
-    DelButton.className = 'btn btn-sm btn-del-action fw-bold text-danger';
-    DelButton.innerText = "Delete";
-    DelButton.onclick = function (event) {
-        //parse the id of the row from the id
-        let rowNr = event.target.id.substr("DelButton".length, event.target.id.length);
-        //get the actual row element
-        let delRow = document.getElementById("CreateTR" + rowNr);
-        delRow.remove();
-    };
-
-    const tdSix = document.createElement("td");
-    tdSix.id = "tdSix" + table_num;
-    tdSix.className = "text-end pe-3 six";
-    tdSix.appendChild(DelButton);
-
-    tdOne.appendChild(pOne);
-    tdTwo.appendChild(pTwo);
-    tdFive.appendChild(DelButton);
-    CreateTR.appendChild(tdOne);
-    CreateTR.appendChild(tdTwo);
-    CreateTR.appendChild(tdThree);
-    CreateTR.appendChild(tdFour);
-    CreateTR.appendChild(tdFive);
-    CreateTR.appendChild(tdSix);
-    MainTbody.appendChild(CreateTR);
+    document.getElementById("total_cart_value").textContent = totalQuantity;
+    console.log("qty-------------", totalQuantity);
 }
 
-// Countdown Timer 
-
-// let deadline = new Date();
-// deadline.setHours(deadline.getHours() + 1);
-
-// let x = setInterval(function() {
-//     let now = new Date().getTime();
-//     let t = deadline - now;
-    
-//     let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//     let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-//     let seconds = Math.floor((t % (1000 * 60)) / 1000);
-    
-//     document.getElementById("hour").innerHTML =hours;
-//     document.getElementById("minute").innerHTML = minutes;
-//     document.getElementById("second").innerHTML =seconds;
-    
-//     if (t < 0) {
-//         clearInterval(x);
-//         document.getElementById("timeup").innerHTML = "TIME UP";
-//         document.getElementById("hour").innerHTML ='0';
-//         document.getElementById("minute").innerHTML ='0' ;
-//         document.getElementById("second").innerHTML = '0'; 
-//     }
-// }, 1000);
+window.onload = function () {
+    calculateCartTotals();
+};

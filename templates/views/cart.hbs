@@ -8,39 +8,77 @@
     {{>header}}   
     <main class="mb-5">
         <div class="container">
-            {{#if Cart}}
-            {{!-- <div class="mb-2 d-flex">
-                <input class="py-1 mr-2" placeholder="Enter Here" id="product_" type="text" name="grade">
-                <input class="py-1 mr-2" placeholder="Price" id="price_" type="text" name="price">
-                <input class="py-1 mr-2" placeholder="Qty" id="qty_" type="text" name="qty">
-                <button class="btn btn-primary text-white px-3" id="btnToaddTermRows" onclick="addTermrows()">Add</button>
-            </div> --}}
-            <table id="myTable" class="table table-hover spacing-table mb-5 w-100">
+            {{#if Cart.Cart_products.length}}
+            <table class="table table-hover table-borderless spacing-table mb-5 w-100">
                 <thead class="p-5">
                     <tr>
-                        <th scope="col" class="col-2"> Product Name </th>
+                        <th scope="col" class="col-4"> Product Name </th>
                         <th scope="col" class="col-2"> Image </th>
                         <th scope="col" class="col-2"> Price </th>
                         <th scope="col" class="col-2"> Qty </th>
-                        <th scope="col" class="col-2"> Total </th>
-                        <th scope="col" class="col-2">Action</th>
+                        <th scope="col" class="col-2"> Sub Total </th>
+                        <th scope="col" class="col-1">Action</th>
                     </tr>
                 </thead>
-                <tbody id="mainTBody" class="total_cart_value">
+                <tbody id="cart-body">
                     {{#each Cart.Cart_products }}
+                    {{!-- <tr>
+                        <td style="vertical-align: text-top;">{{ this.Product.title }}</td>
+                        <td style="vertical-align: text-top;"><img src="{{ this.Product.image }}" style="height: 40px; width: 50px; object-fit: contain" alt="{{ this.Product.name }}"></td>
+                        <td style="vertical-align: text-top;"> ₹ {{ this.Product.price }}</td>
+                        <td style="vertical-align: text-top;" id="subQuantity">
+                            <div>
+                                <form action="/cart/decrement/{{this._id}}" method="post">
+                                    <button type="button" value="-" id="{{_id}}" class="value_btn minus_btn quantity-minus-btn"> - </button>
+                                </form>
+                                <input disabled type="text" value="{{ this.Quantity }}" id="quantity_{{this.Product._id}}" class="w-25 text-center">
+                                <form action="/cart/increment/{{this._id}}" method="post">
+                                    <button type="button" value="+" id="{{_id}}" class="value_btn mb-3 plus_btn quantity-plus-btn"> + </button>
+                                </form>
+                            </div>
+                        </td>
+                        <td style="vertical-align: text-top;" id="subTotal"> {{ multiply this.Quantity this.Product.price }}</td>
+                        <form action="/cart/remove/{{this._id}}" method="POST">
+                            <td style="vertical-align: text-top;">
+                                <button type="submit" id="{{this._id}}" class="btn btn-outline-danger border-0"> Remove </button>
+                            </td> 
+                        </form>
+                    </tr> --}}
                     <tr>
-                        <td>{{ this.Product.title }}</td>
-                        <td><img src="{{ this.Product.image }}" style="height: 40px; width: 50px; object-fit: contain"
-                            alt="{{ this.Product.name }}"></td>
-                        <td>{{ this.Product.price }}</td>
-                        <td>{{ this.Quantity }}</td>
-                        <td>{{ multiply this.Quantity this.Product.price }}</td>
-                        <td class="btn btn-outline-danger p-2 mt-2 border-0">
-                            <form action="/cart/{{this.item.id}}" method="GET"><button type="submit" class="btn btn-default">Remove </button>
-                            </form>
+                        <td style="vertical-align: text-top;">{{ this.Product.title }}</td>
+                        <td style="vertical-align: text-top;"><img src="{{ this.Product.image }}"style="height: 40px; width: 50px; object-fit: contain" alt="{{ this.Product.name }}"></td>
+                        <td style="vertical-align: text-top;"> ₹ {{ this.Product.price }}</td>
+                        <td style="vertical-align: text-top;" id="subQuantity">
+                            <div>
+                                <form action="/cart/decrement/{{this._id}}" method="post">
+                                    <button type="submit" value="-" id="{{_id}}" class="value_btn minus_btn"> - </button>
+                                </form>
+                                <input disabled type="text" value="{{ this.Quantity }}" id="quantity_{{this.Product._id}}" class="w-25 text-center">
+                                <form action="/cart/increment/{{this._id}}" method="post">
+                                    <button type="submit" value="+" id="{{_id}}" class="value_btn plus_btn"> + </button>
+                                </form>
+                            </div>
+                        </td>
+                        <td style="vertical-align: text-top;" id="subTotal"> {{ multiply this.Quantity this.Product.price }}</td>
+                        <form action="/cart/remove/{{this._id}}" method="POST">
+                            <td style="vertical-align: text-top;">
+                                <button type="submit" id="{{this._id}}" class="btn btn-outline-danger border-0"> Remove </button>
+                            </td>
+                        </form>
+                    </tr>
+
+                    {{/each}}
+                    <form action="/cart/clear/{{Cart._id}}" method="post">
+                    <tr>
+                        <td colspan="4" style="vertical-align: text-top;text-align:right">Total : ₹ <span id="grandTotal"></span>   </td>
+                        <td style="vertical-align: text-top;"> 
+                            <a href="/checkout" class="btn btn-outline-success border-0"> Checkout </a> 
+                        </td>
+                        <td style="vertical-align: text-top;">
+                            <button type="submit" id="{{Cart._id}}" class="btn btn-outline-danger border-0"> Clear Cart </button>
                         </td>
                     </tr>
-                    {{/each}}
+                    </form>
                 </tbody>
             </table>
             {{else}}
