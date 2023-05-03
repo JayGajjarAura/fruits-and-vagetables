@@ -6,56 +6,34 @@
 </head>
 <body> 
     {{>header}}   
-    <main class="mb-5">
+    <main class="mb-5 pb-2">
         <div class="container">
             {{#if Cart.Cart_products.length}}
-            <table class="table table-hover table-borderless spacing-table mb-5 w-100">
+            <table class="table table-hover table-borderless spacing-table bg-white">
                 <thead class="p-5">
                     <tr>
                         <th scope="col" class="col-4"> Product Name </th>
                         <th scope="col" class="col-2"> Image </th>
-                        <th scope="col" class="col-2"> Price </th>
+                        <th scope="col" class="col-1"> Price </th>
                         <th scope="col" class="col-2"> Qty </th>
-                        <th scope="col" class="col-2"> Sub Total </th>
-                        <th scope="col" class="col-1">Action</th>
+                        <th scope="col" class="col-1"> Sub Total </th>
+                        <th scope="col" class="col-2">Action</th>
                     </tr>
                 </thead>
                 <tbody id="cart-body">
                     {{#each Cart.Cart_products }}
-                    {{!-- <tr>
-                        <td style="vertical-align: text-top;">{{ this.Product.title }}</td>
-                        <td style="vertical-align: text-top;"><img src="{{ this.Product.image }}" style="height: 40px; width: 50px; object-fit: contain" alt="{{ this.Product.name }}"></td>
-                        <td style="vertical-align: text-top;"> ₹ {{ this.Product.price }}</td>
-                        <td style="vertical-align: text-top;" id="subQuantity">
-                            <div>
-                                <form action="/cart/decrement/{{this._id}}" method="post">
-                                    <button type="button" value="-" id="{{_id}}" class="value_btn minus_btn quantity-minus-btn"> - </button>
-                                </form>
-                                <input disabled type="text" value="{{ this.Quantity }}" id="quantity_{{this.Product._id}}" class="w-25 text-center">
-                                <form action="/cart/increment/{{this._id}}" method="post">
-                                    <button type="button" value="+" id="{{_id}}" class="value_btn mb-3 plus_btn quantity-plus-btn"> + </button>
-                                </form>
-                            </div>
-                        </td>
-                        <td style="vertical-align: text-top;" id="subTotal"> {{ multiply this.Quantity this.Product.price }}</td>
-                        <form action="/cart/remove/{{this._id}}" method="POST">
-                            <td style="vertical-align: text-top;">
-                                <button type="submit" id="{{this._id}}" class="btn btn-outline-danger border-0"> Remove </button>
-                            </td> 
-                        </form>
-                    </tr> --}}
                     <tr>
                         <td style="vertical-align: text-top;">{{ this.Product.title }}</td>
                         <td style="vertical-align: text-top;"><img src="{{ this.Product.image }}"style="height: 40px; width: 50px; object-fit: contain" alt="{{ this.Product.name }}"></td>
                         <td style="vertical-align: text-top;"> ₹ {{ this.Product.price }}</td>
                         <td style="vertical-align: text-top;" id="subQuantity">
-                            <div>
+                            <div class="d-flex">
                                 <form action="/cart/decrement/{{this._id}}" method="post">
-                                    <button type="submit" value="-" id="{{_id}}" class="value_btn minus_btn"> - </button>
+                                    <button type="submit" value="-" id="{{_id}}" class="value_btn minus_btn font-weight-bold"> - </button>
                                 </form>
-                                <input disabled type="text" value="{{ this.Quantity }}" id="quantity_{{this.Product._id}}" class="w-25 text-center">
+                                <input disabled type="text" value="{{ this.Quantity }}" id="quantity_{{this.Product._id}}" class="w-25 text-center mx-1">
                                 <form action="/cart/increment/{{this._id}}" method="post">
-                                    <button type="submit" value="+" id="{{_id}}" class="value_btn plus_btn"> + </button>
+                                    <button type="submit" value="+" id="{{_id}}" class="value_btn plus_btn font-weight-bold"> + </button>
                                 </form>
                             </div>
                         </td>
@@ -66,20 +44,21 @@
                             </td>
                         </form>
                     </tr>
-
                     {{/each}}
-                    <form action="/cart/clear/{{Cart._id}}" method="post">
-                    <tr>
-                        <td colspan="4" style="vertical-align: text-top;text-align:right">Total : ₹ <span id="grandTotal"></span>   </td>
-                        <td style="vertical-align: text-top;"> 
-                            <a href="/checkout" class="btn btn-outline-success border-0"> Checkout </a> 
-                        </td>
-                        <td style="vertical-align: text-top;">
-                            <button type="submit" id="{{Cart._id}}" class="btn btn-outline-danger border-0"> Clear Cart </button>
-                        </td>
-                    </tr>
-                    </form>
                 </tbody>
+                <tfoot>
+                    <form action="/cart/clear/{{Cart._id}}" method="post">
+                        <tr>
+                            <td colspan="4" style="vertical-align: middle;text-align:right;font-weight:bold">Total : ₹ <span id="grandTotal"></span> </td>
+                            <td>
+                                <a href="/checkout" class="btn btn-outline-success border-0 "> Checkout </a>
+                            </td>
+                            <td>
+                                <button type="submit" id="{{Cart._id}}" class="btn btn-outline-danger border-0 "> Clear Cart </button>
+                            </td>
+                        </tr>
+                    </form>
+                </tfoot>
             </table>
             {{else}}
             <div class="container mb-5 pb-5">

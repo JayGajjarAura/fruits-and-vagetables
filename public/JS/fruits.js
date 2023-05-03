@@ -93,77 +93,49 @@ $(document).ready(function (e) {
     $(".close").click(function () {
         $("#loginPopup").hide();
     });
-
-    //______________________remove row from table______________________
-    // $("#cart-body").on('click','.btnDelete',function(){
-    //     $(this).closest('tr').remove();
-    // });
 })
 
-// window.onload = function () {
-//     let subTotalCells = document.querySelectorAll("#cart-body td#subTotal");
-//     let grandTotal = 0;
-
-//     for (let i = 0; i < subTotalCells.length; i++) {
-//         grandTotal += parseFloat(subTotalCells[i].textContent);
-//     }
-
-//     document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
-
-//     //______________________________
-
-//     let subQuantiyCell = document.querySelectorAll("#cart-body td#subQuantity");
-//     let totalQuantity = 0;
-
-//     for (let i = 0; i < subQuantiyCell.length; i++) {
-//         totalQuantity += parseInt(subQuantiyCell[i].textContent);
-//     }
-
-//     document.getElementById("total_cart_value").textContent = totalQuantity;
-
-//     sessionStorage.setItem('totalQuantity',totalQuantity)
-//     sessionStorage.getItem('totalQuantity')
-
-//     console.log('qty-------------',totalQuantity)
-// };
-
-function calculateCartTotals() {
+async function calculateCartTotals() {
+    // Check if the #cart-body element exists on the current page
+    let cartBody = document.querySelector("#cart-body");
+    if (!cartBody) {
+        return; // Exit the function if the #cart-body element does not exist
+    }
 
     //________________________ Grand Total_________________________
-    let subTotalCells = document.querySelectorAll("#cart-body td#subTotal");
+    let subTotalCells = cartBody.querySelectorAll("td#subTotal");
     let grandTotal = 0;
 
-    // -----------------for LOOP----------------
-    // for (let i = 0; i < subTotalCells.length; i++) {
-    //     grandTotal += parseFloat(subTotalCells[i].textContent);
-    // }
-
-    // ---------------------for-of LOOP-----------------------
     for (let subTotal of subTotalCells) {
         grandTotal += parseInt(subTotal.textContent)
     }
 
     document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
 
-
     // ____________________________total Qty_________________________
-    let subQuantiyCell = document.querySelectorAll("#cart-body input[type='text']");
+    let subQuantityCell = cartBody.querySelectorAll("input[type='text']");
     let totalQuantity = 0;
 
-    // -----------------for LOOP--------------
-    // for (let i = 0; i < subQuantiyCell.length; i++) {
-    //     totalQuantity += parseInt(subQuantiyCell[i].textContent);
-    // }
-
-    // ---------------------for-of LOOP-----------------------
-    for (let input of subQuantiyCell) {
-      totalQuantity += parseInt(input.value);
+    for (let input of subQuantityCell) {
+        totalQuantity += parseInt(input.value);
     }
 
     document.getElementById("total_cart_value").textContent = totalQuantity;
-    console.log("qty-------------", totalQuantity);
+    sessionStorage.setItem('cartTotalQuantity', totalQuantity);
+
+    // Update the quantity displayed in the header
+    let headerQuantity = document.getElementById("total_cart_value");
+    if (headerQuantity) {
+        headerQuantity.textContent = totalQuantity;
+    }
 }
 
-window.onload = function () {
+// console.log(sessionStorage.getItem("cartTotalQuantity"))
+
+window.onload = async function () {
     calculateCartTotals();
+    const cartTotalQuantity = sessionStorage.getItem('cartTotalQuantity');
+    if (cartTotalQuantity) {
+        document.getElementById("total_cart_value").textContent = cartTotalQuantity;
+    }
 };

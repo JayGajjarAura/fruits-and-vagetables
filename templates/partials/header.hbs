@@ -43,20 +43,20 @@
                 </div>
                 <div class="col d-none d-lg-block align-text-bottom">
                     <div class="my-3 font-weight-bold text-secondary text-right">
+                        {{#if defaultRenderData.user}}
+                        <form method="POST" action="/logout">
+                            Welcome, {{defaultRenderData.user.username}}
+                            <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
+                            <a href="/cart" class="text-secondary">
+                                <i class="fa fa-shopping-cart"></i>
+                                Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value" name="totalQuantity"> 0 </sup>
+                            </a>
+                        </form>
+                        {{else}}
                         <div class="show-login" id="show-login" style="cursor: pointer">
-                            {{#if defaultRenderData.user}}
-                            <form method="POST" action="/logout">
-                                Welcome, {{defaultRenderData.user.username}}
-                                <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
-                                <a href="/cart" class="text-secondary">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Cart <sup class="bg-success text-white px-1 rounded-circle" id="total_cart_value" name="totalQuantity"> 0 </sup>
-                                </a>
-                            </form>
-                            {{else}}
                             <i class="fa fa-user-o"></i> Sign in / Register
-                            {{/if}}
                         </div>
+                        {{/if}}
                     </div>
                 </div>
                 <div class="col d-block d-md-none">

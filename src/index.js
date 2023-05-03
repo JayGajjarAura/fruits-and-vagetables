@@ -223,6 +223,7 @@ app.post('/add-to-cart', async (req, res) => {
 app.post('/cart/remove/:id', async(req, res) => {
     const rowID = req.params.id
     const product = await cart.findOne({ 'Cart_products._id': rowID })
+    console.log('product-------------------',product)
 
     if (!product) {
         return res.status(404).send('Product not found in cart')
@@ -237,39 +238,34 @@ app.post('/cart/remove/:id', async(req, res) => {
 })
 
 app.post('/cart/increment/:id', async (req, res) => {
-    const id = req.params.id;
-    const findId = await cart.findOne({'Cart_prodcucts._id': id});
-    console.log('itemid------------'+findId)
+    const productId = req.params.id;
+    const findId = await cart.findOne({ "Cart_products._id": productId });
     if (findId) {
-        const foodQty = findId.input++;
-        findId.updateOne({ _id: id }, { $set: { "input": foodQty } }, (err, data) => {
-            res.status(200).json({
-                message: 'Food qty increase to cart',
-                data: data
-            })
-        })
+        const productQty = findId.Cart_products.find(item => item._id.toString() === productId).Quantity;
+        const newProductQty = productQty + 1;
+        findId.Cart_products.find(item => item._id.toString() === productId).Quantity = newProductQty;
+        await findId.save();
+        res.redirect('/cart')
     } else {
         res.status(404).json({
-            message: 'Food not found in cart'
-        })
+            message: 'Product not found in cart'
+        });
     }
 });
 
 app.post('/cart/decrement/:id', async (req, res) => {
-    const id = req.params.id;
-    const findId = await cart.findById(id);
+    const productId = req.params.id;
+    const findId = await cart.findOne({ "Cart_products._id": productId });
     if (findId) {
-        const foodQty = findId.qty - 1;
-        findId.updateOne({ _id: id }, { $set: { "qty": foodQty } }, (err, data) => {
-            res.status(200).json({
-                message: 'Food qty decreased in cart',
-                data: data
-            })
-        })
+        const productQty = findId.Cart_products.find(item => item._id.toString() === productId).Quantity;
+        const newProductQty = productQty - 1;
+        findId.Cart_products.find(item => item._id.toString() === productId).Quantity = newProductQty;
+        await findId.save();
+        res.redirect('/cart')
     } else {
         res.status(404).json({
-            message: 'Food not found in cart'
-        })
+            message: 'Product not found in cart'
+        });
     }
 });
 
