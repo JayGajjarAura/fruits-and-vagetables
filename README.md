@@ -1,6 +1,6 @@
 # fruits-and-vagetables
 
-This project is made my me at the time of internship during the Feb-2023 to May-2023.
+This project is made by me at the time of internship during the Feb-2023 to May-2023.
 It was made using the latest technologies
 For front-end have used HBS which is template engine for rendring
 For back-end have used NodeJS with Express.JS
