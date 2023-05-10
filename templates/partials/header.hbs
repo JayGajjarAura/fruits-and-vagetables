@@ -28,29 +28,48 @@
     <div class="container-fluid bg-white px-0">
         <div class="container">
             <div class="row py-4">
-                <div class="col mx-auto">
+                <div class="col mx-auto my-auto">
                     <a href="/"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
                 </div>
-                <div class="col-4 d-none d-lg-block">
+                <div class="col-4 d-none d-lg-block my-auto">
                     <div class="input-group mt-2">
-                        <input type="text" class="form-control rounded-0" placeholder="Search for products..."
-                            aria-label="Search for products..." />
+                        <input type="text" for="browser-input" name="browser" id="browser-input" class="form-control rounded-left" placeholder="Search for products..." aria-label="Search for products...">
                         <div class="input-group-append">
-                            <button class="btn btn-success px-4 font-weight-light rounded-0" type="button"> SEARCH
+                            <button class="btn btn-success px-4 rounded-right" type="button"> 
+                                <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="col d-none d-lg-block align-text-bottom">
-                    <div class="my-3 font-weight-bold text-secondary text-right">
+                    <div class="font-weight-bold text-secondary text-right" style="margin-top: 10px;">
                         {{#if defaultRenderData.user}}
-                        <form method="POST" action="/logout">
+                        {{!-- <form method="POST" action="/logout">
                             Welcome, {{defaultRenderData.user.username}}
                             <button type="submit" class="btn btn-outline-danger">Logout</button> &nbsp;&nbsp;
                             <a href="/cart" class="text-secondary">
                                 <i class="fa fa-shopping-cart"></i>
                                 Cart <sup class="bg-success text-white" style="border-radius: 50%;padding:3px" id="total_cart_value" name="totalQuantity"> 0 </sup>
                             </a>
+                        </form> --}}
+                        <form method="POST" action="/logout">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Welcome, {{defaultRenderData.user.username}}
+                                </span>
+                                <div class="dropdown-menu" style="position:fixed;top:87px;left:975px">
+                                    <a class="dropdown-item" href="/profile">Profile</a>
+                                    <a class="dropdown-item" href="/orders">My Orders</a>
+                                </div>
+                                <button type="submit" class="btn btn-outline-danger border-0" style="margin-bottom: 6px;">Logout</button>
+                                <a href="/cart" class="text-secondary">
+                                    {{!-- <i class="fa fa-shopping-cart"></i> --}}
+                                    <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="500" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
+                                    </lord-icon> 
+                                    <sup class="bg-success text-white" style="border-radius: 50%;padding:3px" id="total_cart_value" name="totalQuantity"> 0 </sup>
+                                </a>
+                            </div>
                         </form>
                         {{else}}
                         <div class="show-login" id="show-login" style="cursor: pointer">
@@ -104,71 +123,66 @@
             </div>
         </div>
         <hr class="bg-success" id="first_hr_line">
-        {{!-- {{#if showLoginModal}} --}}
-            <div id="loginPopup" class="popup">
-                <div class="popup-content rounded text-white">
-                    <div class="container m-0">
-                        <div class="row">
-                            <div class="col-md-6 bg-success rounded mx-auto">
-                                <div class="d-flex mb-3">
-                                    <h3 class="mx-auto font-weight-bold mt-4"> Welcome Back </h3>
+        <div id="loginPopup" class="popup">
+            <div class="popup-content rounded text-white">
+                <div class="container m-0">
+                    <div class="row">
+                        <div class="col-md-6 bg-success rounded mx-auto">
+                            <div class="d-flex mb-3">
+                                <h3 class="mx-auto font-weight-bold mt-4"> Welcome Back </h3>
+                            </div>
+                
+                                {{!-- for Login --}}
+                            <form action="/login" method="post">
+                                <div id="showLogin" class="w-75 mx-auto">
+                                    <div class="mb-3">
+                                        <label for="Input_Email" class="form-label">Email address</label>
+                                        <input type="email" name="email" class="form-control" id="Input_Email" placeholder="Enter your email..." aria-describedby="emailHelp" autocomplete="off" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Input_Password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="Input_Password" placeholder="Enter your password..." autocomplete="off" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-light mb-3" style="width: 100%;">Login</button>
+                                    <span class="btn showRegister rounded py-2 w-100"> Haven't sign up yet? Sign Up </span>
                                 </div>
-                    
-                                    {{!-- for Login --}}
-                                <form action="/login" method="post">
-                                    <div id="showLogin" class="w-75 mx-auto">
-                                        <div class="mb-3">
-                                            <label for="Input_Email" class="form-label">Email address</label>
-                                            <input type="email" name="email" class="form-control" id="Input_Email" placeholder="Enter your email..." aria-describedby="emailHelp" autocomplete="off" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="Input_Password" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="Input_Password" placeholder="Enter your password..." autocomplete="off" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-light mb-3" style="width: 100%;">Login</button>
-                                        <span class="btn showRegister rounded py-2 w-100"> Haven't sign up yet? Sign Up </span>
-                                        <span>
-                                            {{error}}
-                                        </span>
+                            </form>
+                
+                                {{!-- for Sign Up --}}
+                            <form action="/signUp" method="post">
+                                <div id="showRegister" class="w-75 mx-auto">
+                                    <div class="mb-3">
+                                        <label for="Input_username" class="form-label"> Username </label>
+                                        <input type="text" name="username" class="form-control" id="Input_username" autocomplete="off" required>
                                     </div>
-                                </form>
-                    
-                                    {{!-- for Sign Up --}}
-                                <form action="/signUp" method="post">
-                                    <div id="showRegister" class="w-75 mx-auto">
-                                        <div class="mb-3">
-                                            <label for="Input_username" class="form-label"> Username </label>
-                                            <input type="text" name="username" class="form-control" id="Input_username" autocomplete="off" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="Input_Email" class="form-label">Email address</label>
-                                            <input type="email" name="email" class="form-control" id="Input_Email"
-                                                aria-describedby="emailHelp" autocomplete="off" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="Input_Password" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="Input_Password"
-                                                autocomplete="off" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="Input_Password_confirm" class="form-label">Confirm Password</label>
-                                            <input type="password" name="confirm_pass" class="form-control" id="Input_Password_confirm"
-                                                autocomplete="off" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-primary text-white rounded mb-3" style="width: 100%;">Sign Up
-                                        </button>
-                                        <span class="btn showLogin py-2 w-100"> Existing User? Login </span>
+                                    <div class="mb-3">
+                                        <label for="Input_Email" class="form-label">Email address</label>
+                                        <input type="email" name="email" class="form-control" id="Input_Email"
+                                            aria-describedby="emailHelp" autocomplete="off" required>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6 login_bg_img">
-                                <a href="#" class="close">&times;</a>
-                                <img src="../images/Online Groceries.png" width="100%" alt="signup image">
-                            </div>
+                                    <div class="mb-3">
+                                        <label for="Input_Password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control" id="Input_Password"
+                                            autocomplete="off" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Input_Password_confirm" class="form-label">Confirm Password</label>
+                                        <input type="password" name="confirm_pass" class="form-control" id="Input_Password_confirm"
+                                            autocomplete="off" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary text-white rounded mb-3" style="width: 100%;">Sign Up
+                                    </button>
+                                    <span class="btn showLogin py-2 w-100"> Existing User? Login </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 login_bg_img">
+                            <a href="#" class="close">&times;</a>
+                            <img src="../images/Online Groceries.png" width="100%" alt="signup image">
                         </div>
                     </div>
                 </div>
             </div>
-        {{!-- {{/if}} --}}
+        </div>
     </div>
 </header>

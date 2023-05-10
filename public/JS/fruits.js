@@ -73,6 +73,9 @@ $(document).ready(function (e) {
         // }
     })
 
+    $(".dropdown-toggle").click (function () {
+        $(".dropdown-menu").toggle();
+    });
 
     //______________________ Show login and signup __________________________
 
@@ -93,6 +96,85 @@ $(document).ready(function (e) {
     $(".close").click(function () {
         $("#loginPopup").hide();
     });
+
+    //--------------- Change Email and Password -----------------
+
+    $("#showChangeEmail").hide();
+
+    $(".showChangeEmail").click(function () {
+        $("#showChangeEmail").show();
+        $("#showChangePassword").hide();
+    });
+
+    $(".showChangePassword").click(function () {
+        $("#showChangePassword").show();
+        $("#showChangeEmail").hide();
+    });
+
+    $(document).on("click", ".remove_btn", function (e) {
+        e.preventDefault();
+        let itemId = $(this).attr("id");
+        $.confirm({
+            icon: "fa fa-warning",
+            title: "Are you sure?",
+            content: "This item will be removed from cart...",
+            type: "red",
+            typeAnimated: true,
+            buttons: {
+                confirm: {
+                    text: "Yes, remove it",
+                    btnClass: "btn-red",
+                    action: function () {
+                        $.ajax({
+                            url: "/cart/remove/" + itemId,
+                            type: "POST",
+                            success: function (result) {
+                                location.reload()
+                                console.log('resultttttttttttttttt'+result)
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            },
+                        });
+                    },
+                },
+                cancel: function () {},
+            },
+        });
+    });
+
+    $(document).on("click", ".clear_cart_btn", function (e) {
+        e.preventDefault();
+        let itemId = $(this).attr("id");
+        $.confirm({
+            icon: "fa fa-warning",
+            title: "Are you sure?",
+            content: "This will remove all the items from cart...",
+            type: "red",
+            typeAnimated: true,
+            buttons: {
+                confirm: {
+                    text: "Yes, Clear Cart",
+                    btnClass: "btn-red",
+                    action: function () {
+                        $.ajax({
+                            url: "/cart/clear/" + itemId,
+                            type: "POST",
+                            success: function (result) {
+                                location.reload()
+                                console.log('resultttttttttttttttt'+result)
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            },
+                        });
+                    },
+                },
+                cancel: function () {},
+            },
+        });
+    });
+
 })
 
 async function calculateCartTotals() {

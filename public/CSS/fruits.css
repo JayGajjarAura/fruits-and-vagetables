@@ -7,12 +7,31 @@ a, a:hover {
     color: black;
 }
 
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    border-right: 0;
+}
+
 #header_search_size {
     font-size: 1.5rem;
 }
 
 .img_width {
     height: 400px;
+}
+
+/* dropdown menu */
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: fixed;
+}
+
+.dropdown-toggle::after {
+    content: none;
 }
 
 /* size of product images */

@@ -1,0 +1,175 @@
+[{
+  "category": {
+    "$oid": "64399485b2249db0a97bcfcf"
+  },
+  "title": "Apple",
+  "slug": "apple"
+},{
+  "category": {
+    "$oid": "64399485b2249db0a97bcfcf"
+  },
+  "title": "Banana",
+  "slug": "banana"
+},{
+  "category": {
+    "$oid": "64399485b2249db0a97bcfcf"
+  },
+  "title": "Watermelon",
+  "slug": "watermelon"
+},{
+  "category": {
+    "$oid": "64399485b2249db0a97bcfcf"
+  },
+  "title": "Strawberry",
+  "slug": "strawberry"
+},{
+  "category": {
+    "$oid": "64399485b2249db0a97bcfcf"
+  },
+  "title": "Pineapple",
+  "slug": "pineapple"
+},{
+  "category": {
+    "$oid": "6439976db2249db0a97bcfd5"
+  },
+  "title": "Pepsi",
+  "slug": "pepsi"
+},{
+  "category": {
+    "$oid": "6439976db2249db0a97bcfd5"
+  },
+  "title": "Diet Coke",
+  "slug": "diet-coke"
+},{
+  "category": {
+    "$oid": "6439976db2249db0a97bcfd5"
+  },
+  "title": "Mountain Dew",
+  "slug": "mountain-dew"
+},{
+  "category": {
+    "$oid": "6439976db2249db0a97bcfd5"
+  },
+  "title": "Red bull",
+  "slug": "red-bull"
+},{
+  "category": {
+    "$oid": "6439976db2249db0a97bcfd5"
+  },
+  "title": "Game Fuel",
+  "slug": "game-fuel"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Bread",
+  "slug": "bread"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Ice Cream",
+  "slug": "ice-cream"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Ice Cream bar",
+  "slug": "ice-cream-bar"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Ice Cream cone",
+  "slug": "ice-cream-cone"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Ice Cream cup",
+  "slug": "ice-cream-cup"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Gelato",
+  "slug": "gelato"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Kit Kat big",
+  "slug": "kit-kat-big"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Kit Kat small",
+  "slug": "kit-kat-small"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "milk 1",
+  "slug": "milk-1"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Milk Tetrapack",
+  "slug": "milk-tetrapack"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Amul Butter",
+  "slug": "amul-butter"
+},{
+  "category": {
+    "$oid": "6439975fb2249db0a97bcfd3"
+  },
+  "title": "Amul Paneer",
+  "slug": "amul-paneer"
+},{
+  "category": {
+    "$oid": "64399c574aa5823396fa2e30"
+  },
+  "title": "Pineapple Juice",
+  "slug": "pineapple-juice"
+},{
+  "category": {
+    "$oid": "64399c574aa5823396fa2e30"
+  },
+  "title": "Orange Juice",
+  "slug": "orange-juice"
+},{
+  "category": {
+    "$oid": "64399c574aa5823396fa2e30"
+  },
+  "title": "Grape Juice",
+  "slug": "grape-juice"
+},{
+  "category": {
+    "$oid": "64399c574aa5823396fa2e30"
+  },
+  "title": "Strawberry Juice",
+  "slug": "strawberry-juice"
+},{
+  "category": {
+    "$oid": "64399c574aa5823396fa2e30"
+  },
+  "title": "Mango Juice",
+  "slug": "mango-juice"
+},{
+  "category": {
+    "$oid": "64399536b2249db0a97bcfd1"
+  },
+  "title": "Tomato",
+  "slug": "tomato"
+},{
+  "category": {
+    "$oid": "64399536b2249db0a97bcfd1"
+  },
+  "title": "Broccoli",
+  "slug": "broccoli"
+}]

@@ -2,20 +2,20 @@ require("dotenv").config()
 const express = require("express")
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const category = require("../Dynamic API/CategoryAdd")
-const product = require('../Dynamic API/productAdd')
 const hbs = require("hbs")
 const path = require("path")
 const multer = require('multer')
 const slugify = require('slugify')
 const nodemailer = require("nodemailer")
 const session = require("express-session")
+const flash = require('connect-flash');
+// const Fuse = require('fuse.js')
+
 const user_data = require("./model/user")
 const cart = require("./model/cart")
-
+const category = require("../Dynamic API/CategoryAdd")
+const product = require('../Dynamic API/productAdd')
 const ObjectId = mongoose.Types.ObjectId;
-
-// const trigger = require('../public/JS/triggerClick')
 
 require("./db/db");
 const app = express()
@@ -37,6 +37,7 @@ hbs.registerPartials(partialsPath);
 //Body-parser middle were
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(flash());
 
 // Generate a random token for verification
 function generateToken() {
@@ -67,7 +68,6 @@ function getDefaultRenderData(req) {
         user: req.session.user || false
     };
 }
-
 
 const currencyLogo = "₹";
 
@@ -148,6 +148,34 @@ app.get('/cart', async (req, res) => {
         // const Cart = await cart.findOne({User: userId})
         // console.log('cartttttttttttt---  ' + JSON.stringify( Cart));
         res.render('cart', {
+            defaultRenderData,
+            Cart: Cart,
+            Category: Category
+        });
+    } catch (err) {
+        // console.error(err);
+        res.send(err);
+    }
+});
+
+app.get('/checkout', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+
+    const userId = defaultRenderData.user.userId;
+    console.log('user---------'+ userId)
+    if(!userId) {
+        res.redirect('/')
+    }
+
+    try {
+        const Category = await category.find({})
+        const Cart = await cart.findOne({User: userId }).lean().populate({
+            path: "Cart_products.Product",
+            model: "product",
+        });
+        // const Cart = await cart.findOne({User: userId})
+        // console.log('cartttttttttttt---  ' + JSON.stringify( Cart));
+        res.render('checkout', {
             defaultRenderData,
             Cart: Cart,
             Category: Category
@@ -515,6 +543,105 @@ app.post("/signUp", async (req, res) => {
     }
 });
 
+app.get('/profile', (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+    // console.log(defaultRenderData.user.userId)
+
+    // if(!defaultRenderData.user) {
+    //     res.redirect('/')
+    // }
+
+    try {
+        res.render('profile', {
+            defaultRenderData
+        })
+    } catch (err) {
+        res.send('Error', err)
+    }
+})
+
+app.post("/change-email", async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+        
+    try {
+        const currentEmail = req.body.current_email;
+        const newEmail = req.body.new_email;
+        const userId = defaultRenderData.user.userId;
+
+        const currentUser = await user_data.findById(userId);
+
+        if (!currentUser) {
+            throw new Error("User not found");
+        }
+
+        if (currentEmail !== currentUser.email) {
+            throw new Error( "Current email does not match the logged-in user email")
+        }
+
+        if (newEmail === currentUser.email) {
+            throw new Error("New email cannot be the same as the current email")
+        }
+
+        const existingUser = await user_data.findOne({ email: newEmail });
+        if (existingUser) {
+            throw new Error("Email already exists")
+        }
+
+        currentUser.email = newEmail;
+        await currentUser.save();
+
+        return res.render("profile", {
+            defaultRenderData,
+            success: 'Email updated Successfully'
+        });
+    } catch (err) {
+        return res.status(400).render("profile", {
+            defaultRenderData,
+            error: err.message,
+        });
+    }
+});
+
+app.post('/change-password', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+
+    try {
+        const currnetPassword = req.body.currnet_password;
+        const newPassword = req.body.new_password;
+        const confirmNewPassword = req.body.confirm_new_password;
+        const userId = defaultRenderData.user.userId;
+
+        const currentUserPassword = await user_data.findById(userId);
+
+        if (currnetPassword !== currentUserPassword.password) {
+            throw new Error( "Current passeord does not match the logged-in user's password")
+        }
+
+        if (newPassword === currentUserPassword.password) {
+            throw new Error("New password cannot be the same as the current password")
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            throw new Error("New password and confirm password dosen't match")
+        }
+
+        currentUserPassword.password = newPassword;
+        await currentUserPassword.save()
+
+        return res.render("profile", {
+            defaultRenderData,
+            success: 'Password updated Successfully'
+        });
+    } catch (err) {
+        return res.status(400).render("profile", {
+            defaultRenderData,
+            error: err.message,
+        });
+    }
+})
+
+
+
 app.post("/send", (req, res) => {
     const verificationToken = generateToken();
 
@@ -625,18 +752,18 @@ app.get('/top-rated', async (req, res) => {
     }
 })
 
-app.get('/checkout', async (req, res) => {
-    let defaultRenderData = getDefaultRenderData(req)
-    
+app.get('/thanks', (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+
     if(!defaultRenderData.user) {
         res.redirect('/')
     }
 
     try {
-        res.render('checkout', {
+        res.render('thanks', {
             defaultRenderData
         })
-    } catch(err) {
+    } catch (err) {
         res.send('Error' + err)
     }
 })

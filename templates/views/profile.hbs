@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Profile</title>
+    {{>head_links}}
+</head>
+
+<body>
+    {{>header}}
+    <main>
+        <div class="container pb-5 mb-4">
+            <div class="bg-white rounded" style="height: 520px;">
+                <div id="showChangeEmail" class="row">
+                    <div class="col-md-6">
+                        <h2 class="mb-4"> Change Email</h2>
+                        <form action="/change-email" method="post">
+                            <div class="mb-3">
+                                <label for="Input_Email" class="form-label">Currnet Email address</label>
+                                <input type="email" name="current_email" class="form-control" id="Input_Email" aria-describedby="emailHelp" autocomplete="off" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Input_Email" class="form-label">New Email address</label>
+                                <input type="email" name="new_email" class="form-control" id="Input_Email" aria-describedby="emailHelp" autocomplete="off" required>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">Change Email
+                            </button>
+                            {{#if success}}
+                                <div class="alert alert-success">
+                                    {{success}}
+                                </div>
+                            {{else if error}}
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            {{/if}}
+                        </form>
+                        <button class="showChangePassword btn btn-outline-success rounded border-0">Want to Change Password?</button>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="../images/mail.png" class="login_bg_img" width="100%" style="height: 520px;" alt="signup image">
+                    </div>
+                </div>
+                <div id="showChangePassword" class="row">
+                    <div class="col-md-6 ">
+                        <img src="../images/password.png" class="login_bg_img" width="100%" style="height: 520px;" alt="signup image">
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="mb-4"> Change Password </h2>
+                        <form action="/change-password" method="post">
+                            <div class="mb-3">
+                                <label for="currnet_Password" class="form-label">Currnet Password</label>
+                                <input type="password" name="currnet_password" class="form-control" id="Input_Password" autocomplete="off" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_Password" class="form-label">New Password</label>
+                                <input type="password" name="new_password" class="form-control" id="Input_Password" autocomplete="off" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_Password_confirm" class="form-label">Confirm New Password</label>
+                                <input type="password" name="confirm_new_password" class="form-control" id="Input_Password_confirm" autocomplete="off" required>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">
+                                Change Password
+                            </button>
+                            {{#if success}}
+                                <div class="alert alert-success">
+                                    {{success}}
+                                </div>
+                            {{else if error}}
+                                <div class="alert alert-danger">
+                                    {{error}}
+                                </div>
+                            {{/if}}
+                        </form>
+                        <h2 class="showChangeEmail btn btn-outline-success rounded border-0 mb-0">Want to Change Email?</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>toast_subscribe}}
+    </main>
+    {{>footer}}
+</body>
+
+</html>
