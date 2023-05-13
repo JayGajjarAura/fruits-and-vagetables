@@ -129,8 +129,8 @@ $(document).ready(function (e) {
                             url: "/cart/remove/" + itemId,
                             type: "POST",
                             success: function (result) {
-                                location.reload()
-                                console.log('resultttttttttttttttt'+result)
+                                location.reload(result)
+                                // console.log('resultttttttttttttttt'+result)
                             },
                             error: function (err) {
                                 console.log(err);
@@ -174,6 +174,59 @@ $(document).ready(function (e) {
             },
         });
     });
+    
+    // $(function () {
+    //     $("#browser-input").autocomplete({
+    //         source: function (request, response) {
+    //             $.ajax({
+    //                 url: "/autocomplete",
+    //                 dataType: "json",
+    //                 data: {
+    //                     term: request.term,
+    //                 },
+    //                 success: function (data) {
+    //                     response(data);
+    //                 },
+    //             });
+    //         },
+    //         minLength: 2,
+    //     });
+    // });
+
+    $(function () {
+      var debounceTimer;
+      $("#browser-input").autocomplete({
+        source: function (request, response) {
+          // Clear the previous debounce timer
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(function () {
+            $.ajax({
+              url: "/autocomplete",
+              dataType: "json",
+              data: {
+                term: request.term,
+              },
+              success: function (data) {
+                // Create an array of objects, each with 'label' and 'value' properties
+                var results = $.map(data, function (item) {
+                  return {
+                    label: item.title,
+                    value: item.slug, // Add the product slug as the 'value' property
+                  };
+                });
+                response(results);
+              },
+            });
+          }, 300); // Set the debounce time to 300ms
+        },
+        minLength: 2,
+        select: function (event, ui) {
+          // Redirect to the product search results page for the selected product
+          window.location.href = "/products/" + ui.item.value;
+        },
+      });
+    });
+
 
 })
 

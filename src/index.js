@@ -1,4 +1,4 @@
-require("dotenv").config()
+// require("dotenv").config()
 const express = require("express")
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -9,10 +9,11 @@ const slugify = require('slugify')
 const nodemailer = require("nodemailer")
 const session = require("express-session")
 const flash = require('connect-flash');
-// const Fuse = require('fuse.js')
+const fuzzy = require('fuzzy');
 
 const user_data = require("./model/user")
 const cart = require("./model/cart")
+const order = require('./model/order')
 const category = require("../Dynamic API/CategoryAdd")
 const product = require('../Dynamic API/productAdd')
 const ObjectId = mongoose.Types.ObjectId;
@@ -73,25 +74,28 @@ const currencyLogo = "₹";
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "../public/uploads");
+        cb(null, "./public/uploads");
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "-" + Date.now() + ".jpg");
     },
 });
 
-let upload = multer({ storage: storage });
+let upload = multer({ 
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 } // 5MB
+});
 
-app.get('/category/name', async (req, res) => {
+// app.get('/category/name', async (req, res) => {
 
-    try{
-        const Category = await category.find({})
-        res.render("test", { Category: Category });
-        // res.json(Category)
-    }catch(err){
-        res.send('Error ' + err)
-    }
-})
+//     try{
+//         const Category = await category.find({})
+//         res.render("test", { Category: Category });
+//         // res.json(Category)
+//     }catch(err){
+//         res.send('Error ' + err)
+//     }
+// })
 
 app.get('/API/category/:id', async(req,res) => {
     try{
@@ -105,7 +109,8 @@ app.get('/API/category/:id', async(req,res) => {
 app.post("/API/category", upload.single("image"), async (req, res) => {
     try {
         const { filename } = req.file;
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
+        // const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
+        const imageUrl = `../uploads/${filename}`;
 
         const newCategory = new category({
             name: req.body.name,
@@ -127,6 +132,72 @@ app.post("/API/category", upload.single("image"), async (req, res) => {
     }
 });
 
+// app.get('/autocomplete', async (req, res) => {
+//     const query = req.query.term;
+//     console.log('qqqqqq------'+ query)
+//     try {
+//         const products = await product.find({ title: { $regex: query, $options: "i", }, }).limit(5);
+
+//         // Limit the number of results to 5
+//         const productTitles = products.map(p => p.title);
+//         res.send(productTitles);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send({err: 'Server Error'});
+//     }
+// });
+
+// app.get('/autocomplete', async (req, res) => {
+//     const query = req.query.term;
+//     console.log(query)
+
+//     try {
+//         const products = await product.find({}).lean();
+
+//         const options = {
+//         extract: function(el) {
+//             return el.title;
+//         }
+//         };
+
+//         const results = fuzzy.filter(query, products, options);
+
+//         const productTitles = results.map(function(result) {
+//         return result.string;
+//         })
+
+//         res.json(productTitles);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send('Server Error');
+//     }
+// });
+
+app.get('/autocomplete', async (req, res) => {
+  const query = req.query;
+  try {
+    const products = await product.find({
+      title: {
+        $regex: String(query),
+        $options: "i",
+      },
+    });
+
+    const suggestions = products.map(p => ({
+      title: p.slug,
+      url: `/${encodeURIComponent(p.slug)}`, // URL of search result page for product
+    }));    
+
+    res.send(suggestions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+
+
+
 
 // -----------cart CRUD operations code----------
 
@@ -134,7 +205,7 @@ app.get('/cart', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
     const userId = defaultRenderData.user.userId;
-    console.log('user---------'+ userId)
+    // console.log('user---------'+ userId)
     if(!userId) {
         res.redirect('/')
     }
@@ -313,6 +384,64 @@ app.post('/cart/clear/:id', async (req, res) => {
     res.redirect('/cart');
 });
 
+app.post('/order', async (req, res) => {
+
+    try {
+        const defaultRenderData = getDefaultRenderData(req);
+        const userId = defaultRenderData.user.userId;
+        // const currentCart = await cart.findById(userId)
+
+        const order_data = new order({
+            User: userId,
+            order: [{
+                Quantity: req.body.Quantity,
+                itemName: req.body.itemName,
+                subTotal: req.body.subTotal,
+                grandTotal: req.body.grandTotal
+            }]
+        });
+        
+        await order_data.save();
+        const deleteCart = await cart.findOneAndDelete(userId);
+        console.log("ccccccccccc---------" + deleteCart);
+        if (!deleteCart) {
+          throw new Error("Cart not found for user");
+        }
+        res.redirect('/thanks')
+    } catch (err) {
+        console.error(err);
+        res.send('Error: ' + err.message);
+    }
+});
+
+app.get('/orders', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req)
+
+    const userID = defaultRenderData.user.userId
+    console.log('userrrrrrrrrr----------'+userID)
+    if(!userID) {
+        res.redirect('/')
+    }
+
+    try {
+        const Order = await order.find({User: userID})
+
+        // console.log('dateeeeeeee--------' + Order[0].order[0].ordered_on.toLocaleDateString())
+
+        if (!Order) {
+            throw new Error('User orders not found')
+        }
+
+        // const orderWithDate = Order[0].order[0].ordered_on.toLocaleDateString()
+
+        res.render('orders', {
+            defaultRenderData,
+            Order: Order
+        })
+    } catch (err) { 
+        console.error(err)
+    }
+})
 
 app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
     try{
@@ -339,15 +468,15 @@ app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
     }
 })
 
-app.get('/products', async (req, res) => {
-    try{
-        const Product = await product.find({})
-        res.render("test", {Product: Product});
-        // res.json(Product);
-    }catch(err){
-        res.send('Error ' + err)
-    }
-})
+// app.get('/products', async (req, res) => {
+//     try{
+//         const Product = await product.find({})
+//         res.render("test", {Product: Product});
+//         // res.json(Product);
+//     }catch(err){
+//         res.send('Error ' + err)
+//     }
+// })
 
 app.get('/API/products/:id', async(req,res) => {
     try{
@@ -432,7 +561,7 @@ app.get('/products/:slug', async (req, res) => {
 app.post("/API/products", upload.single("image"), async (req, res) => {
     try {
         const { filename } = req.file;
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
+        const imageUrl = `../uploads/${filename}`;
 
         const newProduct = new product({
             category: req.body.category,
@@ -448,7 +577,7 @@ app.post("/API/products", upload.single("image"), async (req, res) => {
                 strict: true
             })
         });
-        console.log(newProduct.slug)
+        console.log(newProduct)
 
         await newProduct.save();
 
@@ -504,7 +633,7 @@ app.post("/login", async (req, res) => {
             };
             res.redirect("/");
         } else {
-            res.render("index", { error: "Invalid Email or password" });
+            res.redirect("/");
         }
     } catch (error) {
         res.send(error.message);
@@ -532,8 +661,10 @@ app.post("/signUp", async (req, res) => {
                 confirm_pass: req.body.confirm_pass,
             });
 
-            await entered_data.save();
-            console.log(entered_data)
+            // console.log('dataaaaa------111111'+entered_data)
+            await entered_data.save()
+            // res.json({success: 'qwerty'})
+            console.log('dataaaaa------'+entered_data)
             res.redirect('/')
         } else {
             res.send("Passwords do not match");
@@ -547,9 +678,9 @@ app.get('/profile', (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     // console.log(defaultRenderData.user.userId)
 
-    // if(!defaultRenderData.user) {
-    //     res.redirect('/')
-    // }
+    if(!defaultRenderData.user) {
+        res.redirect('/')
+    }
 
     try {
         res.render('profile', {

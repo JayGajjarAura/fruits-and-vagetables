@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Orders</title>
+    {{>head_links}}
+</head>
+
+<body>
+    {{>header}}
+
+    <div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col-md-12 col-12">
+                <h3>My Orders</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-3">Order Placed on</th>
+                        <th class="col-2">Quantity</th>
+                        <th class="col-2">Item Name</th>
+                        <th class="col-2">Subtotal</th>
+                        <th class="col-2">Grand Total</th>
+                    </tr>
+                </thead>
+                {{#each Order}}
+                <tbody>
+                    <tr>
+                    {{#each this.order}}
+                        <td>{{this.ordered_on}}</td>
+                        <td>{{this.Quantity}}</td>
+                        <td>{{this.itemName}}</td>
+                        <td>{{this.subTotal}}</td>
+                        <td>{{this.grandTotal}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                {{/each}}
+            </table>
+            {{!-- {{#each Order}}
+                <div>
+                    {{#each this.order}}
+                        <p>{{this.Quantity}}</p>
+                    {{/each}}
+                </div>
+            {{/each}} --}}
+        </div>
+    </div>
+    {{>toast_subscribe}}
+    {{>footer}}
+</body>
+
+</html>

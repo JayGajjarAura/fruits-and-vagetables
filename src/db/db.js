@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const connectionURI =  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/Fruits_and_vagetables";
+const connectionURI = "mongodb+srv://JayGajjarAura:J104aura%40mongodb@cluster0.kdhaofx.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(connectionURI)
 

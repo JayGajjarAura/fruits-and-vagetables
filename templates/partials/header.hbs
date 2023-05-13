@@ -31,15 +31,30 @@
                 <div class="col mx-auto my-auto">
                     <a href="/"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
                 </div>
-                <div class="col-4 d-none d-lg-block my-auto">
-                    <div class="input-group mt-2">
-                        <input type="text" for="browser-input" name="browser" id="browser-input" class="form-control rounded-left" placeholder="Search for products..." aria-label="Search for products...">
-                        <div class="input-group-append">
-                            <button class="btn btn-success px-4 rounded-right" type="button"> 
-                                <i class="fa fa-search"></i>
-                            </button>
+                {{!-- <div class="col-4 d-none d-lg-block my-auto">
+                    <form action="/autocomplete" method="get">
+                        <div class="input-group mt-2">
+                            <input type="text" for="browser-input" name="query" id="browser-input" class="form-control rounded-left" placeholder="Search for products..." aria-label="Search for products..." autocomplete="off">
+                            <div class="input-group-append">
+                                <button class="btn btn-success px-4 rounded-right" type="submit"> 
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                </div> --}}
+                <div class="col-4 d-none d-lg-block my-auto">
+                    <form action="/autocomplete" method="get">
+                        <div class="input-group mt-2">
+                            <input type="text" for="browser-input" name="term" id="browser-input" class="form-control rounded-left"
+                                placeholder="Search for products..." aria-label="Search for products..." autocomplete="off">
+                            <div class="input-group-append">
+                                <button class="btn btn-success px-4 rounded-right" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="col d-none d-lg-block align-text-bottom">
                     <div class="font-weight-bold text-secondary text-right" style="margin-top: 10px;">
@@ -65,7 +80,7 @@
                                 <button type="submit" class="btn btn-outline-danger border-0" style="margin-bottom: 6px;">Logout</button>
                                 <a href="/cart" class="text-secondary">
                                     {{!-- <i class="fa fa-shopping-cart"></i> --}}
-                                    <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="500" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
+                                    <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="200" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
                                     </lord-icon> 
                                     <sup class="bg-success text-white" style="border-radius: 50%;padding:3px" id="total_cart_value" name="totalQuantity"> 0 </sup>
                                 </a>
@@ -157,13 +172,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="Input_Email" class="form-label">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="Input_Email"
-                                            aria-describedby="emailHelp" autocomplete="off" required>
+                                        <input type="email" name="email" class="form-control" id="Input_Email" aria-describedby="emailHelp" autocomplete="off" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Input_Password" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="Input_Password"
-                                            autocomplete="off" required>
+                                        <input type="password" name="password" class="form-control" id="Input_Password" autocomplete="off" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="Input_Password_confirm" class="form-label">Confirm Password</label>
