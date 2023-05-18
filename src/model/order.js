@@ -9,16 +9,16 @@ const orderSchema = new mongoose.Schema({
     order: [{
         user_order_id: {
             type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+            ref: "User",
         },
         Quantity: {
-            type: mongoose.Schema.Types.Mixed
+            type: Array
         },
         itemName: {
-            type: mongoose.Schema.Types.Mixed
+            type: Array
         },
         subTotal: {
-            type: mongoose.Schema.Types.Mixed
+            type: Array
         },
         // grandTotal: {
         //     type: mongoose.Schema.Types.Mixed

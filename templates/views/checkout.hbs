@@ -47,33 +47,37 @@
                 </div>
                 <div class="col-6 mt-3">
                     <h2>Order Summary</h2>
-                    <form action="/order" method="post">
+                    <form action="/create-checkout-session" method="POST">
                         <table class="text-secondary ml-3 w-75">
                             {{#each Cart.Cart_products }}
-                                <tr>
-                                    <td class="pb-2">
-                                        <input type="hidden" name="Quantity" value="{{this.Quantity}}">
-                                        {{this.Quantity}}
-                                    </td>
-                                    <td class="pb-2">x</td>
-                                    <td class="text-left pb-2">
-                                        <input type="hidden" name="itemName" value="{{this.Product.title}}">
-                                        {{this.Product.title}}
-                                    </td>
-                                    <td class="pb-2 col-2 text-right">
-                                        <input type="hidden" name="subTotal" value="{{multiply this.Quantity this.Product.price}}">
-                                        {{ multiply this.Quantity this.Product.price }}
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="pb-2">
+                                    <input type="hidden" name="Quantity" value="{{this.Quantity}}">
+                                    <input type="hidden" name="amount" value="{{this.price}}">
+                                    {{this.Quantity}}
+                                </td>
+                                <td class="pb-2">x</td>
+                                <td class="text-left pb-2">
+                                    <input type="hidden" name="itemName" value="{{this.Product.title}}">
+                                    {{this.Product.title}}
+                                </td>
+                                <td class="pb-2 col-2 text-right">
+                                    <input type="hidden" name="subTotal" value="{{multiply this.Quantity this.Product.price}}">
+                                    {{ multiply this.Quantity this.Product.price }}
+                                </td>
+                            </tr>
                             {{/each}}
                             <tr>
+                                <td colspan="4" class="pb-3" style="font-weight:bold; text-align: right;padding-right:15px">
+                                    Total : ₹ <span id="checkoutTotal"></span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td colspan="4" style="font-weight:bold; text-align: right;padding-right:15px">
-                                    {{!-- <input type="hidden" name="grandTotal" value="cartTotal" id="cartTotal"> --}}
-                                    Total : ₹ <span id="checkoutTotal" ></span>
+                                    <button class="btn btn-outline-primary" type="submit">Proceed to Pay</button>
                                 </td>
                             </tr>
                         </table>
-                        <button type="submit" class="btn btn-outline-primary border-0"> Place Order </button>
                     </form>
                 </div>
             </div>

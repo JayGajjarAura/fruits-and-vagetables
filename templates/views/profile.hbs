@@ -47,20 +47,21 @@
                     </div>
                     <div class="col-md-6 pr-5 mt-3">
                         <h2 class="mb-4"> Change Password </h2>
-                        <form action="/change-password" method="post">
+                        {{!-- <form action="/change-password" method="post" id="mypass" name="mypass" onsubmit="return validatePassword()">
                             <div class="mb-3">
                                 <label for="currnet_Password" class="form-label">Currnet Password</label>
                                 <input type="password" name="currnet_password" class="form-control" id="Input_Password" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="new_Password" class="form-label">New Password</label>
-                                <input type="password" name="new_password" class="form-control" id="Input_Password" autocomplete="off" required>
+                                <input type="password" name="new_password" class="form-control" id=" new_Input_Password" autocomplete="off" required>
+                                <span id="passErrMsg" class="error"></span> <br />
                             </div>
                             <div class="mb-3">
                                 <label for="new_Password_confirm" class="form-label">Confirm New Password</label>
                                 <input type="password" name="confirm_new_password" class="form-control" id="Input_Password_confirm" autocomplete="off" required>
                             </div>
-                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">
+                            <button type="submit" class="btn btn-outline-success rounded mb-3" onclick="validatePassword()" style="width: 100%;">
                                 Change Password
                             </button>
                             {{#if success}}
@@ -71,6 +72,36 @@
                                 <div class="alert alert-danger">
                                     {{error}}
                                 </div>
+                            {{/if}}
+                        </form> --}}
+                        <form action="/change-password" method="post" id="mypass" name="mypass" onsubmit="return validatePassword()">
+                            <div class="mb-3">
+                                <label for="currnet_Password" class="form-label">Current Password</label>
+                                <input type="password" name="current_password" class="form-control" id="Input_Password" autocomplete="off"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_Password" class="form-label">New Password</label>
+                                <input type="password" name="new_password" class="form-control" id="new_Input_Password" autocomplete="off"
+                                    required>
+                                <span id="passErrMsg" class="error"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_Password_confirm" class="form-label">Confirm New Password</label>
+                                <input type="password" name="confirm_new_password" class="form-control" id="Input_Password_confirm"
+                                    autocomplete="off" required>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">
+                                Change Password
+                            </button>
+                            {{#if success}}
+                            <div class="alert alert-success">
+                                {{success}}
+                            </div>
+                            {{else if error}}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
                             {{/if}}
                         </form>
                         {{!-- <h2 class="showChangeEmail btn btn-outline-success rounded border-0 mb-0">Want to Change Email?</h2> --}}

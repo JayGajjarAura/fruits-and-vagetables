@@ -174,61 +174,98 @@ $(document).ready(function (e) {
             },
         });
     });
-    
-    // $(function () {
-    //     $("#browser-input").autocomplete({
-    //         source: function (request, response) {
-    //             $.ajax({
-    //                 url: "/autocomplete",
-    //                 dataType: "json",
-    //                 data: {
-    //                     term: request.term,
-    //                 },
-    //                 success: function (data) {
-    //                     response(data);
-    //                 },
-    //             });
-    //         },
-    //         minLength: 2,
-    //     });
-    // });
 
-    $(function () {
-      var debounceTimer;
-      $("#browser-input").autocomplete({
-        source: function (request, response) {
-          // Clear the previous debounce timer
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(function () {
-            $.ajax({
-              url: "/autocomplete",
-              dataType: "json",
-              data: {
-                term: request.term,
-              },
-              success: function (data) {
-                // Create an array of objects, each with 'label' and 'value' properties
-                var results = $.map(data, function (item) {
-                  return {
-                    label: item.title,
-                    value: item.slug, // Add the product slug as the 'value' property
-                  };
-                });
-                response(results);
-              },
-            });
-          }, 300); // Set the debounce time to 300ms
-        },
-        minLength: 2,
-        select: function (event, ui) {
-          // Redirect to the product search results page for the selected product
-          window.location.href = "/products/" + ui.item.value;
-        },
-      });
+    $(function autocomplete() {
+        let debounceTimer;
+        $("#browser-input").autocomplete({
+            source: function (request, response) {
+
+                const term = $.trim(request.term);
+
+                // Check if the term is empty or contains only whitespace
+                if (term === "") {
+                    response([]); // Return an empty array if there is no valid search term
+                    return;
+                }
+                // Clear the previous debounce timer
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function () {
+                    $.ajax({
+                        url: "/autocomplete",
+                        dataType: "json",
+                        data: {
+                            term: term,
+                        },
+                        success: function (data) {
+                            // Create an array of objects, each with 'label' and 'value' properties
+                            let results = $.map(data, function (item) {
+                                return {
+                                    label: item.title,
+                                    value: item.slug, // Add the product slug as the 'value' property
+                                };
+                            });
+                            // response(filteredResults);
+                            response(results);
+                        },
+                    });
+                }, 500); // Set the debounce time to 500ms
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                // Redirect to the product search results page for the selected product
+                window.location.href = "/products/" + ui.item.value;
+            },
+        });
     });
-
-
 })
+
+
+//------- Validation for password-------
+
+let validateForm = function () {
+    return checkName();
+}
+
+function checkName() {
+    let x = document.myForm;
+    let input = x.Input_Password.value;
+    let errMsgHolder = document.getElementById('nameErrMsg');
+    if (input.length < 8) {
+        errMsgHolder.innerHTML =
+            'minimum password length 8';
+        return false;
+    } else if (!(/^\S{3,}$/.test(input))) {
+        errMsgHolder.innerHTML =
+            'password cannot contain whitespace';
+        return false;
+    } else {
+        errMsgHolder.innerHTML = '';
+        return undefined;
+    }
+}
+
+//------- Change Password-------------
+
+let validatePassword = function () {
+    return checkPassword();
+};
+
+function checkPassword() {
+    let x = document.mypass;
+    let input = x.new_Input_Password.value;
+    let errMsgHolder = document.getElementById('passErrMsg');
+    if (input.length < 8) {
+        errMsgHolder.textContent = 'Minimum password length is 8 characters.';
+        return false;
+    } else if (/\s/.test(input)) {
+        errMsgHolder.textContent = 'Password cannot contain whitespace.';
+        return false;
+    } else {
+        errMsgHolder.textContent = '';
+        return true;
+    }
+}
+
 
 async function calculateCartTotals() {
     // Check if the #cart-body element exists on the current page
@@ -274,3 +311,44 @@ window.onload = async function () {
         document.getElementById("total_cart_value").textContent = cartTotalQuantity;
     }
 };
+
+//--------- SEARCH BAR SHORTCUT -----------
+
+document.addEventListener("keyup", e => {
+    if ( e.key === '/') {
+        document.getElementById("browser-input").focus();
+    }
+})
+
+
+//--------- login----------
+
+function login() {
+    let email = document.getElementById("Input_Email").value;
+    let password = document.getElementById("Input_Password").value;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/login", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Successful response, redirect to the homepage
+                window.location.href = "/";
+            } else if (xhr.status === 401) {
+                // Unauthorized, display the error message
+                let response = JSON.parse(xhr.responseText);
+                let errorSpan = document.getElementById("errorSpan");
+                errorSpan.innerText = response.error;
+            } else {
+                // Other error occurred, display a generic error message
+                let errorSpan = document.getElementById("errorSpan");
+                errorSpan.innerText = "An error occurred. Please try again later.";
+            }
+        }
+    };
+
+    let data = JSON.stringify({ email: email, password: password });
+    xhr.send(data);
+}

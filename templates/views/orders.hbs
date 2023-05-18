@@ -3,52 +3,59 @@
 
 <head>
     <title>My Orders</title>
-    {{>head_links}}
+    {{> head_links}}
 </head>
 
 <body>
-    {{>header}}
+    {{> header}}
 
     <div class="container mb-5 pb-5">
         <div class="row">
+            {{#if orders.length}}
             <div class="col-md-12 col-12">
                 <h3>My Orders</h3>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th class="col-3">Order Placed on</th>
+                        <th class="col-8">Order Placed on</th>
                         <th class="col-2">Quantity</th>
-                        <th class="col-2">Item Name</th>
-                        <th class="col-2">Subtotal</th>
-                        <th class="col-2">Grand Total</th>
+                        <th class="col-3">Item Name</th>
+                        <th class="col-2">Amount</th>
                     </tr>
                 </thead>
-                {{#each Order}}
-                <tbody>
-                    <tr>
+                {{#each orders}}
                     {{#each this.order}}
-                        <td>{{this.ordered_on}}</td>
-                        <td>{{this.Quantity}}</td>
-                        <td>{{this.itemName}}</td>
-                        <td>{{this.subTotal}}</td>
-                        <td>{{this.grandTotal}}</td>
-                    </tr>
+                        <tbody>
+                            {{#each this.Quantity}}
+                                <tr>
+                                    <td>{{../ordered_on}}</td>
+                                    <td>{{this}}</td>
+                                    <td>{{lookup ../itemName @index}}</td>
+                                    <td>{{lookup ../subTotal @index}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
                     {{/each}}
-                </tbody>
                 {{/each}}
-            </table>
-            {{!-- {{#each Order}}
-                <div>
-                    {{#each this.order}}
-                        <p>{{this.Quantity}}</p>
-                    {{/each}}
+                {{else}}
+                <div class="container mb-5 pb-5">
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+                            <figure class="error_img mx-auto">
+                                <img class="img-fluid" src="../Images/Empty.png" alt="error img" srcset="">
+                                <a href="/" class="go_homepage" style="margin-left: 180px;">Start Shopping</a>
+                            </figure>
+                        </div>
+                    </div>
                 </div>
-            {{/each}} --}}
+                {{/if}}
+            </table>
         </div>
     </div>
-    {{>toast_subscribe}}
-    {{>footer}}
+
+    {{> toast_subscribe}}
+    {{> footer}}
 </body>
 
 </html>
