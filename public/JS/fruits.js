@@ -267,6 +267,17 @@ function checkPassword() {
 }
 
 
+//--------- Navbar code -----------
+function openNav() {
+  document.getElementById("mySidenav").style.width = "300px";
+  document.getElementById("main").style.marginLeft = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+
 async function calculateCartTotals() {
     // Check if the #cart-body element exists on the current page
     let cartBody = document.querySelector("#cart-body");

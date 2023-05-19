@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Orders</title>
+    {{> head_links}}
+</head>
+
+<body id="main">
+    {{> header}}
+
+    <div class="container mb-5 pb-5">
+        <div class="row">
+            {{#if orders.length}}
+                <div class="col-md-12 col-12">
+                    <h3 class="font-weight-bold">My Orders</h3>
+                </div>
+                <table class="table table-hover table-borderless spacing-table bg-white">
+                    {{else}}
+                    <div class="container mb-5 pb-5">
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                <figure class="error_img mx-auto">
+                                    <img class="img-fluid" src="../Images/wishlist.png" alt="error img" srcset="">
+                                    <a href="/" class="go_homepage" style="margin-left: 150px;">Add Products to Wishlist</a>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            {{/if}}
+        </div>
+    </div>
+
+    {{> toast_subscribe}}
+    {{> footer}}
+</body>
+
+</html>

@@ -49,6 +49,17 @@
                         {{#if defaultRenderData.user}}
                         <form method="POST" action="/logout">
                             <div class="dropdown">
+                                <span style="font-size:30px;cursor:pointer; position:absolute;left:-929px; top:-7px" onclick="openNav()">&#9776; </span>
+                                {{!-- -------- Sidebar Code--------- --}}
+                                <div id="mySidenav" class="sidenav">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                    <a href="/orders" class="text-left"> My Orders </a>
+                                    <a href="/profile" class="text-left"> Change Password </a>
+                                    <a href="/wishlist" class="text-left"> My Wishlist </a>
+                                    <a class="text-left">
+                                        <button type="submit" class="btn btn-outline-danger border-0" style="font-weight: bold;font-size: 23px;"> Logout </button>
+                                    </a>
+                                </div>
                                 <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     Welcome, {{defaultRenderData.user.username}}

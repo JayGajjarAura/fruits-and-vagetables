@@ -10,9 +10,8 @@ const nodemailer = require("nodemailer")
 const session = require("express-session")
 const flash = require('connect-flash');
 const fuzzy = require('fuzzy');
-// const stripe = require('stripe')
 const stripe = require("stripe")(
-  "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
+    "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
 );
 
 const user_data = require("./model/user")
@@ -28,13 +27,6 @@ const app = express()
 hbs.registerHelper("multiply", function (a, b) {
     return a * b;
 });
-
-// Register a Handlebars helper to format the date
-// hbs.registerHelper('formatDate', function(date) {
-//   const formattedDate = new Date(date.$date.$numberLong || date.$numberLong);
-//   return formattedDate.toLocaleDateString(); // Adjust the format as per your requirements
-// });
-
 
 //paths for express config
 const publicDirectory = path.join(__dirname, "../public");
@@ -96,17 +88,6 @@ let upload = multer({
     storage: storage,
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB
 });
-
-// app.get('/category/name', async (req, res) => {
-
-//     try{
-//         const Category = await category.find({})
-//         res.render("test", { Category: Category });
-//         // res.json(Category)
-//     }catch(err){
-//         res.send('Error ' + err)
-//     }
-// })
 
 app.get('/API/category/:id', async(req,res) => {
     try{
@@ -380,6 +361,7 @@ app.post('/cart/clear/:id', async (req, res) => {
 
 app.post('/create-checkout-session', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
+    const orderID = generateToken()
 
     const userID = defaultRenderData.user.userId;
 
@@ -395,7 +377,6 @@ app.post('/create-checkout-session', async (req, res) => {
                     currency: 'inr',
                     product_data: {
                         name: Cart_products.Product.title,
-                        images: [Cart_products.Product.image],
                     },
                     unit_amount: Cart_products.Product.price * 100,
                 },
@@ -414,17 +395,43 @@ app.post('/create-checkout-session', async (req, res) => {
         const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
         console.log('sessionn------',sessionDetails.payment_status)
 
-        const order_data = new order ({
+        // const order_data = new order ({
+        //     User: defaultRenderData.user.userId,
+        //     Order_Id: orderID,
+        //     order: [{
+        //         Quantity: req.body.Quantity,
+        //         itemName: req.body.itemName,
+        //         subTotal: req.body.subTotal,
+        //         grandTotal: req.body.grandTotal
+        //     }]
+        // });
+
+        const order_data = new order({
             User: defaultRenderData.user.userId,
-            order: [{
-                Quantity: req.body.Quantity,
-                itemName: req.body.itemName,
-                subTotal: req.body.subTotal,
-                grandTotal: req.body.grandTotal
-            }]
+            Order_Id: orderID,
+            Total_items: req.body.Quantity.length,
+            Total_amount: req.body.totalAmount,
+            order: [
+                {
+                    Quantity: req.body.Quantity,
+                    itemName: req.body.itemName,
+                    subTotal: req.body.subTotal,
+                    Address: [
+                        {
+                            Name: req.body.firstName + ' ' + req.body.lastName,
+                            contact_no: req.body.contactNumber,
+                            house_no: req.body.houseNo,
+                            Area: req.body.area,
+                            city: req.body.city,
+                            state: req.body.state,
+                            pincode: req.body.pincode,
+                        },
+                    ],
+                },
+            ],
         });
 
-        console.log('ooo-----'+order_data[0])
+        console.log('ooo-----'+order_data)
 
         await order_data.save();
         await cart.findOneAndDelete(userID);
@@ -781,13 +788,11 @@ app.post('/change-password', async (req, res) => {
     }
 })
 
-
-
 app.post("/send", (req, res) => {
     const verificationToken = generateToken();
+    console.log('tokennn-----',verificationToken)
 
-    const output = 
-        `<p>Thank you for subscribing to our Services </p>`;
+    const output = `<p>Thank you for subscribing to our Services </p>`;
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -918,6 +923,22 @@ app.get('/cancel', (req, res) => {
 
     try {
         res.render('cancel', {
+            defaultRenderData
+        })
+    } catch (err) {
+        res.send('Error' + err)
+    }
+})
+
+app.get('/wishlist', (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+
+    if(!defaultRenderData.user) {
+        res.redirect('/')
+    }
+
+    try {
+        res.render('wishlist', {
             defaultRenderData
         })
     } catch (err) {

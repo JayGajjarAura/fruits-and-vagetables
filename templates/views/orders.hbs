@@ -6,37 +6,32 @@
     {{> head_links}}
 </head>
 
-<body>
+<body id="main">
     {{> header}}
 
     <div class="container mb-5 pb-5">
         <div class="row">
             {{#if orders.length}}
             <div class="col-md-12 col-12">
-                <h3>My Orders</h3>
+                <h3 class="font-weight-bold">My Orders</h3>
             </div>
-            <table>
+            <table class="table table-hover table-borderless spacing-table bg-white">
                 <thead>
                     <tr>
-                        <th class="col-8">Order Placed on</th>
-                        <th class="col-2">Quantity</th>
-                        <th class="col-3">Item Name</th>
-                        <th class="col-2">Amount</th>
+                        <th class="col-3 text-center">Order ID</th>
+                        <th class="col-3 text-center">Order Placed on</th>
+                        <th class="col-2 text-center">Quantity</th>
+                        <th class="col-2 text-center">Amount</th>
                     </tr>
                 </thead>
                 {{#each orders}}
-                    {{#each this.order}}
-                        <tbody>
-                            {{#each this.Quantity}}
-                                <tr>
-                                    <td>{{../ordered_on}}</td>
-                                    <td>{{this}}</td>
-                                    <td>{{lookup ../itemName @index}}</td>
-                                    <td>{{lookup ../subTotal @index}}</td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    {{/each}}
+                    <tr>
+                        <td class="text-center">{{Order_Id}}</td>
+                        <td class="text-center">{{ordered_on}}</td>
+                        <td class="text-center">{{Total_items}}</td>
+                        <td class="text-center">{{Total_amount}}</td>
+                        <td class="text-center">View Detail</td>
+                    </tr>
                 {{/each}}
                 {{else}}
                 <div class="container mb-5 pb-5">

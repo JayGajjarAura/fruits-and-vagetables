@@ -4,65 +4,81 @@
     <title>Checkout</title>
     {{>head_links}}
 </head>
-<body>
+<body id="main">
     {{>header}}
     <main>
         <div class="container pb-5 mb-4">
             <div class="row bg-white rounded m-0">
-                <div class="col-6">
-                    <form class="mt-3">
+                <form action="/create-checkout-session" method="POST" class="w-100 mx-3">
+                    <div class="col mt-3">
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="validationCustom01">First name</label>
-                                <input type="text" class="form-control" placeholder="First name" required>
+                                <input type="text" class="form-control" id="validationCustom01" name="firstName"
+                                    placeholder="First name" required>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="validationCustom02">Last name</label>
-                                <input type="text" class="form-control" placeholder="Last name" required>
+                                <input type="text" class="form-control" id="validationCustom02" name="lastName" placeholder="Last name"
+                                    required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom08">Contact Number</label>
+                                <input type="tel" class="form-control" id="validationCustom08" name="contactNumber"
+                                    placeholder="Contact Number" pattern="[0-9]{10}" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="validationCustom06">Address</label>
-                            <input type="text" class="form-control" placeholder="1234 Main St" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="validationCustom10">Address 2</label>
-                            <input type="text" class="form-control" placeholder="1234 Main St" required>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="validationCustom06">House / Flat No.</label>
+                                <input type="text" class="form-control" id="validationCustom06" name="houseNo" placeholder="1234"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom07">Area</label>
+                                <input type="text" class="form-control" id="validationCustom07" name="area" placeholder="Main St"
+                                    required>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label for="validationCustom03">City</label>
-                                <input type="text" class="form-control" placeholder="City" required>
+                                <input type="text" class="form-control" id="validationCustom03" name="city" placeholder="City" required>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="validationCustom04">State</label>
-                                <input type="text" class="form-control" placeholder="State" required>
+                                <input type="text" class="form-control" id="validationCustom04" name="state" placeholder="State"
+                                    required>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <label for="validationCustom05">Zip</label>
-                                <input type="text" class="form-control" placeholder="Zip" required>
+                                <label for="validationCustom05">Pincode</label>
+                                <input type="text" class="form-control" id="validationCustom05" name="pincode" placeholder="Pincode"
+                                    pattern="[0-9]{6}" required>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-6 mt-3">
-                    <h2>Order Summary</h2>
-                    <form action="/create-checkout-session" method="POST">
+                    </div>
+                
+                    <div class="col mt-3">
+                        <h2>Order Summary</h2>
                         <table class="text-secondary ml-3 w-75">
                             {{#each Cart.Cart_products }}
                             <tr>
-                                <td class="pb-2">
-                                    <input type="hidden" name="Quantity" value="{{this.Quantity}}">
-                                    <input type="hidden" name="amount" value="{{this.price}}">
+                                {{!-- <td class="pb-2">
+                                    <input type="hidden" name="Quantity[]" value="{{this.Quantity}}">
+                                    <input type="hidden" name="amount[]" value="{{this.price}}">
+                                    {{this.Quantity}}
+                                </td> --}}
+                                <td class="pb-2" data-product-name="{{this.Product.title}}">
+                                    <input type="hidden" name="Quantity[]" value="{{this.Quantity}}">
                                     {{this.Quantity}}
                                 </td>
                                 <td class="pb-2">x</td>
                                 <td class="text-left pb-2">
-                                    <input type="hidden" name="itemName" value="{{this.Product.title}}">
+                                    <input type="hidden" name="itemName[]" value="{{this.Product.title}}">
                                     {{this.Product.title}}
                                 </td>
                                 <td class="pb-2 col-2 text-right">
-                                    <input type="hidden" name="subTotal" value="{{multiply this.Quantity this.Product.price}}">
+                                    <input type="hidden" name="subTotal[]" value="{{multiply this.Quantity this.Product.price}}">
                                     {{ multiply this.Quantity this.Product.price }}
                                 </td>
                             </tr>
@@ -74,12 +90,13 @@
                             </tr>
                             <tr>
                                 <td colspan="4" style="font-weight:bold; text-align: right;padding-right:15px">
+                                    <input type="hidden" name="totalAmount" id="totalAmount">
                                     <button class="btn btn-outline-primary" type="submit">Proceed to Pay</button>
                                 </td>
                             </tr>
                         </table>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     {{>toast_subscribe}}
@@ -87,20 +104,58 @@
     {{>footer}}
 
     <script>
-        // Get all the cells in the fourth column of the table
-        var cells = document.querySelectorAll('table tr td:nth-child(4)');
+        // Get all the subtotals in the table
+        let subtotals = document.querySelectorAll('input[name="subTotal[]"]');
 
         // Initialize the total variable
-        var total = 0;
+        let total = 0;
 
-        // Loop through the cells and add up their values
-        for (var i = 0; i < cells.length; i++) {
-            total += parseInt(cells[i].textContent);
+        // Loop through the subtotals and add up their values
+        for (var i = 0; i < subtotals.length; i++) {
+            total += parseFloat(subtotals[i].value);
         }
 
-        // Set the total value in the grandTotal element
+        // Set the total value in the checkoutTotal and cartTotal elements
         document.getElementById('checkoutTotal').textContent = total
-        document.getElementById('cartTotal').textContent = total
+        document.getElementById('totalAmount').value = total
+
+        // Get all the quantity inputs in the table
+            var quantities = document.querySelectorAll('input[name="Quantity[]"]');
+
+            // Initialize an object to store the total quantity for each product
+            var productQuantities = {};
+
+            // Loop through the quantities and add them to the corresponding product in the object
+            for (var i = 0; i < quantities.length; i++) {
+                var productName = quantities[i].getAttribute('data-product-name');
+                var quantity = parseInt(quantities[i].value);
+
+                if (productQuantities.hasOwnProperty(productName)) {
+                    productQuantities[productName] += quantity;
+                } else {
+                    productQuantities[productName] = quantity;
+                }
+            }
+
+            // Update the hidden fields and display the total quantity for each product
+            for (var productName in productQuantities) {
+                if (productQuantities.hasOwnProperty(productName)) {
+                    var hiddenField = document.querySelector('input[name="TotalQuantity[' + productName + ']"]');
+                    var totalQuantity = productQuantities[productName];
+
+                    if (hiddenField) {
+                        hiddenField.value = totalQuantity;
+                    }
+
+                    // Display the total quantity next to the product name in the table
+                    var quantityDisplay = document.querySelector('td[data-product-name="' + productName + '"] .total-quantity');
+
+                    if (quantityDisplay) {
+                        quantityDisplay.textContent = totalQuantity;
+                    }
+                }
+            }
+
     </script>
 </body>
 </html>
