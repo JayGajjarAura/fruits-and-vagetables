@@ -23,8 +23,8 @@
                 <tbody id="cart-body">
                     {{#each Cart.Cart_products }}
                     <tr>
-                        <td style="vertical-align: text-top;" name="title">{{ this.Product.title }}</td>
                         <td style="vertical-align: text-top;"><img src="{{ this.Product.image }}"style="height: 40px; width: 50px; object-fit: contain" alt="{{ this.Product.name }}"></td>
+                        <td style="vertical-align: text-top;" name="title">{{ this.Product.title }}</td>
                         <td style="vertical-align: text-top;"> ₹ {{ this.Product.price }}</td>
                         <td style="vertical-align: text-top;" id="subQuantity">
                             <div class="d-flex">

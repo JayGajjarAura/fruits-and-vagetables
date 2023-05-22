@@ -17,6 +17,7 @@ const stripe = require("stripe")(
 const user_data = require("./model/user")
 const cart = require("./model/cart")
 const order = require('./model/order')
+const wishlist = require('./model/wishlist')
 const category = require("../Dynamic API/CategoryAdd")
 const product = require('../Dynamic API/productAdd')
 const ObjectId = mongoose.Types.ObjectId;
@@ -123,33 +124,6 @@ app.post("/API/category", upload.single("image"), async (req, res) => {
         res.status(500).send("Error saving category");
     }
 });
-
-// app.get('/autocomplete', async (req, res) => {
-//     const query = req.query.term;
-//     console.log(query)
-
-//     try {
-//         const products = await product.find({}).lean();
-
-//         const options = {
-//         extract: function(el) {
-//             return el.title;
-//         }
-//         };
-
-//         const results = fuzzy.filter(query, products, options);
-
-//         const productTitles = results.map(function(result) {
-//         return result.string;
-//         })
-
-//         res.json(productTitles);
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send('Server Error');
-//     }
-// });
-
 
 app.get('/autocomplete', async (req, res) => {
     const query = req.query.term;
@@ -395,17 +369,6 @@ app.post('/create-checkout-session', async (req, res) => {
         const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
         console.log('sessionn------',sessionDetails.payment_status)
 
-        // const order_data = new order ({
-        //     User: defaultRenderData.user.userId,
-        //     Order_Id: orderID,
-        //     order: [{
-        //         Quantity: req.body.Quantity,
-        //         itemName: req.body.itemName,
-        //         subTotal: req.body.subTotal,
-        //         grandTotal: req.body.grandTotal
-        //     }]
-        // });
-
         const order_data = new order({
             User: defaultRenderData.user.userId,
             Order_Id: orderID,
@@ -551,28 +514,56 @@ app.get('/category/:slug', async (req, res) => {
     }
 });
 
-app.get('/products/:slug', async (req, res) => {
-    const defaultRenderData = getDefaultRenderData(req);
-    const currentCurrencyLogo = currencyLogo;
-    // if (defaultRenderData.user) {
-        try {
-                const slug = req.params.slug;
-                const Product = await product.findOne({slug: slug});
-                const Category = await category.find({}).limit(5);
-                // const products = await product.find(Product);
-                // console.log(Product.title)
+// app.get('/products/:slug', async (req, res) => {
+//     const defaultRenderData = getDefaultRenderData(req);
 
-                res.render("product", {
-                    defaultRenderData,
-                    currentCurrencyLogo: currentCurrencyLogo,
-                    products: Product,
-                    Category: Category,
-                });
-            } catch (err) {
-            res.send("Error " + err);
-        }
-    // }
+//     try {
+//             const slug = req.params.slug;
+//             const Product = await product.findOne({slug: slug});
+//             const Category = await category.find({}).limit(5);
+
+//             res.render("product", {
+//                 defaultRenderData,
+//                 products: Product,
+//                 Category: Category,
+//             });
+//         } catch (err) {
+//         res.send("Error " + err);
+//     }
+// });
+
+app.get("/products/:slug", async (req, res) => {
+  const defaultRenderData = getDefaultRenderData(req);
+
+  try {
+    const slug = req.params.slug;
+    const Product = await product.findOne({ slug: slug });
+    const Category = await category.find({}).limit(5);
+
+    const userId = defaultRenderData.user.userId;
+    let isProductInWishlist = false;
+
+    if (userId) {
+      const Wishlist = await wishlist.findOne({ User: userId });
+      if (Wishlist) {
+        isProductInWishlist = Wishlist.Wishlist.some(
+          (item) =>
+            item.Product && item.Product.toString() === Product._id.toString()
+        );
+      }
+    }
+
+    res.render("product", {
+      defaultRenderData,
+      products: Product,
+      Category: Category,
+      isProductInWishlist: isProductInWishlist,
+    });
+  } catch (err) {
+    res.send("Error " + err);
+  }
 });
+
 
 app.post("/API/products", upload.single("image"), async (req, res) => {
     try {
@@ -930,21 +921,96 @@ app.get('/cancel', (req, res) => {
     }
 })
 
-app.get('/wishlist', (req, res) => {
+app.post("/wishlist/toggle/:id", async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+
+    try {
+        const userId = defaultRenderData.user.userId;
+
+        if (!userId) {
+            res.redirect("/");
+            return;
+        }
+
+        const productId = req.params.id;
+
+        let Wishlist = await wishlist.findOne({ User: userId });
+
+        if (!Wishlist) {
+            Wishlist = new wishlist({ User: userId, Wishlist: [] });
+        }
+
+        const productExistsIndex = Wishlist.Wishlist.findIndex((item) =>
+            item.Product && item.Product.equals && item.Product.equals(productId)
+        );
+
+        if (productExistsIndex !== -1) {
+            // Product already exists in the wishlist, remove it
+            Wishlist.Wishlist.splice(productExistsIndex, 1);
+        } else {
+            // Product doesn't exist in the wishlist, add it
+            Wishlist.Wishlist.push({ Product: productId });
+        }
+
+        await Wishlist.save();
+
+        // Return the updated wishlist status
+        res.json({ isInWishlist: productExistsIndex === -1 });
+    } catch (error) {
+        console.error("Error adding/removing product to/from wishlist:", error);
+        // Send an error response
+        res.status(500).send("An error occurred");
+    }
+});
+
+app.post('/wishlist/remove/:id', async (req, res) => {
+  const rowID = req.params.id;
+  try {
+    const wishlistItem = await wishlist.findOne({ 'Wishlist._id': rowID });
+    console.log('wishlistItem-------------------', wishlistItem);
+    
+    if (!wishlistItem) {
+      return res.status(404).send('Product not found in wishlist');
+    }
+    
+    // Remove the product from the Wishlist array
+    wishlistItem.Wishlist = wishlistItem.Wishlist.filter(item => item._id.toString() !== rowID);
+    
+    await wishlistItem.save();
+    
+    res.redirect('/wishlist');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.get('/wishlist', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
-    if(!defaultRenderData.user) {
-        res.redirect('/')
+    const userId = defaultRenderData.user.userId;
+
+    if (!userId) {
+        res.redirect('/');
     }
 
     try {
+        const Wishlist = await wishlist.find({ User: userId }).lean().populate({
+            path: "Wishlist.Product",
+            model: "product",
+        });
+
+        // console.log('wishlistttt-------', Wishlist[0].Wishlist)
+
         res.render('wishlist', {
-            defaultRenderData
-        })
+            defaultRenderData,
+            Wishlist: Wishlist,
+        });
     } catch (err) {
-        res.send('Error' + err)
+        res.send('Error' + err);
     }
-})
+});
 
 app.post("/logout", (req, res) => { 
     req.session.destroy(function (err) {

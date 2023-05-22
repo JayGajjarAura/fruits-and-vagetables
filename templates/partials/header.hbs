@@ -60,6 +60,7 @@
                                         <button type="submit" class="btn btn-outline-danger border-0" style="font-weight: bold;font-size: 23px;"> Logout </button>
                                     </a>
                                 </div>
+                                <span><i class="fa-solid fa-angle-down"></i></span>
                                 <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                     Welcome, {{defaultRenderData.user.username}}
@@ -67,8 +68,9 @@
                                 <div class="dropdown-menu" style="position:fixed;top:87px;left:975px">
                                     <a class="dropdown-item" href="/profile">Profile</a>
                                     <a class="dropdown-item" href="/orders">My Orders</a>
+                                    <a class="dropdown-item" href="/wishlist">My Wishlist</a>
+                                    <button type="submit" class="btn btn-outline-danger border-0" style="margin-bottom: 6px;">Logout</button>
                                 </div>
-                                <button type="submit" class="btn btn-outline-danger border-0" style="margin-bottom: 6px;">Logout</button>
                                 <a href="/cart" class="text-secondary">
                                     <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="200" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
                                     </lord-icon> 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My Orders</title>
+    <title>My Wishlist</title>
     {{> head_links}}
 </head>
 
@@ -10,24 +10,43 @@
     {{> header}}
 
     <div class="container mb-5 pb-5">
-        <div class="row">
-            {{#if orders.length}}
-                <div class="col-md-12 col-12">
-                    <h3 class="font-weight-bold">My Orders</h3>
-                </div>
-                <table class="table table-hover table-borderless spacing-table bg-white">
-                    {{else}}
-                    <div class="container mb-5 pb-5">
-                        <div class="row">
-                            <div class="col-md-12 col-12">
-                                <figure class="error_img mx-auto">
-                                    <img class="img-fluid" src="../Images/wishlist.png" alt="error img" srcset="">
-                                    <a href="/" class="go_homepage" style="margin-left: 150px;">Add Products to Wishlist</a>
-                                </figure>
-                            </div>
+        <div class="row bg-white rounded">
+            {{#if Wishlist.length}}
+            <div class="col-md-12 col-12">
+                <h3 class="font-weight-bold p-3">My Wishlist</h3>
+            </div>
+                {{#each Wishlist}}
+                        <div class="w-100">
+                            {{#each this.Wishlist}}
+                                <a href="/products/{{this.Product.slug}}">
+                                    <div class="d-flex pb-2">
+                                        <img src="{{this.Product.image}}" alt="{{this.Product.title}}" style="height: 100px; width: 100px; object-fit: contain" class="col-md-3">
+                                        <div class="my-auto col-md-9">
+                                            <span class="text-left">{{this.Product.title}}</span> 
+                                            <h4 class="text-left"> ₹ {{this.Product.price}}</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="float-right mr-5">
+                                    <form action="/wishlist/remove/{{this._id}}" method="POST">
+                                        <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="200" colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px; top:-75px" type="submit" id="{{this._id}}" class="wishlist_remove_btn btn">
+                                        </lord-icon>
+                                    </form>
+                                </div>
+                            {{/each}}
                         </div>
+                {{/each}}
+            {{else}}
+            <div class="container mb-5 pb-5">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <figure class="error_img mx-auto">
+                            <img class="img-fluid" src="../Images/wishlist.png" alt="error img">
+                            <a href="/" class="go_homepage" style="margin-left: 150px;">Add Products to Wishlist</a>
+                        </figure>
                     </div>
-                </table>
+                </div>
+            </div>
             {{/if}}
         </div>
     </div>

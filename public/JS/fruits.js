@@ -175,6 +175,38 @@ $(document).ready(function (e) {
         });
     });
 
+    $(document).on("click", ".wishlist_remove_btn", function (e) {
+        e.preventDefault();
+        let itemId = $(this).attr("id");
+        $.confirm({
+            icon: "fa fa-warning",
+            title: "Are you sure?",
+            content: "This item will be removed from Wishlist...",
+            type: "red",
+            typeAnimated: true,
+            buttons: {
+                confirm: {
+                    text: "Yes, remove it",
+                    btnClass: "btn-red",
+                    action: function () {
+                        $.ajax({
+                            url: "/wishlist/remove/" + itemId,
+                            type: "POST",
+                            success: function (result) {
+                                location.reload()
+                                // console.log('resultttttttttttttttt'+result)
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            },
+                        });
+                    },
+                },
+                cancel: function () {},
+            },
+        });
+    });
+
     $(function autocomplete() {
         let debounceTimer;
         $("#browser-input").autocomplete({
@@ -217,6 +249,8 @@ $(document).ready(function (e) {
             },
         });
     });
+    
+
 })
 
 
