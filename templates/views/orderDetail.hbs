@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Wishlist</title>
+    {{> head_links}}
+</head>
+
+<body id="main">
+    {{> header}}
+
+    <div class="container mb-5 pb-5">
+        <div class="bg-white p-3 mb-3 shadow_on_hover">
+            <div class="d-flex pb-3">
+                <a href="/orders" class="my-auto mr-2">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h3 class="my-auto">Order Details</h3>
+            </div>
+            <div class="ml-5">
+                <h5> Delivery Address </h5>
+                <div class="ml-5">
+                    {{#each Order}}
+                        {{#each order}}
+                            <h6> <span class="font-weight-bold"> Name: </span>  {{Address.[0].Name}}</h6>
+                            <h6> <span class="font-weight-bold"> Phone Number: </span>  {{Address.[0].contact_no}}</h6>
+                            <h6> <span class="font-weight-bold"> Address: </span>  {{Address.[0].house_no}}, </h6>
+                            <h6 class="ml-5 pl-4"> {{Address.[0].Area}}, </h6>
+                            <h6 class="ml-5 pl-4"> {{Address.[0].city}}: {{Address.[0].pincode}}, </h6>
+                            <h6 class="ml-5 pl-4"> {{Address.[0].state}} </h6>
+                        {{/each}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-3 shadow_on_hover">
+            {{#each Order}}
+                <p> <span class="font-weight-bold"> Order Id: </span> {{Order_Id}}</p>
+            {{/each}}
+            <div>
+                <table class="table table-borderless spacing-table">
+                    <tbody>
+                            <tr>
+                                {{#each Order}}
+                                    {{#each order}}
+                                <td>
+                                    {{#each Product}}
+                                        <img src="{{this.image}}" alt="{{this.title}}" style="height: 100px; width: 100px; object-fit: contain">
+                                    {{/each}}
+                                </td>
+                                <td>
+                                    {{#each itemName}}
+                                        <div>{{this}}</div>
+                                    {{/each}}
+                                </td>
+                                <td>
+                                    {{#each Quantity}}
+                                        <div>{{this}}</div>
+                                    {{/each}}
+                                </td>
+                                <td>
+                                    {{#each subTotal}}
+                                        <div>{{this}}</div>
+                                    {{/each}}
+                                </td>
+                            {{/each}}
+                                <td colspan="2" class="text-right"> <span class="font-weight-bold">Total: </span>₹ {{Total_amount}}</td>
+                            {{/each}}
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{> toast_subscribe}}
+    {{> footer}}
+</body>
+
+</html>

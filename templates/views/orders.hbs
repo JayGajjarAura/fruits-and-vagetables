@@ -30,7 +30,11 @@
                         <td class="text-center">{{ordered_on}}</td>
                         <td class="text-center">{{Total_items}}</td>
                         <td class="text-center">{{Total_amount}}</td>
-                        <td class="text-center">View Detail</td>
+                        <td class="text-center"> 
+                            <a href="/orders/{{Order_Id}}"> 
+                                View Detail 
+                            </a> 
+                        </td>
                     </tr>
                 {{/each}}
                 {{else}}

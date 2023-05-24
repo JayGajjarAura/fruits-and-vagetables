@@ -60,10 +60,10 @@ app.use(
         secret: "somekey",
         resave: false,
         saveUninitialized: true,
-        cookie: { 
+        cookie: {
             secure: false,
-            sameSite: 'none',
-            maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days in milliseconds
+            sameSite: "lax",
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
         }, // Set the cookie to be non-secure to run in local
     })
 );
@@ -335,12 +335,12 @@ app.post('/cart/clear/:id', async (req, res) => {
 
 app.post('/create-checkout-session', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
-    const orderID = generateToken()
+    const orderID = generateToken();
 
     const userID = defaultRenderData.user.userId;
 
     try {
-        const Cart = await cart.findOne({User: userID }).lean().populate({
+        const Cart = await cart.findOne({ User: userID }).lean().populate({
             path: "Cart_products.Product",
             model: "product",
         });
@@ -367,7 +367,7 @@ app.post('/create-checkout-session', async (req, res) => {
         });
 
         const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
-        console.log('sessionn------',sessionDetails.payment_status)
+        console.log('sessionn------', sessionDetails.payment_status);
 
         const order_data = new order({
             User: defaultRenderData.user.userId,
@@ -376,6 +376,7 @@ app.post('/create-checkout-session', async (req, res) => {
             Total_amount: req.body.totalAmount,
             order: [
                 {
+                    Product: req.body.product_id,
                     Quantity: req.body.Quantity,
                     itemName: req.body.itemName,
                     subTotal: req.body.subTotal,
@@ -394,7 +395,7 @@ app.post('/create-checkout-session', async (req, res) => {
             ],
         });
 
-        console.log('ooo-----'+order_data)
+        console.log('ooo-----', order_data);
 
         await order_data.save();
         await cart.findOneAndDelete(userID);
@@ -405,6 +406,7 @@ app.post('/create-checkout-session', async (req, res) => {
         res.status(500).send('Something went wrong.');
     }
 });
+
 
 app.get('/orders', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
@@ -429,6 +431,35 @@ app.get('/orders', async (req, res) => {
         console.error(err);
     }
 });
+
+app.get('/orders/:Order_Id', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+
+    const userID = defaultRenderData.user.userId;
+
+    const orderID = req.params.Order_Id
+    if (!userID) {
+        res.redirect('/');
+    }
+
+    try {
+
+        const Order = await order.find({ Order_Id: orderID }).lean().populate({
+            path: "order.Product",
+            model: "product",
+        });
+
+
+        // console.log('orderrrrrr---------', Order)
+        res.render('orderDetail', {
+            defaultRenderData,
+            Order: Order
+        })
+    } catch(err) {
+        console.log(err)
+    }
+
+})
 
 
 
@@ -514,54 +545,35 @@ app.get('/category/:slug', async (req, res) => {
     }
 });
 
-// app.get('/products/:slug', async (req, res) => {
-//     const defaultRenderData = getDefaultRenderData(req);
-
-//     try {
-//             const slug = req.params.slug;
-//             const Product = await product.findOne({slug: slug});
-//             const Category = await category.find({}).limit(5);
-
-//             res.render("product", {
-//                 defaultRenderData,
-//                 products: Product,
-//                 Category: Category,
-//             });
-//         } catch (err) {
-//         res.send("Error " + err);
-//     }
-// });
-
 app.get("/products/:slug", async (req, res) => {
-  const defaultRenderData = getDefaultRenderData(req);
+    const defaultRenderData = getDefaultRenderData(req);
 
-  try {
-    const slug = req.params.slug;
-    const Product = await product.findOne({ slug: slug });
-    const Category = await category.find({}).limit(5);
+    try {
+        const slug = req.params.slug;
+        const Product = await product.findOne({ slug: slug });
+        const Category = await category.find({}).limit(5);
 
-    const userId = defaultRenderData.user.userId;
-    let isProductInWishlist = false;
+        const userId = defaultRenderData.user.userId;
+        let isProductInWishlist = false;
 
-    if (userId) {
-      const Wishlist = await wishlist.findOne({ User: userId });
-      if (Wishlist) {
-        isProductInWishlist = Wishlist.Wishlist.some(
-          (item) =>
-            item.Product && item.Product.toString() === Product._id.toString()
-        );
-      }
+        if (userId) {
+            const Wishlist = await wishlist.findOne({ User: userId });
+            if (Wishlist) {
+                isProductInWishlist = Wishlist.Wishlist.some((item) =>
+                    item.Product && item.Product.toString() === Product._id.toString()
+                );
+            }
+        }
+
+        res.render("product", {
+            defaultRenderData,
+            products: Product,
+            Category: Category,
+            isProductInWishlist: isProductInWishlist,
+        });
+    } catch (err) {
+        res.send("Error " + err);
     }
-
-    res.render("product", {
-      defaultRenderData,
-      products: Product,
-      Category: Category,
-      isProductInWishlist: isProductInWishlist,
-    });
-  } catch (err) {
-    res.send("Error " + err);
-  }
 });
 
 
@@ -892,8 +904,10 @@ app.get('/top-rated', async (req, res) => {
 app.get('/thanks', (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
-    if(!defaultRenderData.user) {
-        res.redirect('/')
+    const userId = defaultRenderData.user.userId;
+
+    if (!userId) {
+        res.redirect('/');
     }
 
     try {
@@ -908,8 +922,10 @@ app.get('/thanks', (req, res) => {
 app.get('/cancel', (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
-    if(!defaultRenderData.user) {
-        res.redirect('/')
+    const userId = defaultRenderData.user.userId;
+
+    if (!userId) {
+        res.redirect('/');
     }
 
     try {

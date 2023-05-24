@@ -82,6 +82,8 @@
                                     {{ multiply this.Quantity this.Product.price }}
                                 </td>
                             </tr>
+                            <input type="hidden" name="product_id" value="{{this.Product._id}}">
+                            
                             {{/each}}
                             <tr>
                                 <td colspan="4" class="pb-3" style="font-weight:bold; text-align: right;padding-right:15px">

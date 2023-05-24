@@ -273,3 +273,10 @@ a, a:hover {
     outline: none !important;
     box-shadow: none;
 }
+
+
+/* ================ */
+
+.shadow_on_hover:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}

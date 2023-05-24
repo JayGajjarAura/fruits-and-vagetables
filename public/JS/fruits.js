@@ -44,15 +44,6 @@ $(document).ready(function (e) {
         } else {
             $(this).parent().find('input').val(currnet_val + 1);
         }
-        // console.log(currnet_val);
-        
-        // const txt = $("#qty_" + $(this).attr('id'))
-        // if (txt.val() == 10) {
-        //     $(this).css('id', 'disable')
-        //     alert("Maximum Value...")
-        // } else {
-        //     txt.val(parseInt(txt.val()) + 1)
-        // }
     })
 
     $(".minus_btn").click(function () {
@@ -63,14 +54,6 @@ $(document).ready(function (e) {
         } else {
             $(this).parent().find('input').val(currnet_val - 1);
         }
-        // console.log(currnet_val);
-        
-        // const txt = $("#qty_" + $(this).attr('id'))
-        // if (txt.val() == 0) {
-        //     $(this).css('id','disable')
-        // } else {
-        //     txt.val(parseInt(txt.val()) - 1)
-        // }
     })
 
     $(".dropdown-toggle").click (function () {
