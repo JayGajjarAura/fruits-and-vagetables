@@ -227,23 +227,24 @@ a, a:hover {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #28a745;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    /* padding: 8px 8px 8px 32px; */
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 20px;
+    color: white;
     display: block;
     transition: 0.3s;
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color: #28a745;
+    background-color: white;
 }
 
 .sidenav .closebtn {
@@ -279,4 +280,19 @@ a, a:hover {
 
 .shadow_on_hover:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    transition: 0.5s;
+}
+
+
+/* ------------ address_update ------------- */
+
+/* .address_update {
+    position: absolute;
+    right: 235px;
+    top: 267px;
+} */
+
+.address_update:hover {
+    color: #28a745;
+    cursor: pointer;
 }

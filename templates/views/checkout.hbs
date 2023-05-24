@@ -30,8 +30,8 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="validationCustom06">House / Flat No.</label>
-                                <input type="text" class="form-control" id="validationCustom06" name="houseNo" placeholder="1234"
+                                <label for="validationCustom06">House / Flat No. & Locality</label>
+                                <input type="text" class="form-control" id="validationCustom06" name="houseNo" placeholder="1234 abc"
                                     required>
                             </div>
                             <div class="col-md-6">
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 
-                    <div class="col mt-3">
+                    <div class="col mt-3 pb-3">
                         <h2>Order Summary</h2>
                         <table class="text-secondary ml-3 w-75">
                             {{#each Cart.Cart_products }}
@@ -93,7 +93,7 @@
                             <tr>
                                 <td colspan="4" style="font-weight:bold; text-align: right;padding-right:15px">
                                     <input type="hidden" name="totalAmount" id="totalAmount">
-                                    <button class="btn btn-outline-primary" type="submit">Proceed to Pay</button>
+                                    <button id="place_order_button" class="btn btn-outline-primary" type="submit">Proceed to Pay</button>
                                 </td>
                             </tr>
                         </table>

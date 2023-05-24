@@ -10,101 +10,51 @@
     {{>header}}
     <main>
         <div class="container pb-5 mb-4">
-            <div class="bg-white rounded" style="height: 520px;">
-                {{!-- <div id="showChangeEmail" class="row">
-                    <div class="col-md-6 pl-5 mt-3">
-                        <h2 class="mb-4"> Change Email</h2>
-                        <form action="/change-email" method="post">
-                            <div class="mb-3">
-                                <label for="Input_Email" class="form-label">Currnet Email address</label>
-                                <input type="email" name="current_email" class="form-control" id="Input_Email" aria-describedby="emailHelp" autocomplete="off" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="Input_Email" class="form-label">New Email address</label>
-                                <input type="email" name="new_email" class="form-control" id="Input_Email" aria-describedby="emailHelp" autocomplete="off" required>
-                            </div>
-                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">Change Email
-                            </button>
-                            {{#if success}}
-                                <div class="alert alert-success">
-                                    {{success}}
-                                </div>
-                            {{else if error}}
-                                <div class="alert alert-danger">
-                                    {{error}}
-                                </div>
-                            {{/if}}
-                        </form>
-                        <button class="showChangePassword btn btn-outline-success rounded border-0">Want to Change Password?</button>
+            <div class="row bg-white rounded p-3">
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <lord-icon src="https://cdn.lordicon.com/hbvyhtse.json" trigger="loop-on-hover" delay="300" colors="primary:#6c757d" style="width:250px;height:250px">
+                        </lord-icon>
                     </div>
-                    <div class="col-md-6">
-                        <img src="../images/mail.png" class="login_bg_img" width="100%" style="height: 520px;" alt="signup image">
+                    <div class="text-center font-weight-bold" style="font-size:30px">
+                        Hello, {{defaultRenderData.user.username}}
+                        {{#each User}}
+                            <h5> {{this.email}} </h5>
+                        {{/each}}
                     </div>
-                </div> --}}
-                <div id="showChangePassword" class="row">
-                    <div class="col-md-6 ">
-                        <img src="../images/password.png" class="login_bg_img" width="100%" style="height: 520px;" alt="signup image">
+                </div>
+                <div class="col-md-6 my-auto">
+                    <div class="card-deck pb-4">
+                        <a href="/change-password" class="w-50">
+                            <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="../images/password-small.png" style="width: 100px;"/>
+                                <div class="card-body my-auto">
+                                    <h4 class="card-title h5 h4-sm">Change Password</h4>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/address" class="w-50">
+                            <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="../images/Address-small.png" style="width: 100px;"/>
+                                <div class="card-body my-auto">
+                                    <h4 class="card-title h5 h4-sm">My Address</h4>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-6 pr-5 mt-3">
-                        <h2 class="mb-4"> Change Password </h2>
-                        {{!-- <form action="/change-password" method="post" id="mypass" name="mypass" onsubmit="return validatePassword()">
-                            <div class="mb-3">
-                                <label for="currnet_Password" class="form-label">Currnet Password</label>
-                                <input type="password" name="currnet_password" class="form-control" id="Input_Password" autocomplete="off" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="new_Password" class="form-label">New Password</label>
-                                <input type="password" name="new_password" class="form-control" id=" new_Input_Password" autocomplete="off" required>
-                                <span id="passErrMsg" class="error"></span> <br />
-                            </div>
-                            <div class="mb-3">
-                                <label for="new_Password_confirm" class="form-label">Confirm New Password</label>
-                                <input type="password" name="confirm_new_password" class="form-control" id="Input_Password_confirm" autocomplete="off" required>
-                            </div>
-                            <button type="submit" class="btn btn-outline-success rounded mb-3" onclick="validatePassword()" style="width: 100%;">
-                                Change Password
-                            </button>
-                            {{#if success}}
-                                <div class="alert alert-success">
-                                    {{success}}
+                    <div class="card-deck">
+                        <a href="/wishlist" class="w-50">
+                            <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="../images/wishlist-small.png" style="width: 100px;"/>
+                                <div class="card-body my-auto">
+                                    <h4 class="card-title h5 h4-sm"> My Wishlist </h4>
                                 </div>
-                            {{else if error}}
-                                <div class="alert alert-danger">
-                                    {{error}}
+                            </div>
+                        </a>
+                        <a href="/orders" class="w-50">
+                            <div class="card flex-row"><img class="card-img-left example-card-img-responsive" src="../images/delivery-small.png" style="width: 100px;"/>
+                                <div class="card-body my-auto">
+                                    <h4 class="card-title h5 h4-sm"> My Orders </h4>
                                 </div>
-                            {{/if}}
-                        </form> --}}
-                        <form action="/change-password" method="post" id="mypass" name="mypass" onsubmit="return validatePassword()">
-                            <div class="mb-3">
-                                <label for="currnet_Password" class="form-label">Current Password</label>
-                                <input type="password" name="current_password" class="form-control" id="Input_Password" autocomplete="off"
-                                    required>
                             </div>
-                            <div class="mb-3">
-                                <label for="new_Password" class="form-label">New Password</label>
-                                <input type="password" name="new_password" class="form-control" id="new_Input_Password" autocomplete="off"
-                                    required>
-                                <span id="passErrMsg" class="error"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="new_Password_confirm" class="form-label">Confirm New Password</label>
-                                <input type="password" name="confirm_new_password" class="form-control" id="Input_Password_confirm"
-                                    autocomplete="off" required>
-                            </div>
-                            <button type="submit" class="btn btn-outline-success rounded mb-3" style="width: 100%;">
-                                Change Password
-                            </button>
-                            {{#if success}}
-                            <div class="alert alert-success">
-                                {{success}}
-                            </div>
-                            {{else if error}}
-                            <div class="alert alert-danger">
-                                {{error}}
-                            </div>
-                            {{/if}}
-                        </form>
-                        {{!-- <h2 class="showChangeEmail btn btn-outline-success rounded border-0 mb-0">Want to Change Email?</h2> --}}
+                        </a>
                     </div>
                 </div>
             </div>

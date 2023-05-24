@@ -53,24 +53,25 @@
                                 {{!-- -------- Sidebar Code--------- --}}
                                 <div id="mySidenav" class="sidenav">
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                                    <a href="/orders" class="text-left"> My Orders </a>
-                                    <a href="/profile" class="text-left"> Change Password </a>
-                                    <a href="/wishlist" class="text-left"> My Wishlist </a>
-                                    <a class="text-left">
-                                        <button type="submit" class="btn btn-outline-danger border-0" style="font-weight: bold;font-size: 23px;"> Logout </button>
+                                    <a href="/profile" class="text-left p-2 pl-4"> <i class="fa-regular fa-address-card"></i> Profile </a>
+                                    <a href="/orders" class="text-left p-2 pl-4"> <i class="fa-solid fa-truck-fast"></i> My Orders </a>
+                                    <a href="/wishlist" class="text-left p-2 pl-4"> <i class="fa-solid fa-list-ul"></i> My Wishlist </a>
+                                    <a href="/address" class="text-left p-2 pl-4"> <i class="fa-solid fa-location-dot"></i> My Address </a>
+                                    <a class="text-left p-2 pl-4">
+                                        <button type="submit" class="btn btn-outline-danger" style="font-weight: bold;font-size: 20px;"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
                                     </a>
                                 </div>
 
-                                <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
+                                <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa-solid fa-angle-down"></i>
                                     Welcome, {{defaultRenderData.user.username}}
                                 </span>
                                 <div class="dropdown-menu" style="position:fixed;top:87px;left:975px">
-                                    <a class="dropdown-item" href="/profile">Profile</a>
-                                    <a class="dropdown-item" href="/orders">My Orders</a>
-                                    <a class="dropdown-item pb-2" href="/wishlist">My Wishlist</a>
-                                    <button type="submit" class="btn btn-outline-danger ml-4" style="margin-bottom: 6px;">Logout</button>
+                                    <a class="dropdown-item text-secondary" href="/profile"> <i class="fa-regular fa-address-card"></i></i> Profile </a>
+                                    <a class="dropdown-item text-secondary" href="/orders"> <i class="fa-solid fa-truck-fast"></i> My Orders </a>
+                                    <a class="dropdown-item text-secondary" href="/wishlist"> <i class="fa-solid fa-list-ul"></i> My Wishlist </a>
+                                    <a class="dropdown-item text-secondary pb-2" href="/address"> <i class="fa-solid fa-location-dot"></i> My Address </a>
+                                    <button type="submit" class="btn btn-outline-danger ml-4" style="margin-bottom: 6px;"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
                                 </div>
                                 <a href="/cart" class="text-secondary">
                                     <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="200" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
@@ -159,7 +160,7 @@
                             </form>
                 
                                 {{!-- for Sign Up --}}
-                            <form method="post" name="myForm" id="myForm" onsubmit="return validateForm();">
+                            <form action="/signup" method="post" name="myForm" id="myForm" onsubmit="return validateForm();">
                                 <div id="showRegister" class="w-75 mx-auto">
                                     <div class="mb-3">
                                         <label for="Input_username" class="form-label"> Username </label>

@@ -286,13 +286,13 @@ function checkPassword() {
 
 //--------- Navbar code -----------
 function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
-  document.getElementById("main").style.marginLeft = "300px";
+    document.getElementById("mySidenav").style.width = "300px";
+    document.getElementById("main").style.marginLeft = "300px";
 }
 
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
 }
 
 async function calculateCartTotals() {
@@ -333,11 +333,16 @@ async function calculateCartTotals() {
 // console.log(sessionStorage.getItem("cartTotalQuantity"))
 
 window.onload = async function () {
-    calculateCartTotals();
+    await calculateCartTotals();
     const cartTotalQuantity = sessionStorage.getItem('cartTotalQuantity');
     if (cartTotalQuantity) {
         document.getElementById("total_cart_value").textContent = cartTotalQuantity;
     }
+
+    const placeOrderButton = document.getElementById("place_order_button");
+    placeOrderButton.addEventListener("click", function() {
+        sessionStorage.clear()
+    });
 };
 
 //--------- SEARCH BAR SHORTCUT -----------

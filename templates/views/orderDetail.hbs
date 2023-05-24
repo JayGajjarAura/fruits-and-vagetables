@@ -19,15 +19,19 @@
             </div>
             <div class="ml-5">
                 <h5> Delivery Address </h5>
-                <div class="ml-5">
+                <div class="ml-5 d-flex">
                     {{#each Order}}
                         {{#each order}}
+                        <div class="col-md-6">
                             <h6> <span class="font-weight-bold"> Name: </span>  {{Address.[0].Name}}</h6>
                             <h6> <span class="font-weight-bold"> Phone Number: </span>  {{Address.[0].contact_no}}</h6>
+                        </div>
+                        <div class="col-md-6">
                             <h6> <span class="font-weight-bold"> Address: </span>  {{Address.[0].house_no}}, </h6>
                             <h6 class="ml-5 pl-4"> {{Address.[0].Area}}, </h6>
                             <h6 class="ml-5 pl-4"> {{Address.[0].city}}: {{Address.[0].pincode}}, </h6>
                             <h6 class="ml-5 pl-4"> {{Address.[0].state}} </h6>
+                        </div>
                         {{/each}}
                     {{/each}}
                 </div>
@@ -40,35 +44,35 @@
             {{/each}}
             <div>
                 <table class="table table-borderless spacing-table">
-                    <tbody>
-                            <tr>
-                                {{#each Order}}
-                                    {{#each order}}
-                                <td>
-                                    {{#each Product}}
-                                        <img src="{{this.image}}" alt="{{this.title}}" style="height: 100px; width: 100px; object-fit: contain">
-                                    {{/each}}
-                                </td>
-                                <td>
-                                    {{#each itemName}}
-                                        <div>{{this}}</div>
-                                    {{/each}}
-                                </td>
-                                <td>
-                                    {{#each Quantity}}
-                                        <div>{{this}}</div>
-                                    {{/each}}
-                                </td>
-                                <td>
-                                    {{#each subTotal}}
-                                        <div>{{this}}</div>
-                                    {{/each}}
-                                </td>
+                    {{#each Order}}
+                            <tbody>
+                            {{#each order}}
+                                <tr>
+                                    <td class="d-flex flex-column">
+                                        {{#each Product}}
+                                            <img src="{{this.image}}" alt="{{this.title}}" style="height: 100px; width: 100px; object-fit: contain">
+                                        {{/each}}
+                                    </td>
+                                    <td>
+                                        {{#each itemName}}
+                                            <div class="my-4 py-4"> {{this}} </div>
+                                        {{/each}}
+                                    </td>
+                                    <td>
+                                        {{#each Quantity}}
+                                            <div class="my-4 py-4"> {{this}} </div>
+                                        {{/each}}
+                                    </td>
+                                    <td>
+                                        {{#each subTotal}}
+                                            <div class="my-4 py-4"> {{this}} </div>
+                                        {{/each}}
+                                    </td>
+                                </tr>
                             {{/each}}
-                                <td colspan="2" class="text-right"> <span class="font-weight-bold">Total: </span>₹ {{Total_amount}}</td>
-                            {{/each}}
-                            </tr>
-                    </tbody>
+                            </tbody>
+                        <td colspan="4" class="text-right" style="padding-right: 100px;"> <span class="font-weight-bold">Total: </span>₹ {{Total_amount}}</td>
+                    {{/each}}
                 </table>
             </div>
         </div>

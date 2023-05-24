@@ -11,8 +11,6 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        // Validate email format using regex
-        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     },
     password: {
         type: String,

@@ -444,10 +444,10 @@ app.get('/orders/:Order_Id', async (req, res) => {
 
     try {
 
-        const Order = await order.find({ Order_Id: orderID }).lean().populate({
+        const Order = await order.find({ Order_Id: orderID }).sort({ordered_on: -1}).lean().populate({
             path: "order.Product",
             model: "product",
-        });
+        })
 
 
         // console.log('orderrrrrr---------', Order)
@@ -458,10 +458,7 @@ app.get('/orders/:Order_Id', async (req, res) => {
     } catch(err) {
         console.log(err)
     }
-
 })
-
-
 
 app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
     try{
@@ -576,7 +573,6 @@ app.get("/products/:slug", async (req, res) => {
     }
 });
 
-
 app.post("/API/products", upload.single("image"), async (req, res) => {
     try {
         const { filename } = req.file;
@@ -659,7 +655,6 @@ app.post("/login", async (req, res) => {
     }
 });
 
-
 app.post("/signUp", async (req, res) => {
     const password = req.body.password;
     const confirm_pass = req.body.confirm_pass;
@@ -684,7 +679,7 @@ app.post("/signUp", async (req, res) => {
             // console.log('dataaaaa------111111'+entered_data)
             await entered_data.save()
             // res.json({success: 'qwerty'})
-            console.log('dataaaaa------'+entered_data)
+            console.log('dataaaaa------', entered_data)
             res.redirect('/')
         } else {
             res.send("Passwords do not match");
@@ -694,7 +689,31 @@ app.post("/signUp", async (req, res) => {
     }
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', async (req, res) => {
+    const defaultRenderData = getDefaultRenderData(req);
+    const userID = defaultRenderData.user.userId;
+
+    if (!userID) {
+      res.redirect("/");
+    }
+
+    try {
+
+        const Category = await category.find({}).limit(5);
+        const User = await user_data.findById(userID)
+        // console.log('userrrrr-------', User)
+
+        res.render("profile", {
+            defaultRenderData,
+            Category: Category,
+            User: User
+        });
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.get('/change-password', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     // console.log(defaultRenderData.user.userId)
 
@@ -703,55 +722,59 @@ app.get('/profile', (req, res) => {
     }
 
     try {
-        res.render('profile', {
-            defaultRenderData
-        })
+
+        const Category = await category.find({}).limit(5);
+
+        res.render("changePassword", {
+            defaultRenderData,
+            Category: Category,
+        });
     } catch (err) {
         res.send('Error', err)
     }
 })
 
-app.post("/change-email", async (req, res) => {
-    const defaultRenderData = getDefaultRenderData(req);
+// app.post("/change-email", async (req, res) => {
+//     const defaultRenderData = getDefaultRenderData(req);
         
-    try {
-        const currentEmail = req.body.current_email;
-        const newEmail = req.body.new_email;
-        const userId = defaultRenderData.user.userId;
+//     try {
+//         const currentEmail = req.body.current_email;
+//         const newEmail = req.body.new_email;
+//         const userId = defaultRenderData.user.userId;
 
-        const currentUser = await user_data.findById(userId);
+//         const currentUser = await user_data.findById(userId);
 
-        if (!currentUser) {
-            throw new Error("User not found");
-        }
+//         if (!currentUser) {
+//             throw new Error("User not found");
+//         }
 
-        if (currentEmail !== currentUser.email) {
-            throw new Error( "Current email does not match the logged-in user email")
-        }
+//         if (currentEmail !== currentUser.email) {
+//             throw new Error( "Current email does not match the logged-in user email")
+//         }
 
-        if (newEmail === currentUser.email) {
-            throw new Error("New email cannot be the same as the current email")
-        }
+//         if (newEmail === currentUser.email) {
+//             throw new Error("New email cannot be the same as the current email")
+//         }
 
-        const existingUser = await user_data.findOne({ email: newEmail });
-        if (existingUser) {
-            throw new Error("Email already exists")
-        }
+//         const existingUser = await user_data.findOne({ email: newEmail });
+//         if (existingUser) {
+//             throw new Error("Email already exists")
+//         }
 
-        currentUser.email = newEmail;
-        await currentUser.save();
+//         currentUser.email = newEmail;
+//         await currentUser.save();
 
-        return res.render("profile", {
-            defaultRenderData,
-            success: 'Email updated Successfully'
-        });
-    } catch (err) {
-        return res.status(400).render("profile", {
-            defaultRenderData,
-            error: err.message,
-        });
-    }
-});
+//         return res.render("profile", {
+//             defaultRenderData,
+//             success: 'Email updated Successfully'
+//         });
+//     } catch (err) {
+//         return res.status(400).render("profile", {
+//             defaultRenderData,
+//             error: err.message,
+//         });
+//     }
+// });
 
 app.post('/change-password', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
@@ -901,7 +924,7 @@ app.get('/top-rated', async (req, res) => {
     }
 })
 
-app.get('/thanks', (req, res) => {
+app.get('/address', async(req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
     const userId = defaultRenderData.user.userId;
@@ -911,15 +934,42 @@ app.get('/thanks', (req, res) => {
     }
 
     try {
+
+        const Address = await order.find({})
+        const Category = await category.find({}).limit(5);
+
+        res.render("address", {
+            defaultRenderData,
+            Address: Address,
+            Category: Category,
+        });
+    } catch (err) {
+        res.send('Error', err)
+    }
+})
+
+app.get('/thanks', async (req, res) => {
+    let defaultRenderData = getDefaultRenderData(req);
+
+    const userId = defaultRenderData.user.userId;
+
+    if (!userId) {
+        res.redirect('/');
+    }
+
+    try {
+        const Category = await category.find({}).limit(5);
+
         res.render('thanks', {
-            defaultRenderData
+            defaultRenderData,
+            Category: Category,
         })
     } catch (err) {
         res.send('Error' + err)
     }
 })
 
-app.get('/cancel', (req, res) => {
+app.get('/cancel', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
     const userId = defaultRenderData.user.userId;
@@ -929,8 +979,12 @@ app.get('/cancel', (req, res) => {
     }
 
     try {
+
+        const Category = await category.find({}).limit(5);
+
         res.render('cancel', {
-            defaultRenderData
+            defaultRenderData,
+            Category: Category,
         })
     } catch (err) {
         res.send('Error' + err)
@@ -957,7 +1011,7 @@ app.post("/wishlist/toggle/:id", async (req, res) => {
         }
 
         const productExistsIndex = Wishlist.Wishlist.findIndex((item) =>
-            item.Product && item.Product.equals && item.Product.equals(productId)
+            item.Product?.equals?.(productId)
         );
 
         if (productExistsIndex !== -1) {
@@ -1016,12 +1070,14 @@ app.get('/wishlist', async (req, res) => {
             path: "Wishlist.Product",
             model: "product",
         });
+        const Category = await category.find({}).limit(5);
 
         // console.log('wishlistttt-------', Wishlist[0].Wishlist)
 
-        res.render('wishlist', {
+        res.render("wishlist", {
             defaultRenderData,
             Wishlist: Wishlist,
+            Category: Category,
         });
     } catch (err) {
         res.send('Error' + err);
