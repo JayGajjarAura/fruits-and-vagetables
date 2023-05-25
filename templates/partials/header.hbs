@@ -62,7 +62,7 @@
                                     </a>
                                 </div>
 
-                                <span class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="dropdown-toggle mr-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa-solid fa-angle-down"></i>
                                     Welcome, {{defaultRenderData.user.username}}
                                 </span>
@@ -70,7 +70,7 @@
                                     <a class="dropdown-item text-secondary" href="/profile"> <i class="fa-regular fa-address-card"></i></i> Profile </a>
                                     <a class="dropdown-item text-secondary" href="/orders"> <i class="fa-solid fa-truck-fast"></i> My Orders </a>
                                     <a class="dropdown-item text-secondary" href="/wishlist"> <i class="fa-solid fa-list-ul"></i> My Wishlist </a>
-                                    <a class="dropdown-item text-secondary pb-2" href="/address"> <i class="fa-solid fa-location-dot"></i> My Address </a>
+                                    <a class="dropdown-item text-secondary mb-2" href="/address"> <i class="fa-solid fa-location-dot"></i> My Address </a>
                                     <button type="submit" class="btn btn-outline-danger ml-4" style="margin-bottom: 6px;"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
                                 </div>
                                 <a href="/cart" class="text-secondary">
@@ -96,39 +96,20 @@
                 </div>
             </div>
         </div>
-
-        {{!-- for Mobile --}}
         <div class="container">
-            <div class="d-block d-lg-none">
-                <div class="collapse rounded-top" id="navbarToggleExternalContent">
-                    <div class="nav flex-column">
-                        <div class="bg-success text-white p-4">
-                            <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Home </span>
-                            <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Features </span>
-                            <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Fresh produce </span>
-                            <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Meat & Seafood
-                            </span>
-                            <span class="nav-link font-weight-bold dropdown-toggle mr-4" href="#"> Blog </span>
-                        </div>
-                    </div>
-                </div>
-                <nav class="navbar navbar-dark bg-success rounded-bottom" aria-label="">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </nav>
-            </div>
-            {{!-- for desktop --}}
             <div class="d-lg-flex justify-content-between d-none d-lg-block font-weight-bold">
                 <a href="/"> Home </a>
-                <a href="/best-sellers"> Best Sellers </a>
+                {{#each Category}}
+                <a href="/category/{{slug}}">
+                    {{name}}
+                </a>
+                {{/each}}
+                {{!-- <a href="/best-sellers"> Best Sellers </a>
                 <span> Fresh produce </span>
                 <span> Meat & Seafood </span>
                 <span> Dairy, Cheese & Eggs </span>
                 <span> Blog </span>
-                <span> About Us </span>
+                <span> About Us </span> --}}
             </div>
         </div>
         <hr class="bg-success" id="first_hr_line">

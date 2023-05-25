@@ -14,7 +14,7 @@
             <div class="pb-3">
                 <h4 class="font-weight-bold"> Address Detail </h4>
             </div>
-            <div class="ml-5">
+            <div class="mx-3">
                 {{#each Address}}
                     {{#each order}}
                         {{#each Address}}
@@ -26,66 +26,69 @@
                                         {{pincode}} 
                                     </span> 
                                 </h6>
-                                <span class="address_update show-login" id="show-login"> <i class="fa-solid fa-pen-to-square"></i> </span>
+                                <span class="address_update show-address" id="show-address-{{_id}}"> <i class="fa-solid fa-pen-to-square"></i> Change Details </span>
+                                <input type="hidden" name="address_id" value="{{_id}}">
+                            </div>
+                            <div>
+                                <div id="address_{{_id}}" class="address-popup">
+                                    <div class="address-content p-4 rounded">
+                                        <form class="border rounded p-3">
+                                            <div class="col">
+                                                <div class="form-row mb-2">
+                                                    <div class="col-md-4">
+                                                        <label for="validationCustom01">First name</label>
+                                                        <input type="text" class="form-control" id="validationCustom01" name="firstName" placeholder="First name">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="validationCustom02">Last name</label>
+                                                        <input type="text" class="form-control" id="validationCustom02" name="lastName" placeholder="Last name">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="validationCustom08">Contact Number</label>
+                                                        <input type="tel" class="form-control" id="validationCustom08" name="contactNumber" placeholder="Contact Number" pattern="[0-9]{10}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mb-2">
+                                                    <div class="col-md-6">
+                                                        <label for="validationCustom06">House / Flat No. & Locality</label>
+                                                        <input type="text" class="form-control" id="validationCustom06" name="houseNo" placeholder="1234 abc">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="validationCustom07">Area</label>
+                                                        <input type="text" class="form-control" id="validationCustom07" name="area"
+                                                            placeholder="Main St">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mb-2">
+                                                    <div class="col-md-6">
+                                                        <label for="validationCustom03">City</label>
+                                                        <input type="text" class="form-control" id="validationCustom03" name="city" placeholder="City">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label for="validationCustom04">State</label>
+                                                        <input type="text" class="form-control" id="validationCustom04" name="state"
+                                                            placeholder="State">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label for="validationCustom05">Pincode</label>
+                                                        <input type="text" class="form-control" id="validationCustom05" name="pincode" placeholder="Pincode" pattern="[0-9]{6}">
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-success mt-2 update_address_btn" data-address-id="{{_id}}"> Update Details </button>
+                                                <p id="success-message" class="mt-3 p-3 w-25" style="display:none;color: white;background-color: green;"> Address Updated Successfully </p>
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <a href="javascript:void(0)" class="close-address" id="address_{{_id}}"> &times; </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         {{/each}}
                     {{/each}}
                 {{/each}}
             </div>
-            <div id="loginpopup" class="popup">
-                <div class="popup-content">
-                    <form method="POST" class="ml-5 border rounded">
-                        <div class="col mt-3">
-                            <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom01">First name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" name="firstName"
-                                        placeholder="First name" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom02">Last name</label>
-                                    <input type="text" class="form-control" id="validationCustom02" name="lastName" placeholder="Last name"
-                                        required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom08">Contact Number</label>
-                                    <input type="tel" class="form-control" id="validationCustom08" name="contactNumber"
-                                        placeholder="Contact Number" pattern="[0-9]{10}" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="validationCustom06">House / Flat No. & Locality</label>
-                                    <input type="text" class="form-control" id="validationCustom06" name="houseNo" placeholder="1234 abc"
-                                        required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="validationCustom07">Area</label>
-                                    <input type="text" class="form-control" id="validationCustom07" name="area" placeholder="Main St"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom03">City</label>
-                                    <input type="text" class="form-control" id="validationCustom03" name="city" placeholder="City" required>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom04">State</label>
-                                    <input type="text" class="form-control" id="validationCustom04" name="state" placeholder="State"
-                                        required>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom05">Pincode</label>
-                                    <input type="text" class="form-control" id="validationCustom05" name="pincode" placeholder="Pincode"
-                                        pattern="[0-9]{6}" required>
-                                </div>
-                            </div>
-                            <button class="btn btn-success"> Update Address </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            
         </div>
     </div>
 

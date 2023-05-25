@@ -63,7 +63,7 @@ $(document).ready(function (e) {
     //______________________ Show login and signup __________________________
 
     $(".show-login").click(function () {
-      $("#loginPopup").show();
+        $("#loginPopup").show();
     });
     
     $(".showLogin").click(function () {
@@ -79,6 +79,19 @@ $(document).ready(function (e) {
     $(".close").click(function () {
         $("#loginPopup").hide();
     });
+
+    //--------------- Address ------------------
+
+    $(".show-address").click(function () {
+        // Get the form element
+        let $form = $("#address_" + $(this).attr("id").split("-")[2]);
+        $form.show();
+    });
+
+
+    $('.close-address').click(function() {
+        $(".address-popup").hide();
+    })
 
     //--------------- Change Email and Password -----------------
 
@@ -113,7 +126,6 @@ $(document).ready(function (e) {
                             type: "POST",
                             success: function (result) {
                                 location.reload(result)
-                                // console.log('resultttttttttttttttt'+result)
                             },
                             error: function (err) {
                                 console.log(err);
@@ -232,6 +244,51 @@ $(document).ready(function (e) {
             },
         });
     });
+
+    //---------------- Update Address -----------------
+
+    $(document).on("click", ".update_address_btn", function (e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Get the form element
+        let $form = $(this).closest("form")
+
+        // Get the form data
+        let formData = {
+            firstName: $form.find("#validationCustom01").val(),
+            lastName: $form.find("#validationCustom02").val(),
+            contactNumber: $form.find("#validationCustom08").val(),
+            houseNo: $form.find("#validationCustom06").val(),
+            area: $form.find("#validationCustom07").val(),
+            city: $form.find("#validationCustom03").val(),
+            state: $form.find("#validationCustom04").val(),
+            pincode: $form.find("#validationCustom05").val(),
+        };
+
+        // Get the address ID
+        let addressId = $(this).data("address-id");
+
+        console.log("address---- id-------- JS", addressId);
+
+        // Send the AJAX request
+        $.ajax({
+            type: "PATCH",
+            url: "/address/update/" + addressId,
+            data: formData,
+            success: function (response) {
+                // Handle the success response
+                console.log("Address updated successfully:", response);
+                $("#success-message").show();
+                setTimeout(function () {
+                    location.reload();
+                }, 1500);
+            },
+            error: function (error) {
+                console.log("Error updating address:", error);
+            },
+        });
+    });
+
     
 
 })

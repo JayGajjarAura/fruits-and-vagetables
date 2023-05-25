@@ -46,7 +46,7 @@ app.use(flash());
 
 // Generate a random token for verification
 function generateToken() {
-    const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const token = Math.random().toString(36).substring(2, 12)
     return token;
 }
 
@@ -395,7 +395,7 @@ app.post('/create-checkout-session', async (req, res) => {
             ],
         });
 
-        console.log('ooo-----', order_data);
+        // console.log('ooo-----', order_data);
 
         await order_data.save();
         await cart.findOneAndDelete(userID);
@@ -417,7 +417,7 @@ app.get('/orders', async (req, res) => {
     }
 
     try {
-        const orders = await order.find({ User: userID });
+        const orders = await order.find({ User: userID }).sort({ordered_on: -1});
 
         if (!orders) {
             throw new Error('User orders not found');
@@ -469,7 +469,7 @@ app.patch('/API/category/:id', upload.single("image"), async(req,res)=> {
 
         if(req.file) { // Check if new image is uploaded
             const { filename } = req.file;
-            const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
+            const imageUrl = `../uploads/${filename}`;
             Category.image = imageUrl; // Update image
         }
         const updatedSlug = slugify(Category.name, {
@@ -617,7 +617,7 @@ app.patch('/API/products/:id', upload.single("image"), async(req,res)=> {
 
         if(req.file) { // Check if new image is uploaded
             const { filename } = req.file;
-            const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${filename}`;
+            const imageUrl = `../uploads/${filename}`;
             Product.image = imageUrl; // Update image
         }
         
@@ -935,8 +935,10 @@ app.get('/address', async(req, res) => {
 
     try {
 
-        const Address = await order.find({})
+        const Address = await order.find({'User' :userId})
         const Category = await category.find({}).limit(5);
+
+        // console.log('add--------', Address[0].order[0].Address)
 
         res.render("address", {
             defaultRenderData,
@@ -944,9 +946,77 @@ app.get('/address', async(req, res) => {
             Category: Category,
         });
     } catch (err) {
-        res.send('Error', err)
+        res.send(err)
     }
 })
+
+// app.patch('/address/update/:id', async(req, res) => {
+//     try {
+//         const addressId = req.params.id;
+//         const address = await order.findOne({'order.Address._id': addressId});
+
+//         if (!address) {
+//             return res.status(404).send("Address not found");
+//         }
+
+//         const addressIndex = address.order.findIndex(addr => addr.Address[0]._id.toString() === addressId);
+//         if (addressIndex === -1) {
+//             return res.status(404).send("Address not found");
+//         }
+
+//         const formData = req.body;
+
+//         address.order[addressIndex].Address[0].Name = formData.firstName + formData.lastName || address.order[addressIndex].Address[0].Name;
+//         address.order[addressIndex].Address[0].contact_no = formData.contactNumber || address.order[addressIndex].Address[0].contact_no;
+//         address.order[addressIndex].Address[0].house_no = formData.houseNo || address.order[addressIndex].Address[0].house_no;
+//         address.order[addressIndex].Address[0].Area = formData.area || address.order[addressIndex].Address[0].Area;
+//         address.order[addressIndex].Address[0].city = formData.city || address.order[addressIndex].Address[0].city;
+//         address.order[addressIndex].Address[0].state = formData.state || address.order[addressIndex].Address[0].state;
+//         address.order[addressIndex].Address[0].pincode = formData.pincode || address.order[addressIndex].Address[0].pincode;
+
+//         await address.save();
+
+//         res.status(200).json({ message: "Address updated successfully" });
+//     } catch (err) {
+//         res.status(500).json({ error: "Error updating address" });
+//     }
+// });
+
+app.patch('/address/update/:id', async (req, res) => {
+  try {
+    const addressId = req.params.id;
+    const address = await order.findOne({'order.Address._id': addressId});
+
+    if (!address) {
+      return res.status(404).send("Address not found");
+    }
+
+    const updatedOrder = address.order.map(orderItem => {
+      const updatedAddress = orderItem.Address.find(addr => addr._id.toString() === addressId);
+
+      if (updatedAddress) {
+        updatedAddress.Name = req.body.firstName + req.body.lastName || updatedAddress.Name;
+        updatedAddress.contact_no = req.body.contactNumber || updatedAddress.contact_no;
+        updatedAddress.house_no = req.body.houseNo || updatedAddress.house_no;
+        updatedAddress.Area = req.body.area || updatedAddress.Area;
+        updatedAddress.city = req.body.city || updatedAddress.city;
+        updatedAddress.state = req.body.state || updatedAddress.state;
+        updatedAddress.pincode = req.body.pincode || updatedAddress.pincode;
+      }
+
+      return orderItem;
+    });
+
+    address.order = updatedOrder;
+    await address.save();
+
+    res.status(200).json({ message: "Address updated successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Error updating address" });
+  }
+});
+
+
 
 app.get('/thanks', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
@@ -1034,25 +1104,25 @@ app.post("/wishlist/toggle/:id", async (req, res) => {
 });
 
 app.post('/wishlist/remove/:id', async (req, res) => {
-  const rowID = req.params.id;
-  try {
-    const wishlistItem = await wishlist.findOne({ 'Wishlist._id': rowID });
-    console.log('wishlistItem-------------------', wishlistItem);
-    
-    if (!wishlistItem) {
-      return res.status(404).send('Product not found in wishlist');
+    const rowID = req.params.id;
+    try {
+        const wishlistItem = await wishlist.findOne({ 'Wishlist._id': rowID });
+        console.log('wishlistItem-------------------', wishlistItem);
+        
+        if (!wishlistItem) {
+            return res.status(404).send('Product not found in wishlist');
+        }
+        
+        // Remove the product from the Wishlist array
+        wishlistItem.Wishlist = wishlistItem.Wishlist.filter(item => item._id.toString() !== rowID);
+        
+        await wishlistItem.save();
+        
+        res.redirect('/wishlist');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
     }
-    
-    // Remove the product from the Wishlist array
-    wishlistItem.Wishlist = wishlistItem.Wishlist.filter(item => item._id.toString() !== rowID);
-    
-    await wishlistItem.save();
-    
-    res.redirect('/wishlist');
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  }
 });
 
 
