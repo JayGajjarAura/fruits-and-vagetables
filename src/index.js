@@ -8,13 +8,13 @@ const multer = require('multer')
 const slugify = require('slugify')
 const nodemailer = require("nodemailer")
 const session = require("express-session")
-const flash = require('connect-flash');
 const fuzzy = require('fuzzy');
 const stripe = require("stripe")(
     "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
 );
 
 const user_data = require("./model/user")
+const admin = require('./model/adminSchema')
 const cart = require("./model/cart")
 const order = require('./model/order')
 const wishlist = require('./model/wishlist')
@@ -42,7 +42,6 @@ hbs.registerPartials(partialsPath);
 //Body-parser middle were
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(flash());
 
 // Generate a random token for verification
 function generateToken() {
@@ -257,7 +256,7 @@ app.post('/add-to-cart', async (req, res) => {
             }
 
             await Cart.save();
-            console.log(Cart);
+            // console.log(Cart);
         }
         
         // res.send({ Success: 'Product added to cart successfully'});
@@ -271,7 +270,7 @@ app.post('/add-to-cart', async (req, res) => {
 app.post('/cart/remove/:id', async(req, res) => {
     const rowID = req.params.id
     const product = await cart.findOne({ 'Cart_products._id': rowID })
-    console.log('product-------------------',product)
+    // console.log('product-------------------',product)
 
     if (!product) {
         return res.status(404).send('Product not found in cart')
@@ -444,7 +443,7 @@ app.get('/orders/:Order_Id', async (req, res) => {
 
     try {
 
-        const Order = await order.find({ Order_Id: orderID }).sort({ordered_on: -1}).lean().populate({
+        const Order = await order.find({ Order_Id: orderID }).lean().populate({
             path: "order.Product",
             model: "product",
         })
@@ -734,48 +733,6 @@ app.get('/change-password', async (req, res) => {
     }
 })
 
-// app.post("/change-email", async (req, res) => {
-//     const defaultRenderData = getDefaultRenderData(req);
-        
-//     try {
-//         const currentEmail = req.body.current_email;
-//         const newEmail = req.body.new_email;
-//         const userId = defaultRenderData.user.userId;
-
-//         const currentUser = await user_data.findById(userId);
-
-//         if (!currentUser) {
-//             throw new Error("User not found");
-//         }
-
-//         if (currentEmail !== currentUser.email) {
-//             throw new Error( "Current email does not match the logged-in user email")
-//         }
-
-//         if (newEmail === currentUser.email) {
-//             throw new Error("New email cannot be the same as the current email")
-//         }
-
-//         const existingUser = await user_data.findOne({ email: newEmail });
-//         if (existingUser) {
-//             throw new Error("Email already exists")
-//         }
-
-//         currentUser.email = newEmail;
-//         await currentUser.save();
-
-//         return res.render("profile", {
-//             defaultRenderData,
-//             success: 'Email updated Successfully'
-//         });
-//     } catch (err) {
-//         return res.status(400).render("profile", {
-//             defaultRenderData,
-//             error: err.message,
-//         });
-//     }
-// });
-
 app.post('/change-password', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
 
@@ -836,7 +793,7 @@ app.post("/send", (req, res) => {
         from: "fortestingnodejs@gmail.com",
         to: user_mail,
         subject: "Testing",
-        text: `<p>Please click on the following link to verify your email: <a href="http://localhost:3000/welcome/${verificationToken}">click Here</a></p>`,
+        text: `<p>Thank you for subscribing to our Services </p>`,
         html: output
     };
 
@@ -852,9 +809,9 @@ app.post("/send", (req, res) => {
     });
 });
 
-app.get('/welcome/:token', (req, res) => {
-    res.render('verifyMail')
-})
+// app.get('/welcome/:token', (req, res) => {
+//     res.render('verifyMail')
+// })
 
 app.get('/whats-new', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
@@ -950,73 +907,39 @@ app.get('/address', async(req, res) => {
     }
 })
 
-// app.patch('/address/update/:id', async(req, res) => {
-//     try {
-//         const addressId = req.params.id;
-//         const address = await order.findOne({'order.Address._id': addressId});
-
-//         if (!address) {
-//             return res.status(404).send("Address not found");
-//         }
-
-//         const addressIndex = address.order.findIndex(addr => addr.Address[0]._id.toString() === addressId);
-//         if (addressIndex === -1) {
-//             return res.status(404).send("Address not found");
-//         }
-
-//         const formData = req.body;
-
-//         address.order[addressIndex].Address[0].Name = formData.firstName + formData.lastName || address.order[addressIndex].Address[0].Name;
-//         address.order[addressIndex].Address[0].contact_no = formData.contactNumber || address.order[addressIndex].Address[0].contact_no;
-//         address.order[addressIndex].Address[0].house_no = formData.houseNo || address.order[addressIndex].Address[0].house_no;
-//         address.order[addressIndex].Address[0].Area = formData.area || address.order[addressIndex].Address[0].Area;
-//         address.order[addressIndex].Address[0].city = formData.city || address.order[addressIndex].Address[0].city;
-//         address.order[addressIndex].Address[0].state = formData.state || address.order[addressIndex].Address[0].state;
-//         address.order[addressIndex].Address[0].pincode = formData.pincode || address.order[addressIndex].Address[0].pincode;
-
-//         await address.save();
-
-//         res.status(200).json({ message: "Address updated successfully" });
-//     } catch (err) {
-//         res.status(500).json({ error: "Error updating address" });
-//     }
-// });
-
 app.patch('/address/update/:id', async (req, res) => {
-  try {
-    const addressId = req.params.id;
-    const address = await order.findOne({'order.Address._id': addressId});
+    try {
+        const addressId = req.params.id;
+        const address = await order.findOne({'order.Address._id': addressId});
 
-    if (!address) {
-      return res.status(404).send("Address not found");
+        if (!address) {
+            return res.status(404).send("Address not found");
+        }
+
+        const updatedOrder = address.order.map(orderItem => {
+            const updatedAddress = orderItem.Address.find(addr => addr._id.toString() === addressId);
+
+            if (updatedAddress) {
+                updatedAddress.Name = req.body.firstName + req.body.lastName || updatedAddress.Name;
+                updatedAddress.contact_no = req.body.contactNumber || updatedAddress.contact_no;
+                updatedAddress.house_no = req.body.houseNo || updatedAddress.house_no;
+                updatedAddress.Area = req.body.area || updatedAddress.Area;
+                updatedAddress.city = req.body.city || updatedAddress.city;
+                updatedAddress.state = req.body.state || updatedAddress.state;
+                updatedAddress.pincode = req.body.pincode || updatedAddress.pincode;
+            }
+
+            return orderItem;
+        });
+
+        address.order = updatedOrder;
+        await address.save();
+
+        res.status(200).json({ message: "Address updated successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Error updating address" });
     }
-
-    const updatedOrder = address.order.map(orderItem => {
-      const updatedAddress = orderItem.Address.find(addr => addr._id.toString() === addressId);
-
-      if (updatedAddress) {
-        updatedAddress.Name = req.body.firstName + req.body.lastName || updatedAddress.Name;
-        updatedAddress.contact_no = req.body.contactNumber || updatedAddress.contact_no;
-        updatedAddress.house_no = req.body.houseNo || updatedAddress.house_no;
-        updatedAddress.Area = req.body.area || updatedAddress.Area;
-        updatedAddress.city = req.body.city || updatedAddress.city;
-        updatedAddress.state = req.body.state || updatedAddress.state;
-        updatedAddress.pincode = req.body.pincode || updatedAddress.pincode;
-      }
-
-      return orderItem;
-    });
-
-    address.order = updatedOrder;
-    await address.save();
-
-    res.status(200).json({ message: "Address updated successfully" });
-  } catch (err) {
-    res.status(500).json({ error: "Error updating address" });
-  }
 });
-
-
 
 app.get('/thanks', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
@@ -1107,7 +1030,7 @@ app.post('/wishlist/remove/:id', async (req, res) => {
     const rowID = req.params.id;
     try {
         const wishlistItem = await wishlist.findOne({ 'Wishlist._id': rowID });
-        console.log('wishlistItem-------------------', wishlistItem);
+        // console.log('wishlistItem-------------------', wishlistItem);
         
         if (!wishlistItem) {
             return res.status(404).send('Product not found in wishlist');
@@ -1160,9 +1083,108 @@ app.post("/logout", (req, res) => {
     });
 });
 
-app.get("*", (req, res) => {
+//------------------------------- Admin Panel --------------------------------
+
+app.get('/admin', (req, res) => {
+    res.render('admin')
+})
+
+app.post("/adminLogin", async (req, res) => {
+    const email = req.body.email;
+    console.log("mailllllllll", email);
+
+    const password = req.body.password;
+    console.log("passssssss", password);
+
+    const user = await admin.findOne({email: email, password: password});
+    // console.log('userrrrrr-------admin', user);
+
+    try {
+        if (user) {
+            req.session.user = {
+                username: user.username,
+                userId: user._id,
+            };
+            res.status(200).redirect('/dashboard');
+        } else {
+            res.status(401).send({ error: "Invalid email or password" });
+        }
+    } catch (error) {
+        res.send(error.message);
+    }
+});
+
+
+app.get('/dashboard', (req, res) => {
+    // res.send('dashboard')
+    try {
+        res.render('dashboard')
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.get('/product-add', (req, res) => {
+    // res.send('productAdd')
+    try {
+        res.render('productAdd')
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.get('/product-view', async (req, res) => {
+    // res.send('productView')
+    try {
+        const Products = await product.find()
+        res.render('productView', {
+            Products: Products
+        })
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.post('/product-add', (req, res) => {
+    res.send('productAdd')
+})
+
+app.get('/category-add', (req, res) => {
+    // res.send('categoryAdd')
+    try {
+        res.render('categoryAdd')
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.get('/category-view', (req, res) => {
+    // res.send('categoryView')
+    try {
+        res.render('categoryView')
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.post('/category-add', (req, res) => {
+    res.send('categoryAdd')
+})
+
+//----------------------------------------------------------------------------
+
+app.get("*", async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
-    res.render('error 404', defaultRenderData)
+    try  {
+        const Category = await category.find({}).limit(5);
+
+        res.render('error 404', {
+            defaultRenderData,
+            Category: Category
+        })
+    } catch (err) {
+        res.send('Error' + err);
+    }
 });
 
 app.listen(3000, () => {

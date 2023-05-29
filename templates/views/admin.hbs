@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin</title>
+    {{> head_links_admin}}
+</head>
+<body style="background-color: rgba(0, 0, 0, 0.3);margin-top: 90px;">
+    <div class="container">
+        <div class="rounded text-white">
+            <div class="row">
+                <div class="col-md-6 rounded login_bg_img">
+                    <img src="../images/admin.png" width="100%" alt="signup image">
+                </div>
+                <div class="col-md-6 bg-success rounded mx-auto">
+                    <div class="d-flex mb-3">
+                        <h3 class="mx-auto font-weight-bold mt-4"> Welcome Admin </h3>
+                    </div>
+                    <form method="post" id="loginForm">
+                        <div id="showLogin" class="w-75 mx-auto">
+                            <div class="mb-3">
+                                <label for="Input_Email" class="form-label">Email address</label>
+                                <input type="email" name="admin_Input_Email" class="form-control" id="admin_Input_Email"
+                                    placeholder="Enter your email..." aria-describedby="emailHelp" autocomplete="off"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Input_Password" class="form-label">Password</label>
+                                <input type="password" name="admin_Input_Password" class="form-control" id="admin_Input_Password"
+                                    placeholder="Enter your password..." autocomplete="off" required>
+                            </div>
+                            <button type="button" onclick="adminLogin()" class="btn btn-light mb-3" style="width: 100%;">Login</button>
+                            <span id="errorSpan" class="error-message bg-danger text-white"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

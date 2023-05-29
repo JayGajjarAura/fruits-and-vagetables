@@ -22,16 +22,20 @@ const productSchema = mongoose.Schema ({
         required: true
     },
     newProduct: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     flashSale: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     topRated: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     slug: {
-        type: String
+        type: String,
+        default: false
     }
 })
 

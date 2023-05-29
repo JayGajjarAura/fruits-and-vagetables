@@ -277,8 +277,8 @@ $(document).ready(function (e) {
             data: formData,
             success: function (response) {
                 // Handle the success response
-                console.log("Address updated successfully:", response);
-                $("#success-message").show();
+                // console.log("Address updated successfully:", response);
+                $(".success-message").show();
                 setTimeout(function () {
                     location.reload();
                 }, 1500);

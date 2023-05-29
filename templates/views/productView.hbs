@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Product List</title>
+    {{> head_links_admin}}
+</head>
+<body>
+    {{> header_admin}}
+    <main>
+        <div class="container">
+            <div class="row">
+                <h4 class="col-1"> Image </h4>
+                <h4 class="col-2"> Product Title </h4>
+                <h4 class="col-2"> Product Price </h4>
+                <h4 class="col-2"> New Product </h4>
+                <h4 class="col-2"> Flash Sale </h4>
+                <h4 class="col-1"> Top Rated </h4>
+                <h4 class="col-1"> Edit </h4>
+                <h4 class="col-1"> Delete </h4>
+            </div>
+            {{#each Products}}
+                <div class="row">
+                    <img class="col-1" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
+                    <h5 class="col-2 my-auto"> {{title}} </h5>
+                    <h5 class="col-2 my-auto"> ₹{{price}} </h5>
+                    <h5 class="col-2 my-auto"> {{newProduct}} </h5>
+                    <h5 class="col-2 my-auto"> {{flashSale}} </h5>
+                    <h5 class="col my-auto"> {{topRated}} </h5>
+                    <button class="col-1 btn my-auto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="col-1 btn my-auto"> 
+                        <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="200" colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px" type="submit" id="{{this._id}}" class="wishlist_remove_btn btn">
+                    </lord-icon> </button>
+                </div>
+            {{/each}}
+        </div>
+    </main>
+</body>
+</html>

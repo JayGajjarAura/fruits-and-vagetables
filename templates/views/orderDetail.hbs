@@ -59,28 +59,28 @@
                                 <tr>
                                     <td class="d-flex flex-column">
                                         {{#each Product}}
-                                            <img src="{{this.image}}" alt="{{this.title}}" style="height: 100px; width: 100px; object-fit: contain">
+                                            <img src="{{this.image}}" alt="{{this.title}}" style="height: 75px; width: 75px; object-fit: contain">
                                         {{/each}}
                                     </td>
                                     <td>
                                         {{#each itemName}}
-                                            <div class="my-4 py-4"> {{this}} </div>
+                                            <div class="my-3 py-3 "> {{this}} </div>
                                         {{/each}}
                                     </td>
                                     <td>
                                         {{#each Quantity}}
-                                            <div class="my-4 py-4"> {{this}} </div>
+                                            <div class="my-3 py-3 "> {{this}} </div>
                                         {{/each}}
                                     </td>
                                     <td>
                                         {{#each subTotal}}
-                                            <div class="my-4 py-4"> {{this}} </div>
+                                            <div class="my-3 py-3 "> {{this}} </div>
                                         {{/each}}
                                     </td>
                                 </tr>
                             {{/each}}
                             </tbody>
-                        <td colspan="4" class="text-right" style="padding-right: 100px;"> <span class="font-weight-bold">Total: </span>₹ {{Total_amount}}</td>
+                        <td colspan="4" class="text-right" style="padding-right: 90px;"> <span class="font-weight-bold">Total: </span>₹ {{Total_amount}}</td>
                     {{/each}}
                 </table>
             </div>

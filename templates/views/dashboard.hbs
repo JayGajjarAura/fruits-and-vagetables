@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    {{> head_links_admin}}
+</head>
+<body>
+    {{> header_admin}}
+
+    <main>
+        <div class="container"> 
+            <div class="col-md-12 my-auto">
+                <div class="card-deck pb-4">
+                    <a href="/product-add" class="w-50">
+                        <div class="card flex-row shadow_on_hover">
+                            <img class="card-img-left example-card-img-responsive" src="../images/password-small.png"
+                                style="width: 100px;" />
+                            <div class="card-body my-auto">
+                                <h4 class="card-title h5 h4-sm">Add Products</h4>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/product-view" class="w-50">
+                        <div class="card flex-row shadow_on_hover">
+                            <img class="card-img-left example-card-img-responsive" src="../images/Address-small.png"
+                                style="width: 100px;" />
+                            <div class="card-body my-auto">
+                                <h4 class="card-title h5 h4-sm">View Products</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-deck">
+                    <a href="/category-add" class="w-50">
+                        <div class="card flex-row shadow_on_hover">
+                            <img class="card-img-left example-card-img-responsive" src="../images/wishlist-small.png"
+                                style="width: 100px;" />
+                            <div class="card-body my-auto">
+                                <h4 class="card-title h5 h4-sm"> Add Category </h4>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/category-view" class="w-50">
+                        <div class="card flex-row shadow_on_hover">
+                            <img class="card-img-left example-card-img-responsive" src="../images/delivery-small.png"
+                                style="width: 100px;" />
+                            <div class="card-body my-auto">
+                                <h4 class="card-title h5 h4-sm"> View Categories </h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
