@@ -1,3 +1,97 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
 .login_bg_img {
     background-color: rgba(0, 128, 0, 0.250);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.shadow_on_hover:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    transition: 0.5s;
+}
+
+
+/* ------------- Product Update ------------------- */
+
+.product-content , .category-content {
+    background-color: #fefefe;
+    /* Popup background */
+    margin: 5% auto;
+    /* Center the popup */
+    width: 74%;
+}
+
+.product-popup , .category-popup {
+    display: none;
+    /* Hide the popup by default */
+    position: absolute;
+    /* Position the popup */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    z-index: 999;
+    /* Set the popup on top of everything */
+}
+
+.product_update:hover , .category_update:hover {
+    color: #28a745;
+    cursor: pointer;
+}
+
+.close-product, .close-category {
+    color: #aaa;
+    font-size: 28px;
+    position: absolute;
+    left: 1312px;
+    top: 66px;
+}
+
+.close-product:hover, .close-category:hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

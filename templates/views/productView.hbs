@@ -8,30 +8,93 @@
     {{> header_admin}}
     <main>
         <div class="container">
-            <div class="row">
-                <h4 class="col-1"> Image </h4>
-                <h4 class="col-2"> Product Title </h4>
-                <h4 class="col-2"> Product Price </h4>
-                <h4 class="col-2"> New Product </h4>
-                <h4 class="col-2"> Flash Sale </h4>
-                <h4 class="col-1"> Top Rated </h4>
-                <h4 class="col-1"> Edit </h4>
-                <h4 class="col-1"> Delete </h4>
-            </div>
+            <table class="table table-hover table-borderless spacing-table">
+                <thead>
+                    <tr>
+                        <td class="h5"> Image </td>
+                        <td class="h5"> Product Title </td>
+                        <td class="h5"> Product Price </td>
+                        <td class="h5"> New Product </td>
+                        <td class="h5"> Flash Sale </td>
+                        <td class="h5"> Top Rated </td>
+                        <td class="h5"> Edit </td>
+                        <td class="h5"> Delete </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Products}}
+                    <tr>
+                        <td>
+                            <img class="" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
+                        </td> 
+                        <td class="align-middle"> {{title}} </td>
+                        <td class="align-middle"> ₹{{price}} </td>
+                        <td class="align-middle"> {{newProduct}} </td>
+                        <td class="align-middle"> {{flashSale}} </td>
+                        <td class="align-middle"> {{topRated}} </td>
+                        <td id="show-product-{{_id}}" class="align-middle product_update show-product">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </td>
+                        <td class="align-middle"> 
+                            <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="200" colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px" type="submit" id="{{this._id}}" class="product_remove_btn btn">
+                        </lord-icon> </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
             {{#each Products}}
-                <div class="row">
-                    <img class="col-1" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
-                    <h5 class="col-2 my-auto"> {{title}} </h5>
-                    <h5 class="col-2 my-auto"> ₹{{price}} </h5>
-                    <h5 class="col-2 my-auto"> {{newProduct}} </h5>
-                    <h5 class="col-2 my-auto"> {{flashSale}} </h5>
-                    <h5 class="col my-auto"> {{topRated}} </h5>
-                    <button class="col-1 btn my-auto">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                    <button class="col-1 btn my-auto"> 
-                        <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="200" colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px" type="submit" id="{{this._id}}" class="wishlist_remove_btn btn">
-                    </lord-icon> </button>
+                <div id="product_{{_id}}" class="product-popup">
+                    <div class="product-content p-4 rounded bg-white">
+                        <form class="border rounded p-3">
+                            <div class="form-group">
+                                <label>Product Name:</label>
+                                <input type="text" id="product" name="title" required>
+                    
+                                <label>Product Category:</label>
+                                <select name="category" id="category">
+                                    {{#each ../Category}}
+                                        {{!-- <option value="{{_id}}" name="category"> {{name}} </option> --}}
+                                        <option value="{{_id}}" name="category">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="topRated"> Top Rated: </label>
+                                <select name="topRated" id="topRatedProduct">
+                                    <option value="false"> No </option>
+                                    <option value="true"> Yes </option>
+                                </select>
+                    
+                                <label for="newProduct"> New Arrival: </label>
+                                <select name="newProduct" id="newProductOption">
+                                    <option value="false"> No </option>
+                                    <option value="true"> Yes </option>
+                                </select>
+                    
+                                <label for="flashSale"> New Arrival: </label>
+                                <select name="flashSale" id="flashSaleOption">
+                                    <option value="false"> No </option>
+                                    <option value="true"> Yes </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="price"> Product Price </label>
+                                <input type="number" name="price" required>
+                    
+                                <label>Upload Image</label>
+                                <input type="file" id="productFile" name="image">
+                    
+                                <input type="hidden" name="slug">
+                            </div>
+                            <button type="submit" class="update_Product_btn btn btn-success mb-3"> Update Product </button>
+                        </form>
+                        <p class="mt-3 p-3 w-25 success-message rounded" style="display:none;color: white;background-color: green;">
+                            Product Updated Successfully 
+                        </p>
+                        <div>
+                            <a href="javascript:void(0)" class="close-product" id="address_{{_id}}"> &times; </a>
+                        </div>
+                    </div>
                 </div>
             {{/each}}
         </div>

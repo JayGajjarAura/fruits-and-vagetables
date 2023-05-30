@@ -29,7 +29,7 @@
         <div class="container">
             <div class="row py-4">
                 <div class="col mx-auto my-auto">
-                    <a href="/"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
+                    <a href="/dashboard"> <img src="../Images/Prime Food.png" width="130" alt="logo"> </a>
                 </div>
                 <div class="col-4 d-none d-lg-block my-auto">
                     <form method="get">
@@ -45,12 +45,12 @@
                 </div>
                 <div class="col d-none d-lg-block align-text-bottom">
                     <div class="font-weight-bold text-secondary text-right" style="margin-top: 10px;">
-                        {{#if defaultRenderData.user}}
-                        <form method="POST" action="/logout">
+                        {{#if AdmindefaultRenderData.user}}
+                        <form method="POST" action="/admin/logout">
                             <div class="dropdown">
-                                <span style="font-size:30px;cursor:pointer; position:absolute;left:-929px; top:-7px" onclick="openNav()">&#9776; </span>
+                                {{!-- <span style="font-size:30px;cursor:pointer; position:absolute;left:-929px; top:-7px" onclick="openNav()">&#9776; </span> --}}
                                 {{!-- -------- Sidebar Code--------- --}}
-                                <div id="mySidenav" class="sidenav">
+                                {{!-- <div id="mySidenav" class="sidenav">
                                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                                     <a href="/profile" class="text-left p-2 pl-4"> <i class="fa-regular fa-address-card"></i> Profile </a>
                                     <a href="/orders" class="text-left p-2 pl-4"> <i class="fa-solid fa-truck-fast"></i> My Orders </a>
@@ -59,24 +59,26 @@
                                     <a class="text-left p-2 pl-4">
                                         <button type="submit" class="btn btn-outline-danger" style="font-weight: bold;font-size: 20px;"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
                                     </a>
-                                </div>
+                                </div> --}}
 
-                                <span class="dropdown-toggle mr-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa-solid fa-angle-down"></i>
-                                    Welcome, {{defaultRenderData.user.username}}
-                                </span>
-                                <div class="dropdown-menu" style="position:fixed;top:87px;left:975px">
+                                {{!-- <span class="dropdown-toggle mr-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-angle-down"></i> --}}
+                                    Welcome, {{AdmindefaultRenderData.user.username}}
+                                    <button type="submit" class="btn btn-outline-danger ml-4" style="margin-bottom: 6px;"> <i
+                                            class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
+                                {{!-- </span> --}}
+                                {{!-- <div class="dropdown-menu" style="position:fixed;top:87px;left:975px">
                                     <a class="dropdown-item text-secondary" href="/profile"> <i class="fa-regular fa-address-card"></i></i> Profile </a>
                                     <a class="dropdown-item text-secondary" href="/orders"> <i class="fa-solid fa-truck-fast"></i> My Orders </a>
                                     <a class="dropdown-item text-secondary" href="/wishlist"> <i class="fa-solid fa-list-ul"></i> My Wishlist </a>
                                     <a class="dropdown-item text-secondary mb-2" href="/address"> <i class="fa-solid fa-location-dot"></i> My Address </a>
                                     <button type="submit" class="btn btn-outline-danger ml-4" style="margin-bottom: 6px;"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </button>
-                                </div>
-                                <a href="/cart" class="text-secondary">
+                                </div> --}}
+                                {{!-- <a href="/cart" class="text-secondary">
                                     <lord-icon src="https://cdn.lordicon.com/udbbfuld.json" trigger="loop-on-hover" delay="200" colors="primary:#28a745" style="width:30px;height:30px;margin-bottom: -10px;">
                                     </lord-icon> 
                                     <sup class="bg-success text-white" style="border-radius: 50%;padding:3px" id="total_cart_value" name="totalQuantity"> 0 </sup>
-                                </a>
+                                </a> --}}
                             </div>
                         </form>
                         {{else}}

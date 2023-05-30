@@ -73,6 +73,13 @@ function getDefaultRenderData(req) {
     };
 }
 
+
+function AdmingetDefaultRenderData(req) {
+    return {
+        user: req.session.user || false
+    };
+}
+
 const currencyLogo = "₹";
 
 let storage = multer.diskStorage({
@@ -1077,12 +1084,6 @@ app.get('/wishlist', async (req, res) => {
     }
 });
 
-app.post("/logout", (req, res) => { 
-    req.session.destroy(function (err) {
-        res.redirect("/");
-    });
-});
-
 //------------------------------- Admin Panel --------------------------------
 
 app.get('/admin', (req, res) => {
@@ -1116,18 +1117,42 @@ app.post("/adminLogin", async (req, res) => {
 
 
 app.get('/dashboard', (req, res) => {
+    let AdmindefaultRenderData = AdmingetDefaultRenderData(req);
+
+    const userId = AdmindefaultRenderData.user.userId;
+
+    if(!userId) {
+        res.redirect('admin')
+    }
+
     // res.send('dashboard')
     try {
-        res.render('dashboard')
+        res.render('dashboard', {
+            AdmindefaultRenderData
+        })
     } catch (err) {
         res.send(err)
     }
 })
 
-app.get('/product-add', (req, res) => {
+app.get('/product-add', async (req, res) => {
     // res.send('productAdd')
+
+    let AdmindefaultRenderData = AdmingetDefaultRenderData(req);
+
+    const userId = AdmindefaultRenderData.user.userId;
+
+    if(!userId) {
+        res.redirect('/admin')
+    }
+
     try {
-        res.render('productAdd')
+
+        const Category = await category.find({})
+        res.render('productAdd', {
+            AdmindefaultRenderData,
+            Category: Category
+        })
     } catch (err) {
         res.send(err)
     }
@@ -1135,43 +1160,111 @@ app.get('/product-add', (req, res) => {
 
 app.get('/product-view', async (req, res) => {
     // res.send('productView')
+
+    let AdmindefaultRenderData = AdmingetDefaultRenderData(req);
+
+    const userId = AdmindefaultRenderData.user.userId;
+
+    if(!userId) {
+        res.redirect('admin')
+    }
+
     try {
         const Products = await product.find()
+        const Category = await category.find()
         res.render('productView', {
-            Products: Products
+            AdmindefaultRenderData,
+            Products: Products,
+            Category: Category
         })
     } catch (err) {
         res.send(err)
     }
 })
 
-app.post('/product-add', (req, res) => {
-    res.send('productAdd')
-})
+app.post('/product/remove/:id', async (req, res) => {
+    const rowID = req.params.id;
+    try {
+        const Product = await product.findOneAndDelete({_id :rowID});
+        console.log('wishlistItem------------------- removed------------', Product);
+        
+        res.redirect('/product-view');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 app.get('/category-add', (req, res) => {
     // res.send('categoryAdd')
+    let AdmindefaultRenderData = AdmingetDefaultRenderData(req);
+
+    const userId = AdmindefaultRenderData.user.userId;
+
+    if(!userId) {
+        res.redirect('admin')
+    }
+
     try {
-        res.render('categoryAdd')
+        res.render('categoryAdd', {
+            AdmindefaultRenderData
+        })
     } catch (err) {
         res.send(err)
     }
 })
 
-app.get('/category-view', (req, res) => {
+app.get('/category-view', async (req, res) => {
     // res.send('categoryView')
+    let AdmindefaultRenderData = AdmingetDefaultRenderData(req);
+
+    const userId = AdmindefaultRenderData.user.userId;
+
+    if(!userId) {
+        res.redirect('admin')
+    }
+
     try {
-        res.render('categoryView')
+        const Category = await category.find({})
+
+        res.render('categoryView', {
+            AdmindefaultRenderData,
+            Category: Category
+        })
     } catch (err) {
         res.send(err)
     }
 })
 
-app.post('/category-add', (req, res) => {
-    res.send('categoryAdd')
-})
+app.post('/category/remove/:id', async (req, res) => {
+    const rowID = req.params.id;
+    try {
+        const Category = await category.findOneAndDelete({_id :rowID});
+        console.log('cateeeeeeeee------------------- removed------------', Category);
+
+        await product.deleteMany({ category: rowID });
+        
+        res.redirect('/category-view');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 //----------------------------------------------------------------------------
+
+
+app.post("/admin/logout", (req, res) => { 
+    req.session.destroy(function (err) {
+        res.redirect("/admin");
+    });
+});
+
+app.post("/logout", (req, res) => { 
+    req.session.destroy(function (err) {
+        res.redirect("/");
+    });
+});
 
 app.get("*", async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);

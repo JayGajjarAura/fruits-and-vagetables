@@ -19,7 +19,6 @@ const productSchema = mongoose.Schema ({
     },
     description: {
         type: String,
-        required: true
     },
     newProduct: {
         type: Boolean,
