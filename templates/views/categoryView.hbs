@@ -13,27 +13,38 @@
                     <tr>
                         <td class="h4" > Image </td>
                         <td class="h4"> Title </td>
-                        <td class="h4"> Edit </td>
+                        <td class="h4"> Category Status </td>
+                        {{!-- <td class="h4"> Edit </td> --}}
                         <td class="h4"> Delete </td>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each Category}}
+                    {{#each categoryData}}
                     <tr>
-                        <td> 
+                        <td>
                             <img class="" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
                         </td>
-                        <td class="my-auto align-middle">
+                        <td class="align-middle">
                             <h5> {{name}} </h5>
+                            <p class="text-secondary"> No. of Products in this category: <span id="total_product_qty_{{_id}}"
+                                    class="font-weight-bold"> {{totalProducts}} </span> </p>
                         </td>
                         <td class="align-middle">
+                            <label class="switch">
+                                <input type="checkbox" class="category_toggle" data-category-id="{{_id}}" {{#if active}}checked{{/if}}>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        {{!-- <td class="align-middle">
                             <button id="show-category-{{_id}}" class="btn align-middle category_update show-category">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
-                        </td>
+                        </td> --}}
                         <td class="align-middle">
                             <button class="btn">
-                                <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="200" colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px" type="submit" id="{{this._id}}" class="category_remove_btn btn">
+                                <lord-icon src="https://cdn.lordicon.com/jmkrnisz.json" trigger="loop-on-hover" delay="100"
+                                    colors="primary:#dc3545" state="hover-empty" style="width:30px;height:30px" type="submit"
+                                    data-category-id="{{_id}}" id="{{this._id}}" class="category_remove_btn btn">
                                 </lord-icon>
                             </button>
                         </td>

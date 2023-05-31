@@ -32,6 +32,10 @@ const productSchema = mongoose.Schema ({
         type: Boolean,
         default: false
     },
+    active: {
+        type: Boolean,
+        default: true
+    },
     slug: {
         type: String,
         default: false

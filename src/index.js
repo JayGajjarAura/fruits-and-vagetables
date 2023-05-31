@@ -506,11 +506,11 @@ app.get("/", async (req, res) => {
     const totalQuantity = req.session.totalQuantity;
 
     try {
-        const Category = await category.find({}).limit(5);
-        const newProducts = await product.find({ newProduct: true }).limit(5);
-        const flashSale = await product.find({flashSale: true})
-        const best_sellers = await product.find({}).limit(10)
-        const topRated = await product.find({topRated: true}).limit(6)
+        const Category = await category.find({ active: true }).limit(5);
+        const newProducts = await product.find({ newProduct: true, active: true }).limit(5);
+        const flashSale = await product.find({ flashSale: true, active: true });
+        const best_sellers = await product.find({ active: true }).limit(10);
+        const topRated = await product.find({topRated: true, active: true}).limit(6)
         res.render("index", {
             defaultRenderData,
             totalQuantity,
@@ -534,9 +534,9 @@ app.get('/category/:slug', async (req, res) => {
     
     try {
         const slug = req.params.slug;
-        const Category = await category.findOne({ slug: slug });
+        const Category = await category.findOne({ slug: slug, active: true });
         const categoryId = new ObjectId(Category._id);
-        const products = await product.find({ category: categoryId });
+        const products = await product.find({ category: categoryId, active: true });
         // res.json( products)
         res.render("categoryWiseProducts", {
             defaultRenderData,
@@ -553,8 +553,8 @@ app.get("/products/:slug", async (req, res) => {
 
     try {
         const slug = req.params.slug;
-        const Product = await product.findOne({ slug: slug });
-        const Category = await category.find({}).limit(5);
+        const Product = await product.findOne({ slug: slug, active: true });
+        const Category = await category.find({ active: true }).limit(5);
 
         const userId = defaultRenderData.user.userId;
         let isProductInWishlist = false;
@@ -825,7 +825,7 @@ app.get('/whats-new', async (req, res) => {
     const Category = await category.find({}).limit(5);
     
     try{
-        const Product = await product.find({newProduct: true})
+        const Product = await product.find({ newProduct: true, active: true });
         res.render("newProducts", {
             defaultRenderData,
             Product: Product,
@@ -841,7 +841,7 @@ app.get('/categories', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
     
     try {
-        const Category = await category.find({});
+        const Category = await category.find({ active: true });
         
         // res.json(Category)
         res.render("allCategories", {
@@ -856,10 +856,10 @@ app.get('/categories', async (req, res) => {
 app.get("/best-sellers", async (req, res) => {
 
     let defaultRenderData = getDefaultRenderData(req);
-    const Category = await category.find({}).limit(5);
+    const Category = await category.find({ active: true }).limit(5);
 
     try{
-        const Product = await product.find({})
+        const Product = await product.find({active: true})
         res.render("best_sellers", {
             defaultRenderData,
             Product: Product,
@@ -876,7 +876,7 @@ app.get('/top-rated', async (req, res) => {
     const Category = await category.find({}).limit(5);
     
     try{
-        const Product = await product.find({topRated: true})
+        const Product = await product.find({ topRated: true, active: true });
         res.render("topRated", {
             defaultRenderData,
             Product: Product,
@@ -1092,10 +1092,10 @@ app.get('/admin', (req, res) => {
 
 app.post("/adminLogin", async (req, res) => {
     const email = req.body.email;
-    console.log("mailllllllll", email);
+    // console.log("mailllllllll", email);
 
     const password = req.body.password;
-    console.log("passssssss", password);
+    // console.log("passssssss", password);
 
     const user = await admin.findOne({email: email, password: password});
     // console.log('userrrrrr-------admin', user);
@@ -1121,9 +1121,9 @@ app.get('/dashboard', (req, res) => {
 
     const userId = AdmindefaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('admin')
-    }
+    // if(!userId) {
+    //     res.redirect('admin')
+    // }
 
     // res.send('dashboard')
     try {
@@ -1142,9 +1142,9 @@ app.get('/product-add', async (req, res) => {
 
     const userId = AdmindefaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('/admin')
-    }
+    // if(!userId) {
+    //     res.redirect('/admin')
+    // }
 
     try {
 
@@ -1165,9 +1165,9 @@ app.get('/product-view', async (req, res) => {
 
     const userId = AdmindefaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('admin')
-    }
+    // if(!userId) {
+    //     res.redirect('admin')
+    // }
 
     try {
         const Products = await product.find()
@@ -1201,9 +1201,9 @@ app.get('/category-add', (req, res) => {
 
     const userId = AdmindefaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('admin')
-    }
+    // if(!userId) {
+    //     res.redirect('admin')
+    // }
 
     try {
         res.render('categoryAdd', {
@@ -1220,19 +1220,26 @@ app.get('/category-view', async (req, res) => {
 
     const userId = AdmindefaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('admin')
-    }
+    // if(!userId) {
+    //     res.redirect('admin')
+    // }
 
     try {
         const Category = await category.find({})
 
+        const categoryData = await Promise.all(Category.map(async (category) => {
+            const totalProducts = await product.countDocuments({ category });
+            return { ...category.toObject(), totalProducts };
+        }));
+
+        // console.log('count-----------', categoryData)
+
         res.render('categoryView', {
             AdmindefaultRenderData,
-            Category: Category
+            categoryData: categoryData,
         })
     } catch (err) {
-        res.send(err)
+        res.send(err,'error')
     }
 })
 
@@ -1250,6 +1257,43 @@ app.post('/category/remove/:id', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+app.put("/api/categories/:categoryId", async (req, res) => {
+    const { categoryId } = req.params;
+    const { active } = req.body;
+
+    try {
+        // Update the category's active status
+        const Category = await category.findByIdAndUpdate(
+            categoryId,
+            { active: active },
+            { new: true }
+        );
+
+        // Update the associated products' active status based on the category's active status
+        await product.updateMany(
+            { category: categoryId },
+            { active: active },
+            { multi: true }
+        );
+
+        // If the category is inactive, also hide the associated products
+        if (!active) {
+            await product.updateMany(
+                { category: categoryId },
+                { $set: { visible: false } },
+                { multi: true }
+            );
+        }
+
+        res.json(Category);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+
 
 //----------------------------------------------------------------------------
 

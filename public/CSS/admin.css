@@ -1,8 +1,8 @@
-.form-group {
+/* .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-}
+} */
 
 .form-group label {
     margin-bottom: 5px;
@@ -17,17 +17,8 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
-.btn-success {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-success:hover {
-    background-color: #218838;
+.yes_no_btn {
+    width: 110px;
 }
 
 .login_bg_img {
@@ -43,7 +34,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .shadow_on_hover:hover {
@@ -94,4 +85,61 @@ input[type=number] {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+
+/* -------------- Active Inactive switch---------------- */
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 62px;
+    height: 35px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 1;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: red;
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid transparent;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.9em;
+    width: 1.9em;
+    border-radius: 16px;
+    left: 1.2px;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px #999999;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #5fdd54;
+    border: 1px solid transparent;
+}
+
+input:checked+.slider:before {
+    transform: translateX(1.5em);
 }

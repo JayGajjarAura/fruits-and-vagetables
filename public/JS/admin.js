@@ -74,10 +74,10 @@ $(document).ready(function () {
         e.preventDefault();
 
         // Get the form data
-        var formData = new FormData($(this).closest('form')[0]);
+        let formData = new FormData($(this).closest('form')[0]);
 
         // Get the product ID from the parent element's ID attribute
-        var productId = $(this).closest('.product-popup').attr('id').split('_')[1];
+        let productId = $(this).closest('.product-popup').attr('id').split('_')[1];
 
         // Send the AJAX request
         $.ajax({
@@ -136,58 +136,89 @@ $(document).ready(function () {
 
     //--------------------- Category ----------------------
     
-    $(".show-category").click(function () {
-        // Get the form element
-        let $form = $("#category_" + $(this).attr("id").split("-")[2]);
-        $form.show();
-    });
+    // $(".show-category").click(function () {
+    //     const categoryId = $(this).attr("id").split("-")[2];
+    //     $("#category_" + categoryId).show();
+    // });
 
-    $('.close-category').click(function() {
-        $(".category-popup").hide();
-    })
+    // $(".close-category").click(function () {
+    //     $(this).closest(".category-popup").hide();
+    // });
+
 
 
     $(document).on("click", ".category_remove_btn", function (e) {
         e.preventDefault();
         let itemId = $(this).attr("id");
 
-        console.log('iddddddd--------', itemId)
-        $.confirm({
-            icon: "fa fa-warning",
-            title: "Are you sure?",
-            content: "This Category will be removed from the database...",
-            type: "red",
-            typeAnimated: true,
-            buttons: {
-                confirm: {
-                    text: "Yes, remove it",
-                    btnClass: "btn-red",
-                    action: function () {
-                        $.ajax({
-                            url: "/category/remove/" + itemId,
-                            type: "POST",
-                            success: function () {
-                                location.reload()
-                            },
-                            error: function (err) {
-                                console.log(err);
-                            },
-                        });
+        let categoryId = $(this).data("category-id");
+
+        // Construct the selector for the corresponding span element
+        let spanSelector = "#total_product_qty_" + categoryId;
+
+        // Retrieve the value from the span element
+        let productQty = $(spanSelector).text().trim();
+
+        if (productQty <= 0) {
+            $.confirm({
+                icon: "fa fa-warning",
+                title: "Are you sure?",
+                content: "This Category will be removed from the database... as well as the products from this category",
+                type: "red",
+                typeAnimated: true,
+                buttons: {
+                    confirm: {
+                        text: "Yes, remove it",
+                        btnClass: "btn-red",
+                        action: function () {
+                            $.ajax({
+                                url: "/category/remove/" + itemId,
+                                type: "POST",
+                                success: function () {
+                                    location.reload()
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                },
+                            });
+                        },
                     },
+                    cancel: function () {},
                 },
-                cancel: function () {},
-            },
-        });
+            });
+        } else {
+            // console.log('--------')
+            $.confirm({
+                icon: "fa fa-warning",
+                title: "Are you sure?",
+                content: "There are still active products in this category...",
+                type: "blue",
+                typeAnimated: true,
+                buttons: {
+                    confirm: {
+                        text: "Goto Products",
+                        btnClass: "btn-blue",
+                        action: function () {
+                            location.href = "/product-view";
+                        },
+                    },
+                    cancel: function () {},
+                },
+            });
+        }
+
+        // console.log('iddddddd--------', itemId)
+        
     });
 
     $('.update_Category_btn').click(function(e) {
         e.preventDefault();
 
         // Get the form data
-        var formData = new FormData($(this).closest('form')[0]);
+        let formData = new FormData($(this).closest('form')[0]);
 
         // Get the category ID from the parent element's ID attribute
-        var categoryId = $(this).closest('.category-popup').attr('id').split('_')[1];
+        let categoryId = $(this).closest('.category-popup').attr('id').split('_')[1];
 
         // Send the AJAX request
         $.ajax({
@@ -210,6 +241,32 @@ $(document).ready(function () {
             }
         });
     });
+
+    //-----------------------------------------------------------------
+
+    $(document).on("change", ".category_toggle", function () {
+        const categoryId = $(this).data("category-id");
+        const active = $(this).is(":checked");
+
+        $.ajax({
+            method: "PUT",
+            url: `/api/categories/${categoryId}`,
+            data: { active: active },
+            success: function (response) {
+                if (active) {
+                    $(`#product-list-${categoryId}`).show();
+                    alert('Category and Products Activated Successfully')
+                } else {
+                    $(`#product-list-${categoryId}`).hide();
+                    alert("Category and Products Inactivated Successfully");
+                }
+            },
+            error: function (error) {
+                console.error("Error updating category status", error);
+            },
+        });
+    });
+
 
 });
 
@@ -241,4 +298,21 @@ function adminLogin() {
 
     let data = JSON.stringify({ email: email, password: password });
     xhr.send(data);
+}
+
+//--------------- Image Preveiw on Upload ----------------------
+
+function previewImage(event) {
+    let input = event.target;
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            let imagePreview = document.getElementById('preview');
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }

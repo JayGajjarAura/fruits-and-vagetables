@@ -9,10 +9,10 @@ const categorySchema = new mongoose.Schema ({
         type: String,
         required: true
     },
-    status: {
-        type: Number,
+    active: {
+        type: Boolean,
         required: true,
-        default: 2
+        default: true
     },
     slug: {
         type: String
