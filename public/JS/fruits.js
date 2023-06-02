@@ -418,7 +418,7 @@ function login() {
     let password = document.getElementById("Input_Password").value;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/login", true);
+    xhr.open("POST", "/user/login", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {

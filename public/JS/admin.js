@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    // ------------Active Inactive Toast--------------
+
     $("#categoryAdd").submit(function (e) {
         e.preventDefault(); // Prevent the default form submission
 
@@ -118,7 +121,7 @@ $(document).ready(function () {
                     btnClass: "btn-red",
                     action: function () {
                         $.ajax({
-                            url: "/product/remove/" + itemId,
+                            url: "/API/product/remove/" + itemId,
                             type: "POST",
                             success: function () {
                                 location.reload()
@@ -172,7 +175,7 @@ $(document).ready(function () {
                         btnClass: "btn-red",
                         action: function () {
                             $.ajax({
-                                url: "/category/remove/" + itemId,
+                                url: "/API/category/remove/" + itemId,
                                 type: "POST",
                                 success: function () {
                                     location.reload()
@@ -199,7 +202,7 @@ $(document).ready(function () {
                         text: "Goto Products",
                         btnClass: "btn-blue",
                         action: function () {
-                            location.href = "/product-view";
+                            location.href = "/admin/product-view";
                         },
                     },
                     cancel: function () {},
@@ -243,6 +246,9 @@ $(document).ready(function () {
     });
 
     //-----------------------------------------------------------------
+    $('#activeInactiveBtn').on('click', function () {
+        $(".activeInactiveBtn").toast("show");
+    });
 
     $(document).on("change", ".category_toggle", function () {
         const categoryId = $(this).data("category-id");
@@ -250,15 +256,13 @@ $(document).ready(function () {
 
         $.ajax({
             method: "PUT",
-            url: `/api/categories/${categoryId}`,
+            url: `/API/categories/${categoryId}`,
             data: { active: active },
             success: function (response) {
                 if (active) {
                     $(`#product-list-${categoryId}`).show();
-                    alert('Category and Products Activated Successfully')
                 } else {
                     $(`#product-list-${categoryId}`).hide();
-                    alert("Category and Products Inactivated Successfully");
                 }
             },
             error: function (error) {
@@ -275,14 +279,14 @@ function adminLogin() {
     let password = document.getElementById("admin_Input_Password").value;
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/adminLogin", true);
+    xhr.open("POST", "/admin/adminLogin", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Successful response, redirect to the homepage
-                window.location.href = "/dashboard";
+                window.location.href = "/admin/dashboard";
             } else if (xhr.status === 401) {
                 // Unauthorized, display the error message
                 let response = JSON.parse(xhr.responseText);
@@ -307,10 +311,43 @@ function previewImage(event) {
     if (input.files && input.files[0]) {
         let reader = new FileReader();
 
-        reader.onload = function(e) {
-            let imagePreview = document.getElementById('preview');
+        reader.onload = function (e) {
+            let imagePreview = document.getElementById("preview");
             imagePreview.src = e.target.result;
-            imagePreview.style.display = 'block';
+            imagePreview.style.display = "block";
+            document.getElementById("removeImage").style.display = "block";
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("removeImage").addEventListener("click", function () {
+        document.getElementById("productFile").value = "";
+        document.getElementById("preview").src = "#";
+        document.getElementById("preview").style.display = "none";
+        this.style.display = "none";
+    });
+
+    document.getElementById("removeImage").addEventListener("click", function () {
+        document.getElementById("categoryFile").value = "";
+        document.getElementById("preview").src = "#";
+        document.getElementById("preview").style.display = "none";
+        this.style.display = "none";
+    });
+});
+
+function previewImageProduct(event, productId) {
+    let input = event.target;
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            let imagePreview = document.getElementById("preview_" + productId);
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+            document.getElementById("removeImage_" + productId).style.display = "block";
         };
 
         reader.readAsDataURL(input.files[0]);
