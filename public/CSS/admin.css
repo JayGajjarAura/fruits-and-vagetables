@@ -155,3 +155,9 @@ input:checked+.slider:before {
     z-index: 1000;
     width: 300px;
 }
+
+/* -------------- Image Modal-------------------- */
+.modal-body {
+    max-height: 50%;
+    object-fit: contain;
+}

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fuzzy = require('fuzzy');
 
 const product = require('../model/productAdd')
 

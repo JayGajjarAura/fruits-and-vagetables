@@ -97,7 +97,7 @@ router.get('/product-add', async (req, res) => {
     }
 })
 
-router.get('/product-view', async (req, res) => {
+router.get('/product-list', async (req, res) => {
     // res.send('productView')
 
     let defaultRenderData = getDefaultRenderData(req);
@@ -109,8 +109,8 @@ router.get('/product-view', async (req, res) => {
     }
 
     try {
-        const Products = await product.find()
-        const Category = await category.find()
+        const Products = await product.find().sort({ title: 1 });
+        const Category = await category.find().sort({ name: 1 });
         res.render('productView', {
             defaultRenderData,
             Products: Products,
@@ -140,7 +140,7 @@ router.get('/category-add', (req, res) => {
     }
 })
 
-router.get('/category-view', async (req, res) => {
+router.get('/category-list', async (req, res) => {
     // res.send('categoryView')
     let defaultRenderData = getDefaultRenderData(req);
 
@@ -151,7 +151,7 @@ router.get('/category-view', async (req, res) => {
     }
 
     try {
-        const Category = await category.find({})
+        const Category = await category.find({}).sort({name: 1})
 
         const categoryData = await Promise.all(Category.map(async (category) => {
             const totalProducts = await product.countDocuments({ category });

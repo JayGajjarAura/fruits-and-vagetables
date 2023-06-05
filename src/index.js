@@ -1169,53 +1169,53 @@ const currencyLogo = "₹";
 //     }
 // });
 
-app.get('/category-add', (req, res) => {
-    // res.send('categoryAdd')
-    let defaultRenderData = getDefaultRenderData(req);
+// app.get('/category-add', (req, res) => {
+//     // res.send('categoryAdd')
+//     let defaultRenderData = getDefaultRenderData(req);
 
-    const userId = defaultRenderData.user.userId;
+//     const userId = defaultRenderData.user.userId;
 
-    // if(!userId) {
-    //     res.redirect('admin')
-    // }
+//     // if(!userId) {
+//     //     res.redirect('admin')
+//     // }
 
-    try {
-        res.render('categoryAdd', {
-            defaultRenderData
-        })
-    } catch (err) {
-        res.send(err)
-    }
-})
+//     try {
+//         res.render('categoryAdd', {
+//             defaultRenderData
+//         })
+//     } catch (err) {
+//         res.send(err)
+//     }
+// })
 
-app.get('/category-view', async (req, res) => {
-    // res.send('categoryView')
-    let defaultRenderData = getDefaultRenderData(req);
+// app.get('/category-view', async (req, res) => {
+//     // res.send('categoryView')
+//     let defaultRenderData = getDefaultRenderData(req);
 
-    const userId = defaultRenderData.user.userId;
+//     const userId = defaultRenderData.user.userId;
 
-    // if(!userId) {
-    //     res.redirect('admin')
-    // }
+//     // if(!userId) {
+//     //     res.redirect('admin')
+//     // }
 
-    try {
-        const Category = await category.find({})
+//     try {
+//         const Category = await category.find({})
 
-        const categoryData = await Promise.all(Category.map(async (category) => {
-            const totalProducts = await product.countDocuments({ category });
-            return { ...category.toObject(), totalProducts };
-        }));
+//         const categoryData = await Promise.all(Category.map(async (category) => {
+//             const totalProducts = await product.countDocuments({ category });
+//             return { ...category.toObject(), totalProducts };
+//         }));
 
-        // console.log('count-----------', categoryData)
+//         // console.log('count-----------', categoryData)
 
-        res.render('categoryView', {
-            defaultRenderData,
-            categoryData: categoryData,
-        })
-    } catch (err) {
-        res.send(err,'error')
-    }
-})
+//         res.render('categoryView', {
+//             defaultRenderData,
+//             categoryData: categoryData,
+//         })
+//     } catch (err) {
+//         res.send(err,'error')
+//     }
+// })
 
 // app.post('/category/remove/:id', async (req, res) => {
 //     const rowID = req.params.id;

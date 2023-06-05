@@ -80,7 +80,7 @@ router.post('/category/remove/:id', async (req, res) => {
 
         await product.deleteMany({ category: rowID });
         
-        res.redirect('/category-view');
+        res.redirect('/admin/category-view');
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');

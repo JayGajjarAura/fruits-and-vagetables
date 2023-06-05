@@ -1,0 +1,56 @@
+<nav aria-label="breadcrumb" class="rounded">
+    <ol id="breadcrumb" class="breadcrumb bg-white rounded border"></ol>
+</nav>
+
+<script>
+    // Function to generate the dynamic breadcrumbs
+    function generateBreadcrumbs() {
+            const breadcrumbElement = document.getElementById('breadcrumb');
+            const pathParts = window.location.pathname.split('/admin/').filter(part => part !== ''); // Extract path parts
+
+            const titleCase = pathParts.map(part => {
+                const parts = part.split(/[-_]/);
+                return parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
+            });
+
+            // Clear existing breadcrumbs
+            breadcrumbElement.innerHTML = '';
+
+            // Create the Home breadcrumb item
+            const homeItem = document.createElement('li');
+            homeItem.classList.add('breadcrumb-item');
+            const homeLink = document.createElement('a');
+            homeLink.href = '/admin/dashboard';
+            homeLink.textContent = 'Dashboard';
+            homeItem.appendChild(homeLink);
+            breadcrumbElement.appendChild(homeItem);
+
+            // Loop through the path parts to generate breadcrumb items
+            let currentPath = '/dashboard';
+            for (let i = 0; i < pathParts.length; i++) {
+                currentPath += '/' + pathParts[i];
+
+                const breadcrumbItem = document.createElement('li');
+                breadcrumbItem.classList.add('breadcrumb-item');
+
+                if (i === pathParts.length - 1) {
+                    // Last item, no link needed
+                    breadcrumbItem.classList.add('active');
+                    breadcrumbItem.textContent = titleCase[i];
+                } else {
+                    // Create a link for the breadcrumb item
+                    const breadcrumbLink = document.createElement('a');
+                    breadcrumbLink.href = currentPath;
+                    breadcrumbLink.textContent = titleCase[i];
+                    breadcrumbItem.appendChild(breadcrumbLink);
+                }
+
+                breadcrumbElement.appendChild(breadcrumbItem);
+            }
+        }
+
+
+
+    // Call the generateBreadcrumbs function
+    generateBreadcrumbs();
+</script>

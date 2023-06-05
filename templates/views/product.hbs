@@ -8,6 +8,7 @@
     {{>header}}
     <main>
         <div class="container pb-5 mb-4">
+            {{>breadCrumbs}}
             <form action="/cart/add-to-cart" method="post" >
                 <div class="row bg-white rounded m-0" style="height: 500px; width:100%">
                     <div class="col-6 my-auto">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
             </form>
-            <div style="position:relative;left: 1050px;top: -490px;">
+            <div style="position:absolute;left: 1265px;top: 205px;">
                 <form id="wishlist-form" method="post">
                     <button type="submit" class="btn wishlist_btn">
                         <i class="far fa-light fa-heart{{#if isProductInWishlist}} fas {{/if}}" id="heart-icon" style="font-size: 25px;"></i>
