@@ -8,7 +8,7 @@ $(document).ready(function (e) {
     //............. ADD TO CART TOAST...........
     $(".add_to_cart_toast").on('click' ,function () {
         let cart_toast_info = $(this).parent().find("input").val();
-        console.log(cart_toast_info)
+        // console.log(cart_toast_info)
 
         document.getElementById("add_to_cart_toast").innerHTML =  cart_toast_info + " items added to your cart...";
 
@@ -157,7 +157,7 @@ $(document).ready(function (e) {
                             type: "POST",
                             success: function (result) {
                                 location.reload()
-                                console.log('resultttttttttttttttt'+result)
+                                // console.log('resultttttttttttttttt'+result)
                             },
                             error: function (err) {
                                 console.log(err);
@@ -268,7 +268,7 @@ $(document).ready(function (e) {
         // Get the address ID
         let addressId = $(this).data("address-id");
 
-        console.log("address---- id-------- JS", addressId);
+        // console.log("address---- id-------- JS", addressId);
 
         // Send the AJAX request
         $.ajax({

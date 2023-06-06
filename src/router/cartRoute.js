@@ -85,7 +85,7 @@ router.post('/add-to-cart', async (req, res) => {
             });
 
             await newCart.save();
-            console.log(newCart);
+            // console.log(newCart);
         } else {
             const cartProductIndex = Cart.Cart_products.findIndex((item) =>
                 item.Product.equals(req.body.productId)
@@ -193,7 +193,7 @@ router.get('/checkout', async (req, res) => {
     let defaultRenderData = getDefaultRenderData(req);
 
     const userId = defaultRenderData.user.userId;
-    console.log('user---------'+ userId)
+    // console.log('user---------'+ userId)
     if(!userId) {
         res.redirect('/')
     }
@@ -251,7 +251,7 @@ router.post('/create-checkout-session', async (req, res) => {
         });
 
         const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
-        console.log('sessionn------', sessionDetails.payment_status);
+        // console.log('sessionn------', sessionDetails.payment_status);
 
         const order_data = new order({
             User: defaultRenderData.user.userId,

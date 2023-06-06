@@ -71,7 +71,7 @@ router.post("/signUp", async (req, res) => {
             // console.log('dataaaaa------111111'+entered_data)
             await entered_data.save()
             // res.json({success: 'qwerty'})
-            console.log('dataaaaa------', entered_data)
+            // console.log('dataaaaa------', entered_data)
             res.redirect('/')
         } else {
             res.send("Passwords do not match");
@@ -131,13 +131,13 @@ router.post('/change-password', async (req, res) => {
 
     try {
             const currentPassword = req.body.currentPassword;
-            console.log("body password--------", currentPassword);
+            // console.log("body password--------", currentPassword);
             const newPassword = req.body.newPassword;
             const confirmNewPassword = req.body.confirmNewPassword;
             const userId = defaultRenderData.user.userId;
 
             const currentUserPassword = await user_data.findById(userId);
-            console.log("current password-----------", currentUserPassword);
+            // console.log("current password-----------", currentUserPassword);
 
             if (currentPassword !== currentUserPassword.password) {
                 throw new Error(

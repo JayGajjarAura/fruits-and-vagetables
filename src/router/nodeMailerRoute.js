@@ -58,7 +58,7 @@ router.post("/", (req, res) => {
         if (error) {
             return console.log(error);
         }
-        console.log("Message sent: ", user_mail)
+        // console.log("Message sent: ", user_mail)
 
         // res.json('Success')
         res.redirect("/");

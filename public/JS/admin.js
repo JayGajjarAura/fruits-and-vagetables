@@ -15,8 +15,8 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
-                console.log('Category Added Success');
+                // console.log(response);
+                // console.log('Category Added Success');
                 $(".success-message").show();
                 setTimeout(function () {
                     $(".success-message").fadeOut();
@@ -102,7 +102,7 @@ $(document).ready(function () {
             contentType: false,
             success: function(response) {
                 // Handle the successful response
-                console.log(response);
+                // console.log(response);
                 $(".success-message").show();
                 setTimeout(function () {
                     location.reload();
@@ -119,7 +119,7 @@ $(document).ready(function () {
         e.preventDefault();
         let itemId = $(this).attr("id");
 
-        console.log('iddddddd--------', itemId)
+        // console.log('iddddddd--------', itemId)
         $.confirm({
             icon: "fa fa-warning",
             title: "Are you sure?",
@@ -243,7 +243,7 @@ $(document).ready(function () {
             contentType: false,
             success: function(response) {
                 // Handle the successful response
-                console.log(response);
+                // console.log(response);
                 $(".success-message").show();
                 setTimeout(function () {
                     location.reload();

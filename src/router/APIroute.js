@@ -36,7 +36,7 @@ router.post("/category", upload.single("image"), async (req, res) => {
                 strict: true
             })
         });
-        console.log(newCategory)
+        // console.log(newCategory)
 
         await newCategory.save();
 
