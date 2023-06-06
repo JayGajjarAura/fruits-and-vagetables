@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const dotenv = require('dotenv')
+dotenv.config()
 const session = require("express-session")
-const stripe = require("stripe")(
-    "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
-);
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 const category = require('../model/CategoryAdd');
 const cart = require('../model/cart')
@@ -39,9 +39,9 @@ router.get('/', async (req, res) => {
 
     const userId = defaultRenderData.user.userId;
     // console.log('user---------'+ userId)
-    // if(!userId) {
-    //     res.redirect('/')
-    // }
+    if(!userId) {
+        res.redirect('/')
+    }
 
     try {
         const Category = await category.find({})
@@ -282,7 +282,8 @@ router.post('/create-checkout-session', async (req, res) => {
         // console.log('ooo-----', order_data);
 
         await order_data.save();
-        await cart.findOneAndDelete(userID);
+        // await cart.findOneAndDelete({userID});
+        await cart.findOneAndDelete({ User: defaultRenderData.user.userId });
 
         res.redirect(303, session.url);
     } catch (error) {

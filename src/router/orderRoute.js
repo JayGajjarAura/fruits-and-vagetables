@@ -27,9 +27,9 @@ router.get('/', async (req, res) => {
     const defaultRenderData = getDefaultRenderData(req);
 
     const userID = defaultRenderData.user.userId;
-    // if (!userID) {
-    //     res.redirect('/');
-    // }
+    if (!userID) {
+        res.redirect('/');
+    }
 
     try {
         const orders = await order.find({ User: userID }).sort({ordered_on: -1});

@@ -76,7 +76,7 @@ router.post('/category/remove/:id', async (req, res) => {
     const rowID = req.params.id;
     try {
         const Category = await category.findOneAndDelete({_id :rowID});
-        console.log('cateeeeeeeee------------------- removed------------', Category);
+        // console.log('cateeeeeeeee------------------- removed------------', Category);
 
         await product.deleteMany({ category: rowID });
         
@@ -89,7 +89,7 @@ router.post('/category/remove/:id', async (req, res) => {
 
 router.post("/products", upload.single("image"), async (req, res) => {
 
-        console.log("sluggggggg", req.body.title);
+        // console.log("sluggggggg", req.body.title);
 
     try {
         const { filename } = req.file;
@@ -155,7 +155,7 @@ router.post('/product/remove/:id', async (req, res) => {
     const rowID = req.params.id;
     try {
         const Product = await product.findOneAndDelete({_id :rowID});
-        console.log('product------------------- removed------------', Product);
+        // console.log('product------------------- removed------------', Product);
         
         res.redirect('/product-view');
     } catch (err) {

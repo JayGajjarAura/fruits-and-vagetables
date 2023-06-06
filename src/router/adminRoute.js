@@ -31,13 +31,13 @@ router.get('/', (req, res) => {
 
 router.post("/adminLogin", async (req, res) => {
     const email = req.body.email;
-    console.log("mailllllllll", email);
+    // console.log("mailllllllll", email);
 
     const password = req.body.password;
-    console.log("passssssss", password);
+    // console.log("passssssss", password);
 
     const user = await admin.findOne({email: email, password: password});
-    console.log('userrrrrr-------admin', user);
+    // console.log('userrrrrr-------admin', user);
 
     try {
         if (user) {

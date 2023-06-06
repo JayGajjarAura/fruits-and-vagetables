@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
-    // ------------Active Inactive Toast--------------
-
-    $("#categoryAdd").submit(function (e) {
+    // $("#categoryAdd").submit(function (e) {
+    $(document).on('submit', '#categoryAdd', function(e) {
         e.preventDefault(); // Prevent the default form submission
 
         // Create a FormData object to store the form data
@@ -29,7 +28,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#productAdd").submit(function (e) {
+    // $("#productAdd").submit(function (e) {
+    $(document).on('submit', '#productAdd', function(e) {
         e.preventDefault(); // Prevent the default form submission
 
         // Create a FormData object to store the form data
@@ -61,19 +61,30 @@ $(document).ready(function () {
 
     //----------------------- PRODUCT ---------------------
 
-    $(".show-product").click(function () {
+    // $(".show-product").click(function () {
+    //     // Get the form element
+    //     let $form = $("#product_" + $(this).attr("id").split("-")[2]);
+    //     $form.show();
+    // });
+
+    $(document).on("click", ".show-product", function () {
         // Get the form element
         let $form = $("#product_" + $(this).attr("id").split("-")[2]);
         $form.show();
     });
 
 
-    $('.close-product').click(function() {
+    $(document).on('click', '.close-product', function() {
         $(".product-popup").hide();
     })
 
+    // $('.close-product').click(function() {
+    //     $(".product-popup").hide();
+    // })
+
     // Add an event listener to the update button
-    $('.update_Product_btn').click(function(e) {
+    // $('.update_Product_btn').click(function(e) {
+    $(document).on('click', '.update_Product_btn', function(e) {
         e.preventDefault();
 
         // Get the form data
@@ -322,21 +333,6 @@ function previewImage(event) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("removeImage").addEventListener("click", function () {
-        document.getElementById("productFile").value = "";
-        document.getElementById("preview").src = "#";
-        document.getElementById("preview").style.display = "none";
-        this.style.display = "none";
-    });
-
-    document.getElementById("removeImage").addEventListener("click", function () {
-        document.getElementById("categoryFile").value = "";
-        document.getElementById("preview").src = "#";
-        document.getElementById("preview").style.display = "none";
-        this.style.display = "none";
-    });
-});
 
 function previewImageProduct(event, productId) {
     let input = event.target;
@@ -353,3 +349,26 @@ function previewImageProduct(event, productId) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("removeImage").addEventListener("click", function () {
+        document.getElementById("productFile").value = "";
+        document.getElementById("preview").src = "#";
+        document.getElementById("preview").style.display = "none";
+        this.style.display = "none";
+    });
+
+    document.getElementById("removeImage").addEventListener("click", function () {
+        document.getElementById("categoryFile").value = "";
+        document.getElementById("preview").src = "#";
+        document.getElementById("preview").style.display = "none";
+        this.style.display = "none";
+    });
+
+    document.getElementById("removeImage").addEventListener("click", function () {
+        document.getElementById("productFileEdit").value = "";
+        document.getElementById("preview").src = "#";
+        document.getElementById("preview").style.display = "none";
+        this.style.display = "none";
+    });
+});

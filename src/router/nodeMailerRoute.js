@@ -29,7 +29,7 @@ function generateToken() {
 
 router.post("/", (req, res) => {
     const verificationToken = generateToken();
-    console.log('tokennn-----',verificationToken)
+    // console.log('tokennn-----',verificationToken)
 
     const output = `<p>Thank you for subscribing to our Services </p>`;
 
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     });
 
     const user_mail = req.body.email
-    console.log('mmmmm',user_mail)
+    // console.log('mmmmm',user_mail)
 
     const mailOptions = {
         from: "fortestingnodejs@gmail.com",

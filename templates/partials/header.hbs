@@ -117,11 +117,11 @@
                 <div class="container m-0">
                     <div class="row">
                         <div class="col-md-6 bg-success rounded mx-auto">
-                            <div class="d-flex mb-3">
-                                <h3 class="mx-auto font-weight-bold mt-4"> Welcome Back </h3>
-                            </div>
                             <form method="post" id="loginForm">
                                 <div id="showLogin" class="w-75 mx-auto">
+                                    <div class="d-flex mb-3">
+                                        <h3 class="mx-auto font-weight-bold mt-4"> Welcome Back </h3>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="Input_Email" class="form-label">Email address</label>
                                         <input type="email" name="email" class="form-control" id="Input_Email" placeholder="Enter your email..." aria-describedby="emailHelp" autocomplete="off" required>
@@ -140,8 +140,11 @@
                             </form>
                 
                                 {{!-- for Sign Up --}}
-                            <form action="/signup" method="post" name="myForm" id="myForm" onsubmit="return validateForm();">
+                            <form action="/user/signup" method="post" name="myForm" id="myForm" onsubmit="return validateForm();">
                                 <div id="showRegister" class="w-75 mx-auto">
+                                    <div class="d-flex mb-3">
+                                        <h3 class="mx-auto font-weight-bold mt-4"> Hello... </h3>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="Input_username" class="form-label"> Username </label>
                                         <input type="text" name="username" class="form-control" id="Input_username" autocomplete="off" required>

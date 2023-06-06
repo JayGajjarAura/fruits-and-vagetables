@@ -5,6 +5,7 @@ const hbs = require('hbs')
 
 const app = express();
 require('./src/db/db')
+const breadcrumbMiddleware = require('./src/middleware/breadcrumbsMiddleware')
 
 //paths for express config
 const publicDirectory = path.join(__dirname, "../fruits-and-vagetables/public");
@@ -18,12 +19,13 @@ hbs.registerPartials(partialsPath);
 
 //Body-parser middle were
 app.use(bodyParser.json())
-app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(express.urlencoded({ extended: true }));
 
 // Setup static dictionary to serve
 app.use(express.static(publicDirectory));
+
+// Breadcrumbs...
+app.use(breadcrumbMiddleware)
 
 //
 hbs.registerHelper("multiply", function (a, b) {
@@ -52,7 +54,7 @@ app.use('/wishlist', wishlistRoute)
 app.use('/admin', AdminRoute)
 app.use('/address', AddressRoute)
 app.use('/mail', NodeMailerRoute)
-app.use('/404', ErrorRoute)
+app.use('/', ErrorRoute)
 
 // Start the server
 app.listen(3000, () => {

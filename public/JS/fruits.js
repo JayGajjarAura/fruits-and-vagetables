@@ -6,7 +6,7 @@ $(document).ready(function (e) {
     });
 
     //............. ADD TO CART TOAST...........
-    $(".add_to_cart_toast").click(function () {
+    $(".add_to_cart_toast").on('click' ,function () {
         let cart_toast_info = $(this).parent().find("input").val();
         console.log(cart_toast_info)
 
@@ -31,12 +31,12 @@ $(document).ready(function (e) {
         //     console.log(total_cart_value())
         // })
 
-    $('.add_to_cart_btn').click(function() {
+    $('.add_to_cart_btn').on('click',function() {
         document.getElementById('total_cart_value').innerHTML = total_cart_value() 
     })
 
     //.......... Add to cart plus btn ............
-    $(".plus_btn").click(function() {
+    $(".plus_btn").on('click',function() {
         let currnet_val = parseInt($(this).parent().find('input').val());
         if(currnet_val == 10) {
             $(this).css('id', 'disable')
@@ -46,7 +46,7 @@ $(document).ready(function (e) {
         }
     })
 
-    $(".minus_btn").click(function () {
+    $(".minus_btn").on('click',function () {
         let currnet_val = parseInt($(this).parent().find('input').val());
         if(currnet_val == 0) {
             $(this).css('id', 'disable')
@@ -56,40 +56,40 @@ $(document).ready(function (e) {
         }
     })
 
-    $(".dropdown-toggle").click (function () {
+    $(".dropdown-toggle").on ('click',function () {
         $(".dropdown-menu").toggle();
     });
 
     //______________________ Show login and signup __________________________
 
-    $(".show-login").click(function () {
+    $(".show-login").on('click',function () {
         $("#loginPopup").show();
     });
     
-    $(".showLogin").click(function () {
+    $(".showLogin").on('click',function () {
         $("#showLogin").show();
         $("#showRegister").hide();
     });
 
-    $(".showRegister").click(function () {
+    $(".showRegister").on('click',function () {
         $("#showRegister").show();
         $("#showLogin").hide();
     });
 
-    $(".close").click(function () {
+    $(".close").on('click',function () {
         $("#loginPopup").hide();
     });
 
     //--------------- Address ------------------
 
-    $(".show-address").click(function () {
+    $(".show-address").on('click',function () {
         // Get the form element
         let $form = $("#address_" + $(this).attr("id").split("-")[2]);
         $form.show();
     });
 
 
-    $('.close-address').click(function() {
+    $('.close-address').on('click',function() {
         $(".address-popup").hide();
     })
 
@@ -97,12 +97,12 @@ $(document).ready(function (e) {
 
     $("#showChangeEmail").hide();
 
-    $(".showChangeEmail").click(function () {
+    $(".showChangeEmail").on('click',function () {
         $("#showChangeEmail").show();
         $("#showChangePassword").hide();
     });
 
-    $(".showChangePassword").click(function () {
+    $(".showChangePassword").on('click',function () {
         $("#showChangePassword").show();
         $("#showChangeEmail").hide();
     });

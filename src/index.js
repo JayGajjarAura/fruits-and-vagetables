@@ -1,78 +1,78 @@
-const express = require("express")
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const hbs = require("hbs")
-const path = require("path")
-const multer = require('multer')
-const slugify = require('slugify')
-const nodemailer = require("nodemailer")
-const session = require("express-session")
-const fuzzy = require('fuzzy');
-const stripe = require("stripe")(
-    "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
-);
+// const express = require("express")
+// const bodyParser = require('body-parser')
+// const mongoose = require('mongoose')
+// const hbs = require("hbs")
+// const path = require("path")
+// const multer = require('multer')
+// const slugify = require('slugify')
+// const nodemailer = require("nodemailer")
+// const session = require("express-session")
+// const fuzzy = require('fuzzy');
+// const stripe = require("stripe")(
+//     "sk_test_51N1qXSSEaYr7gzBKRVlJdXlZamDiI2W9ErLtMqxF15MSNtNfqFufFmzVdkWW4qKEVMWwdM0KnLnDmJjIsnSvruQZ00alFo2ZKS"
+// );
 
-const user_data = require("./model/user")
-const admin = require('./model/adminSchema')
-const cart = require("./model/cart")
-const order = require('./model/order')
-const wishlist = require('./model/wishlist')
-const category = require("../Dynamic API/CategoryAdd")
-const product = require('../Dynamic API/productAdd')
-const ObjectId = mongoose.Types.ObjectId;
+// const user_data = require("./model/user")
+// const admin = require('./model/adminSchema')
+// const cart = require("./model/cart")
+// const order = require('./model/order')
+// const wishlist = require('./model/wishlist')
+// const category = require("../Dynamic API/CategoryAdd")
+// const product = require('../Dynamic API/productAdd')
+// const ObjectId = mongoose.Types.ObjectId;
 
-require("./db/db");
-const app = express()
+// require("./db/db");
+// const app = express()
 
-hbs.registerHelper("multiply", function (a, b) {
-    return a * b;
-});
+// hbs.registerHelper("multiply", function (a, b) {
+//     return a * b;
+// });
 
-//paths for express config
-const publicDirectory = path.join(__dirname, "../public");
-const viewsPath = path.join(__dirname, "../templates/views");
-const partialsPath = path.join(__dirname, "../templates/partials");
+// //paths for express config
+// const publicDirectory = path.join(__dirname, "../public");
+// const viewsPath = path.join(__dirname, "../templates/views");
+// const partialsPath = path.join(__dirname, "../templates/partials");
 
-// Setup handlebars engine and views location
-app.set("view engine", "hbs");
-app.set("views", viewsPath);
-hbs.registerPartials(partialsPath);
+// // Setup handlebars engine and views location
+// app.set("view engine", "hbs");
+// app.set("views", viewsPath);
+// hbs.registerPartials(partialsPath);
 
-//Body-parser middle were
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+// //Body-parser middle were
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({extended: true}))
 
-// Generate a random token for verification
-function generateToken() {
-    const token = Math.random().toString(36).substring(2, 12)
-    return token;
-}
+// // Generate a random token for verification
+// function generateToken() {
+//     const token = Math.random().toString(36).substring(2, 12)
+//     return token;
+// }
 
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 
-// Setup static dictionary to serve
-app.use(express.static(publicDirectory));
+// // Setup static dictionary to serve
+// app.use(express.static(publicDirectory));
 
-app.use(
-    session({
-        secret: "somekey",
-        resave: false,
-        saveUninitialized: true,
-        cookie: {
-            secure: false,
-            sameSite: "lax",
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-        }, // Set the cookie to be non-secure to run in local
-    })
-);
+// app.use(
+//     session({
+//         secret: "somekey",
+//         resave: false,
+//         saveUninitialized: true,
+//         cookie: {
+//             secure: false,
+//             sameSite: "lax",
+//             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+//         }, // Set the cookie to be non-secure to run in local
+//     })
+// );
 
-function getDefaultRenderData(req) {
-    return {
-        user: req.session.user || false
-    };
-}
+// function getDefaultRenderData(req) {
+//     return {
+//         user: req.session.user || false
+//     };
+// }
 
-const currencyLogo = "₹";
+// const currencyLogo = "₹";
 
 // let storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
@@ -1272,32 +1272,32 @@ const currencyLogo = "₹";
 // ----------------------------------------------------------------------------
 
 
-app.post("/admin/logout", (req, res) => { 
-    req.session.destroy(function (err) {
-        res.redirect("/admin");
-    });
-});
+// app.post("/admin/logout", (req, res) => { 
+//     req.session.destroy(function (err) {
+//         res.redirect("/admin");
+//     });
+// });
 
-app.post("/logout", (req, res) => { 
-    req.session.destroy(function (err) {
-        res.redirect("/");
-    });
-});
+// app.post("/logout", (req, res) => { 
+//     req.session.destroy(function (err) {
+//         res.redirect("/");
+//     });
+// });
 
-app.get("*", async (req, res) => {
-    let defaultRenderData = getDefaultRenderData(req);
-    try  {
-        const Category = await category.find({}).limit(5);
+// app.get("*", async (req, res) => {
+//     let defaultRenderData = getDefaultRenderData(req);
+//     try  {
+//         const Category = await category.find({}).limit(5);
 
-        res.render('error 404', {
-            defaultRenderData,
-            Category: Category
-        })
-    } catch (err) {
-        res.send('Error' + err);
-    }
-});
+//         res.render('error 404', {
+//             defaultRenderData,
+//             Category: Category
+//         })
+//     } catch (err) {
+//         res.send('Error' + err);
+//     }
+// });
 
-app.listen(3000, () => {
-    console.log("connected to server");
-});
+// app.listen(3000, () => {
+//     console.log("connected to server");
+// });

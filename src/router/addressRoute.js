@@ -29,9 +29,9 @@ router.get('/', async(req, res) => {
 
     const userId = defaultRenderData.user.userId;
 
-    // if (!userId) {
-    //     res.redirect('/');
-    // }
+    if (!userId) {
+        res.redirect('/');
+    }
 
     try {
 
