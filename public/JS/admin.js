@@ -213,7 +213,7 @@ $(document).ready(function () {
                         text: "Goto Products",
                         btnClass: "btn-blue",
                         action: function () {
-                            location.href = "/admin/product-view";
+                            location.href = "/admin/product-list";
                         },
                     },
                     cancel: function () {},
