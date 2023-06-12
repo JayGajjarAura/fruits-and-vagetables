@@ -22,7 +22,6 @@
                             <td class="h4" > Image </td>
                             <td class="h4"> Title </td>
                             <td class="h4"> Category Status </td>
-                            {{!-- <td class="h4"> Edit </td> --}}
                             <td class="h4"> Delete </td>
                         </tr>
                     </thead>
@@ -119,16 +118,15 @@
 
     <script>
         // Add event listener to image elements
-            const imageModalTriggerElements = document.getElementsByClassName('image-modal-trigger');
-            Array.from(imageModalTriggerElements).forEach(element => {
-                element.addEventListener('click', function () {
-                    const imageUrl = this.getAttribute('src');
-                    const modalImageElement = document.getElementById('modalImage');
-                    modalImageElement.src = imageUrl;
-                    $('#imageModal').modal('show'); // Trigger the modal
-                });
+        const imageModalTriggerElements = document.getElementsByClassName('image-modal-trigger');
+        Array.from(imageModalTriggerElements).forEach(element => {
+            element.addEventListener('click', function () {
+                const imageUrl = this.getAttribute('src');
+                const modalImageElement = document.getElementById('modalImage');
+                modalImageElement.src = imageUrl;
+                $('#imageModal').modal('show'); // Trigger the modal
             });
-
+        });
     </script>
 </body>
 </html>

@@ -123,21 +123,21 @@
                     {{!-- <p class="ml-5 d-none d-md-block"> Ends In: 
                         <span class="bg-success text-white px-3 py-2 ml-2 "> 01 Hours :&nbsp; 03 Minutes&nbsp; : 00 Seconds </span>
                      </p> --}}
-                    <p class="ml-4">Ends In:</p>
+                    {{!-- <p class="ml-4">Ends In:</p>
                     <div id="clockdiv timeup" class="ml-2 row bg-success text-white px-3 py-2">
                             <div class="hours font-weight-bold" id="hour"> </div>&nbsp; <span class="smalltext">  Hours </span> &nbsp;&nbsp;&nbsp;
                             
                             <div class="minutes font-weight-bold" id="minute"> </div> &nbsp; <span class="smalltext">  Minutes </span> &nbsp;&nbsp;&nbsp;
                             
                             <div class="seconds font-weight-bold" id="second"> </div> &nbsp; <span class="smalltext">  Seconds </span>
-                    </div>
-                    <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span>
+                    </div> --}}
+                    {{!-- <span class="ml-auto">View All <i class="fa fa-angle-right pl-1"></i></span> --}}
                 </div>
                 <div class="card-group">
                     {{#each flashSale}}
                         <div class="card d-none d-md-block">
                             <a href="/products/{{slug}}">
-                                <img class="card-img-top product_images" src="{{image}}" alt="{{title}}" height="300px" loading="lazy">
+                                <img class="card-img-top product_images py-3" src="{{image}}" alt="{{title}}" style="object-fit: contain;" height="250px" width="100px" loading="lazy">
                                 <div class="card-body px-4 py-1">
                                     <p class="card-title font-weight-bold"> {{title}} </p>
                                     <div class="Green_stars_sales_size pb-2">
@@ -483,7 +483,7 @@
                             <div class="col-md-4 d-none d-md-block">
                                 <a href="/products/{{slug}}">
                                     <div class="media py-4 ">
-                                        <img src="{{image}}" alt="{{title}}" width="100px" class="mx-4" loading="lazy">
+                                        <img src="{{image}}" alt="{{title}}" style="object-fit: contain;" height="100px" width="100px" class="mx-4" loading="lazy">
                                         <div class="media-body">
                                             <h5> {{title}} </h5>
                                             <div class="Green_stars_sales_size pb-2">

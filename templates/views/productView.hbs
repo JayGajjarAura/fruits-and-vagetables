@@ -32,8 +32,8 @@
                     <tbody>
                         {{#each Products}}
                         <tr>
-                            <td>
-                                <img class="" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
+                            <td style="cursor: pointer;">
+                                <img class="image-modal-trigger-product" src="{{image}}" alt="{{image}}" style="height: 65px;width: 65px;object-fit: contain;">
                             </td> 
                             <td class="align-middle"> {{title}} </td>
                             <td class="align-middle"> ₹{{price}} </td>
@@ -90,7 +90,7 @@
                                         <label class="mx-1">Product Category:</label> <br>
                                         <select name="productCategory" id="productCategory" class="yes_no_btn mx-1">
                                             {{#each ../Category}}
-                                            <option value="{{_id}}" name="category"> {{name}} </option>
+                                                <option value="{{_id}}" name="category"> {{name}} </option>
                                             {{/each}}
                                         </select>
                                     </div>
@@ -126,6 +126,40 @@
                 </div>
             {{/each}}
         </div>
+
+        {{!-- --------------------- Image Modal ------------------- --}}
+        {{#each Products}}
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0 py-2">
+                            <h2> {{this.title}} </h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4 mx-auto">
+                        <img id="modalImage" src="" alt="Image" class="img-fluid"
+                            style="max-height: 550px;object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
     </main>
+
+    <script>
+        // Add event listener to image elements
+        const imageModalTriggerElements = document.getElementsByClassName('image-modal-trigger-product');
+        Array.from(imageModalTriggerElements).forEach(element => {
+            element.addEventListener('click', function () {
+                const imageUrl = this.getAttribute('src');
+                const modalImageElement = document.getElementById('modalImage');
+                modalImageElement.src = imageUrl;
+                $('#imageModal').modal('show'); // Trigger the modal
+            });
+        });
+    </script>
 </body>
 </html>

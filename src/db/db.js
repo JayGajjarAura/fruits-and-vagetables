@@ -4,7 +4,11 @@ dotenv.config()
 
 const connectionURI = process.env.MONGODB_URI;
 
-mongoose.connect(connectionURI)
+mongoose.connect(connectionURI).then(
+    console.log('connected')
+).catch(
+    console.error()
+)
 
 const db = mongoose.connection;
 

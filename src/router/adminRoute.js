@@ -19,11 +19,20 @@ router.use(
     })
 );
 
-function getDefaultRenderData(req) {
-    return {
-        user: req.session.user || false
-    };
+const auth = (req, res, next) => {
+    const userId = req.session.user?.userId
+
+    if (!userId) {
+        return res.redirect('/admin')
+    }
+    next()
 }
+
+// function getDefaultRenderData(req) {
+//     return {
+//         user: req.session.user || false
+//     };
+// }
 
 router.get('/', (req, res) => {
     res.render('admin')
@@ -55,14 +64,14 @@ router.post("/adminLogin", async (req, res) => {
 });
 
 
-router.get('/dashboard', (req, res) => {
-    let defaultRenderData = getDefaultRenderData(req);
+router.get('/dashboard', auth, (req, res) => {
+    // let defaultRenderData = getDefaultRenderData(req);
 
-    const userId = defaultRenderData.user.userId;
+    // const userId = defaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('/admin')
-    }
+    // if(!userId) {
+    //     res.redirect('/admin')
+    // }
 
     // res.send('dashboard')
     try {
@@ -74,16 +83,16 @@ router.get('/dashboard', (req, res) => {
     }
 })
 
-router.get('/product-add', async (req, res) => {
+router.get('/product-add', auth ,async (req, res) => {
     // res.send('productAdd')
 
-    let defaultRenderData = getDefaultRenderData(req);
+    // let defaultRenderData = getDefaultRenderData(req);
 
-    const userId = defaultRenderData.user.userId;
+    // const userId = defaultRenderData.user.userId;
 
-    if(!userId) {
-        res.redirect('/admin')
-    }
+    // if(!userId) {
+    //     res.redirect('/admin')
+    // }
 
     try {
 

@@ -235,7 +235,7 @@ $(document).ready(function (e) {
                             response(results);
                         },
                     });
-                }, 500); // Set the debounce time to 500ms
+                }, 300); // Set the debounce time to 500ms
             },
             minLength: 2,
             select: function (event, ui) {
