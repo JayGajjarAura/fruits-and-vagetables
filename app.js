@@ -16,7 +16,7 @@ const viewsPath = path.join(__dirname, "../fruits-and-vagetables/templates/views
 const partialsPath = path.join(__dirname, "../fruits-and-vagetables/templates/partials");
 
 // Setup handlebars engine and views location
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 
