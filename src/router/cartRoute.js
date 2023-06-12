@@ -250,7 +250,7 @@ router.post('/create-checkout-session', async (req, res) => {
             cancel_url: 'http://localhost:3000/cancel',
         });
 
-        const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
+        // const sessionDetails = await stripe.checkout.sessions.retrieve(session.id);
         // console.log('sessionn------', sessionDetails.payment_status);
 
         const order_data = new order({
