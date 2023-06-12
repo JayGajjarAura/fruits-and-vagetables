@@ -12,7 +12,7 @@ const breadcrumbMiddleware = require('./src/middleware/breadcrumbsMiddleware')
 
 //paths for express config
 const publicDirectory = path.join(__dirname, "../fruits-and-vagetables/public");
-const viewsPath = path.join(__dirname, "../fruits-and-vagetables/templates/views");
+const viewsPath = path.join(__dirname, "../fruits-and-vagetables/templates/");
 const partialsPath = path.join(__dirname, "../fruits-and-vagetables/templates/partials");
 
 // Setup handlebars engine and views location
