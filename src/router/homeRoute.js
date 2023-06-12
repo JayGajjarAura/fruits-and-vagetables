@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
         const flashSale = await product.find({ flashSale: true, active: true }).limit(6);
         const best_sellers = await product.find({ active: true }).limit(10);
         const topRated = await product.find({topRated: true, active: true}).limit(6)
-        res.render("index.hbs", {
+        res.render("index", {
             defaultRenderData,
             totalQuantity,           
             newProducts: newProducts,
