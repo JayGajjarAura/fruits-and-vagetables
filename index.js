@@ -1,7 +1,10 @@
 const express = require("express");
+const dotenv = require('dotenv')
+dotenv.config()
 const bodyParser = require("body-parser");
 const path = require("path");
 const hbs = require('hbs')
+const port = process.env.PORT || 3000
 
 const app = express();
 require('./src/db/db')
@@ -57,6 +60,6 @@ app.use('/mail', NodeMailerRoute)
 app.use('/', ErrorRoute)
 
 // Start the server
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
