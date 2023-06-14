@@ -4,8 +4,7 @@ This project is made by me at the time of internship during the Feb-2023 to May-
 It was made using the latest technologies
 For front-end have used HBS which is template engine for rendring
 For back-end have used NodeJS with Express.JS
-Postman for testing all the API's and also to add and remove category and product from database
-and finally for storing the data have used MongoDB
+Postman for testing all the API's and finally for storing the data have used MongoDB
 
 Basically it is a website for ordering a fruits and vegetable online with some bakery items.
 
