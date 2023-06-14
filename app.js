@@ -11,9 +11,9 @@ require('./src/db/db')
 const breadcrumbMiddleware = require('./src/middleware/breadcrumbsMiddleware')
 
 //paths for express config
-const publicDirectory = path.join(__dirname, "../fruits-and-vagetables/public");
-const viewsPath = path.join(__dirname, "../fruits-and-vagetables/templates/views");
-const partialsPath = path.join(__dirname, "../fruits-and-vagetables/templates/partials");
+const publicDirectory = path.join(__dirname, "./public");
+const viewsPath = path.join(__dirname, "./templates/views");
+const partialsPath = path.join(__dirname, "./templates/partials");
 
 // Setup handlebars engine and views location
 app.set("view engine", "hbs");
