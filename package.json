@@ -37,5 +37,8 @@
     "nodemon": "^2.0.22",
     "slugify": "^1.6.6",
     "stripe": "^12.5.0"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.14.0"
   }
 }
